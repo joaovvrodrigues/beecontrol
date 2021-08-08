@@ -1,0 +1,12 @@
+import 'package:beecontrol/core/app_theme.dart';
+import 'package:flutter/material.dart';
+
+class AppTextStyle {
+  AppTextStyle._();
+  static const TextStyle boldTitle = TextStyle(
+      fontSize: 20, fontWeight: FontWeight.w800, color: AppTheme.eclipse);
+  static const TextStyle boldText = TextStyle(
+      fontSize: 14, fontWeight: FontWeight.bold, color: AppTheme.eclipse);
+  static const TextStyle normalText =
+      TextStyle(fontSize: 20, fontWeight: FontWeight.w300);
+}
