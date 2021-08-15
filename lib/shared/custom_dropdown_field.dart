@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-
 import 'package:beecontrol/core/app_theme.dart';
-import 'package:flutter/services.dart';
 
-class CustomFormField extends StatelessWidget {
-  const CustomFormField({
+class CustomDropDownField extends StatelessWidget {
+  const CustomDropDownField({
     Key? key,
     this.errorText,
     required this.hintText,
     this.icon,
     this.validator,
     this.onSaved,
-    this.onChanged,
     this.size,
-    this.inputFormatters,
-    this.keyboardType,
-    this.textCapitalization = TextCapitalization.none,
+    this.items,
   }) : super(key: key);
 
   final String? errorText;
@@ -24,24 +19,20 @@ class CustomFormField extends StatelessWidget {
   final double? size;
   final String? Function(String? text)? validator;
   final void Function(String? text)? onSaved;
-  final void Function(String text)? onChanged;
-  final List<TextInputFormatter>? inputFormatters;
-  final TextInputType? keyboardType;
-  final TextCapitalization textCapitalization;
+  final List<DropdownMenuItem<String>>? items;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      cursorColor: AppTheme.dandelion,
+    return DropdownButtonFormField<String>(
+      items: items,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       onSaved: onSaved,
-      onChanged: onChanged,
-      keyboardType: keyboardType,
-      textCapitalization: textCapitalization,
-      inputFormatters: inputFormatters,
+      onChanged: onSaved,
+      dropdownColor: Colors.white,
+      icon: Icon(Icons.arrow_drop_down_rounded),
       style: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.w900, color: AppTheme.dandelion),
+          fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.dandelion),
       decoration: InputDecoration(
         // Configurações do Prefix
         prefixIcon: Padding(
