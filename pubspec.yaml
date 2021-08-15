@@ -37,6 +37,8 @@ dependencies:
   url_launcher: ^6.0.9
   intl: ^0.17.0
   provider: ^5.0.0
+  ionicons: ^0.1.2
+  brasil_fields: ^1.1.4
 
 dev_dependencies:
   flutter_test:
