@@ -18,11 +18,10 @@ class OrderBy extends StatelessWidget {
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Row(
           children: [
-            Text(text, style: AppTextStyle.boldText),
+            Expanded(child: Text(text, style: AppTextStyle.boldText)),
             Container(
               height: 25,
               width: 25,
-              margin: EdgeInsets.only(left: 5),
               child: Icon(Icons.arrow_drop_down_rounded),
               decoration: BoxDecoration(
                 boxShadow: [
