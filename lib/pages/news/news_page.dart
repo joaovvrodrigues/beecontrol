@@ -1,11 +1,9 @@
 import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/weather.dart';
 import 'package:beecontrol/pages/news/news_controller.dart';
 import 'package:beecontrol/pages/news/widgets/news_card.dart';
 import 'package:beecontrol/pages/news/widgets/order_by_widget.dart';
 import 'package:beecontrol/shared/circular_button.dart';
-import 'package:beecontrol/shared/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:webfeed/domain/rss_feed.dart';

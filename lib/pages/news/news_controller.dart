@@ -1,6 +1,7 @@
-import 'package:beecontrol/pages/news/weather/api_keys.dart';
-import 'package:beecontrol/pages/news/weather/weather_api_client.dart';
-import 'package:beecontrol/pages/news/weather/weather_repository.dart';
+
+import 'package:beecontrol/services/weather/api_keys.dart';
+import 'package:beecontrol/services/weather/weather_api_client.dart';
+import 'package:beecontrol/services/weather/weather_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:webfeed/webfeed.dart';
 import 'package:http/http.dart' as http;
