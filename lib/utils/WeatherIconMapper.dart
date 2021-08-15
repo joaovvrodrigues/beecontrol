@@ -7,6 +7,7 @@ class _IconData extends IconData {
           fontFamily: 'WeatherIcons',
         );
 }
+
 /// Exposes specific weather icons
 /// Has all weather conditions specified by open weather maps API
 /// https://openweathermap.org/weather-conditions
@@ -35,6 +36,4 @@ class WeatherIcons {
 
   static const IconData mist_day = const _IconData(0xf003);
   static const IconData mist_night = const _IconData(0xf04a);
-
-
 }
