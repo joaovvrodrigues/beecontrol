@@ -39,6 +39,10 @@ dependencies:
   provider: ^5.0.0
   ionicons: ^0.1.2
   brasil_fields: ^1.1.4
+  flutter_spinkit: ^5.0.0
+  flutter_staggered_animations: ^1.0.0
+  transparent_image: ^2.0.0
+  animated_bottom_navigation_bar: ^0.3.2
 
 dev_dependencies:
   flutter_test:
