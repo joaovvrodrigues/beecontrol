@@ -27,7 +27,7 @@ class NewsCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: InkWell(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.circular(20),
         onTap: _launchURL,
         child: Container(
           height: 280,

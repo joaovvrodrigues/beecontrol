@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:beecontrol/models/weather.dart';
 import 'package:http/http.dart' as http;
 
-import 'http_exception.dart';
+import '../http/http_exception.dart';
 
 /// Wrapper around the open weather map api
 /// https://openweathermap.org/current

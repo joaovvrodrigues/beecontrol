@@ -27,7 +27,7 @@ class _WeatherCardState extends State<WeatherCard> {
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: InkWell(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.circular(20),
         onTap: () {
           if (weather.id != 121998)
             setState(() {

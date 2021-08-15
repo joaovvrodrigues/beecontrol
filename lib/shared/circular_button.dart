@@ -21,7 +21,7 @@ class CircularButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.all(Radius.circular(100)),
+      borderRadius: BorderRadius.circular(100),
       focusColor: color.withAlpha(60),
       splashColor: color.withAlpha(60),
       child: Container(
