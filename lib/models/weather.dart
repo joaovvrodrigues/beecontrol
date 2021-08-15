@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:beecontrol/utils/WeatherIconMapper.dart';
+import 'package:beecontrol/utils/weather_icon_mapper.dart';
 import 'package:beecontrol/utils/converters.dart';
 
 class Weather extends ChangeNotifier {
