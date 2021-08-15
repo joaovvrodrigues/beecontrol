@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/shared/circular_button.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsCard extends StatelessWidget {
@@ -23,70 +24,80 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
-      onTap: _launchURL,
-      child: Container(
-        height: 280,
-        margin: EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-            color: Colors.white,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: InkWell(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        onTap: _launchURL,
+        child: Container(
+          height: 280,
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-              image: NetworkImage(
-                image,
+          ),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: image,
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: double.infinity,
+                  // alignment: Alignment.topCenter,
+                ),
               ),
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            )),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: AppTextStyle.boldTitle,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            date,
-                            style: AppTextStyle.boldText,
+                            title,
+                            style: AppTextStyle.boldTitle,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          CircularButton(
-                            onTap: () {
-                              Share.share('$title - $url');
-                            },
-                            icon: Icons.share_rounded,
-                            iconSize: 20,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  date,
+                                  style: AppTextStyle.boldText,
+                                ),
+                                CircularButton(
+                                  onTap: () {
+                                    Share.share('$title - $url');
+                                  },
+                                  icon: Icons.share_rounded,
+                                  iconSize: 20,
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                    width: double.infinity,
+                    height: 125,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20)),
+                    ),
+                  ),
+                ],
               ),
-              width: double.infinity,
-              height: 125,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

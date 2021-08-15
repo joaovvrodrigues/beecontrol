@@ -1,14 +1,16 @@
 import 'package:beecontrol/core/app_text_style.dart';
+import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/models/feed.dart';
 import 'package:beecontrol/models/weather.dart';
-import 'package:beecontrol/pages/news/news_controller.dart';
 import 'package:beecontrol/pages/news/widgets/news_card.dart';
 import 'package:beecontrol/pages/news/widgets/order_by_widget.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:webfeed/domain/rss_feed.dart';
 import 'widgets/weather_card.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
@@ -18,19 +20,12 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  NewsController controller = NewsController();
   Weather weather =
       Weather(iconCode: '01d', id: 121998, temperature: 0, time: 0);
-
-  void loadWeather() async {
-    var _w = await controller.getWeather();
-    weather.refresh(_w);
-  }
+  Feed feed = Feed();
 
   @override
   void initState() {
-    controller.loadFeed();
-    loadWeather();
     timeago.setLocaleMessages('pt_br', timeago.PtBrMessages());
     super.initState();
   }
@@ -38,6 +33,7 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     weather = context.read<Weather>();
+    feed = context.watch<Feed>();
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -57,14 +53,6 @@ class _NewsPageState extends State<NewsPage> {
           shrinkWrap: true,
           padding: const EdgeInsets.all(20),
           children: [
-            // CustomFormField(
-            //   hintText: 'Nome',
-            //   icon: Icons.person_outline_rounded,
-            // ),
-            // CustomFormField(
-            //   hintText: 'Telefone',
-            //   icon: Icons.phone_outlined,
-            // ),
             WeatherCard(),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -78,40 +66,40 @@ class _NewsPageState extends State<NewsPage> {
                 ],
               ),
             ),
-            ValueListenableBuilder<RssFeed?>(
-                valueListenable: controller.feed,
-                builder: (_, feed, __) {
-                  if (feed != null)
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: feed.items!.length,
-                        itemBuilder: (context, index) {
-                          return NewsCard(
-                            image: feed
-                                    .items![index].media!.contents!.isNotEmpty
-                                ? feed.items![index].media!.contents!.first.url!
-                                : 'https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg',
-                            url: feed.items![index].link!,
-                            title: feed.items![index].title!,
-                            date: timeago.format(feed.items![index].pubDate!,
-                                locale: 'pt_br'),
-                          );
-                        });
-                  else
-                    return Center(child: CircularProgressIndicator());
-                })
-            // NewsCard(
-            //   image: 'https://i.ytimg.com/vi/j5fEWJIJJKc/maxresdefault.jpg',
-            //   title: 'Curso de Apicultura Migratória',
-            //   date: '5h 23 minutos atrás',
-            // ),
-            // NewsCard(
-            //   image:
-            //       'https://www.sitiopema.com.br/wp-content/uploads/2020/09/apicultura.jpg',
-            //   title: 'Melhores práticas de manejo',
-            //   date: '8h 30 minutos atrás',
-            // )
+            if (feed.feed != null)
+              AnimationLimiter(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: feed.feed!.items!.length,
+                      itemBuilder: (context, index) {
+                        return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 400),
+                            delay: const Duration(milliseconds: 150),
+                            child: SlideAnimation(
+                                child: FadeInAnimation(
+                                    child: NewsCard(
+                              image: feed.feed!.items![index].media!.contents!
+                                      .isNotEmpty
+                                  ? feed.feed!.items![index].media!.contents!
+                                      .first.url!
+                                  : 'https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg',
+                              url: feed.feed!.items![index].link!,
+                              title: feed.feed!.items![index].title!,
+                              date: timeago.format(
+                                  feed.feed!.items![index].pubDate!,
+                                  locale: 'pt_br'),
+                            ))));
+                      }))
+            else
+              Padding(
+                padding: const EdgeInsets.only(top: 80),
+                child: SpinKitFadingCube(
+                  color: AppTheme.dandelion,
+                  size: 40,
+                ),
+              )
           ],
         ),
       ),
