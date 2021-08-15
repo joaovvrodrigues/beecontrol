@@ -2,11 +2,11 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/feed.dart';
 import 'package:beecontrol/models/weather.dart';
+import 'package:beecontrol/pages/apiaries/apiaries_page.dart';
 import 'package:beecontrol/pages/home/home_controller.dart';
-// ignore: unused_import
-import 'package:beecontrol/pages/news/news_controller.dart';
 import 'package:beecontrol/pages/news/news_page.dart';
 import 'package:beecontrol/pages/register/register_page.dart';
+import 'package:beecontrol/pages/submit_apiary/submit_apiary_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ionicons/ionicons.dart';
@@ -29,14 +29,14 @@ class _HomePageState extends State<HomePage>
 
   final iconList = <IconData>[
     Ionicons.newspaper_outline,
-    Icons.inventory,
+    Icons.inventory_2_outlined,
     Icons.brightness_6,
     Icons.brightness_7,
   ];
 
   final pages = <Widget>[
     NewsPage(),
-    RegisterPage(),
+    ApiariesPage(),
     RegisterPage(),
     RegisterPage()
   ];
@@ -56,13 +56,35 @@ class _HomePageState extends State<HomePage>
     feed.refresh(_f);
   }
 
+  void _onTap(int index) {
+    if (index != _bottomNavIndex) {
+      if (index == 1 && _animationController.value == 0.0) {
+        _animationController.forward();
+      } else if (_animationController.value == 1.0) {
+        _animationController.reverse();
+      }
+
+      setState(() {
+        _bottomNavIndex = index;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
+
     loadWeather();
     loadFeed();
+
     _animationController = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: Duration(milliseconds: 800),
       vsync: this,
     );
     curve = CurvedAnimation(
@@ -77,11 +99,6 @@ class _HomePageState extends State<HomePage>
       begin: 0,
       end: 1,
     ).animate(curve);
-
-    Future.delayed(
-      Duration(seconds: 1),
-      () => _animationController.forward(),
-    );
   }
 
   @override
@@ -101,8 +118,8 @@ class _HomePageState extends State<HomePage>
             color: AppTheme.eclipse,
           ),
           onPressed: () {
-            _animationController.reset();
-            _animationController.forward();
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => SubmitApiaryPage()));
           },
         ),
       ),
@@ -124,7 +141,7 @@ class _HomePageState extends State<HomePage>
         splashSpeedInMilliseconds: 300,
         notchSmoothness: NotchSmoothness.smoothEdge,
         gapLocation: GapLocation.center,
-        onTap: (index) => setState(() => _bottomNavIndex = index),
+        onTap: _onTap,
       ),
     );
   }
