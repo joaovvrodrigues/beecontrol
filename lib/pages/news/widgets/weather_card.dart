@@ -1,6 +1,8 @@
 import 'package:beecontrol/core/app_text_style.dart';
+import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/weather.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 import 'forecast_horizontal_widget.dart';
@@ -60,7 +62,17 @@ class _WeatherCardState extends State<WeatherCard> {
                                     style: AppTextStyle.boldTitle
                                         .copyWith(fontSize: 40),
                                   )
-                                : CircularProgressIndicator(),
+                                : Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: SpinKitFadingCube(
+                                          color: AppTheme.dandelion,
+                                          size: 40,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                           ),
                           expanded && weather.id != 121998
                               ? Column(
