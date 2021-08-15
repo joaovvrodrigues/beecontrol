@@ -19,7 +19,7 @@ class TotalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.all(25),
+        margin: EdgeInsets.all(15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,7 +37,6 @@ class TotalWidget extends StatelessWidget {
               ),
             ),
             Container(
-                margin: EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
                     color: AppTheme.seashell,
                     borderRadius: BorderRadius.circular(100)),

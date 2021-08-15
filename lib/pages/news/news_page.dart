@@ -3,7 +3,7 @@ import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/feed.dart';
 import 'package:beecontrol/models/weather.dart';
 import 'package:beecontrol/pages/news/widgets/news_card.dart';
-import 'package:beecontrol/pages/news/widgets/order_by_widget.dart';
+import 'package:beecontrol/shared/order_by_widget.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -62,8 +62,10 @@ class _NewsPageState extends State<NewsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Ordernar por: ', style: AppTextStyle.boldText),
-                      OrderBy('Apicultura'),
-                      OrderBy('Recentes'),
+                      SizedBox(width: 5),
+                      Expanded(child: OrderBy('Apicultura')),
+                      SizedBox(width: 5),
+                      Expanded(child: OrderBy('Recentes')),
                     ],
                   ),
                 ),

@@ -103,7 +103,7 @@ class _WeatherCardState extends State<WeatherCard> {
                             top: 25, bottom: 25, right: 25, left: 20),
                         child: Icon(
                           weather.getIconData(),
-                          size: 70,
+                          size: 60,
                         )),
                   )
                 ],

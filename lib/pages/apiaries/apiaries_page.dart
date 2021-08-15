@@ -74,6 +74,7 @@ class _ApiariesPageState extends State<ApiariesPage> {
                     else
                       ListView.builder(
                           shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           itemCount: apiaries.length,
                           itemBuilder: (context, index) {
                             return ApiariesCard(apiary: apiaries[index]);

@@ -20,7 +20,7 @@ class EmptyWidget extends StatelessWidget {
         children: [
           Icon(
             icon,
-            size: 120,
+            size: 80,
             color: AppTheme.eclipse.withAlpha(90),
           ),
           Text(
