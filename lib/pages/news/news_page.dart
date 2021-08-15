@@ -36,73 +36,74 @@ class _NewsPageState extends State<NewsPage> {
     feed = context.watch<Feed>();
     return SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0),
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircularButton(onTap: () {}, icon: Icons.menu_rounded),
-                  Text('Página Inicial', style: AppTextStyle.boldTitle),
-                  CircularButton(onTap: () {}, icon: Icons.search_rounded)
-                ],
-              )),
-        ),
-        body: ListView(
-          shrinkWrap: true,
-          padding: const EdgeInsets.all(20),
-          children: [
-            WeatherCard(),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Ordernar por: ', style: AppTextStyle.boldText),
-                  OrderBy('Apicultura'),
-                  OrderBy('Recentes'),
-                ],
-              ),
-            ),
-            if (feed.feed != null)
-              AnimationLimiter(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: feed.feed!.items!.length,
-                      itemBuilder: (context, index) {
-                        return AnimationConfiguration.staggeredList(
-                            position: index,
-                            duration: const Duration(milliseconds: 400),
-                            delay: const Duration(milliseconds: 150),
-                            child: SlideAnimation(
-                                child: FadeInAnimation(
-                                    child: NewsCard(
-                              image: feed.feed!.items![index].media!.contents!
-                                      .isNotEmpty
-                                  ? feed.feed!.items![index].media!.contents!
-                                      .first.url!
-                                  : 'https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg',
-                              url: feed.feed!.items![index].link!,
-                              title: feed.feed!.items![index].title!,
-                              date: timeago.format(
-                                  feed.feed!.items![index].pubDate!,
-                                  locale: 'pt_br'),
-                            ))));
-                      }))
-            else
-              Padding(
-                padding: const EdgeInsets.only(top: 80),
-                child: SpinKitFadingCube(
-                  color: AppTheme.dandelion,
-                  size: 40,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(80.0),
+            child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircularButton(onTap: () {}, icon: Icons.menu_rounded),
+                    Text('Página Inicial', style: AppTextStyle.boldTitle),
+                    CircularButton(onTap: () {}, icon: Icons.search_rounded)
+                  ],
+                )),
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                WeatherCard(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Ordernar por: ', style: AppTextStyle.boldText),
+                      OrderBy('Apicultura'),
+                      OrderBy('Recentes'),
+                    ],
+                  ),
                 ),
-              )
-          ],
-        ),
-      ),
+                if (feed.feed != null)
+                  AnimationLimiter(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: feed.feed!.items!.length,
+                          itemBuilder: (context, index) {
+                            return AnimationConfiguration.staggeredList(
+                                position: index,
+                                duration: const Duration(milliseconds: 400),
+                                delay: const Duration(milliseconds: 150),
+                                child: SlideAnimation(
+                                    child: FadeInAnimation(
+                                        child: NewsCard(
+                                  image: feed.feed!.items![index].media!
+                                          .contents!.isNotEmpty
+                                      ? feed.feed!.items![index].media!
+                                          .contents!.first.url!
+                                      : 'https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg',
+                                  url: feed.feed!.items![index].link!,
+                                  title: feed.feed!.items![index].title!,
+                                  date: timeago.format(
+                                      feed.feed!.items![index].pubDate!,
+                                      locale: 'pt_br'),
+                                ))));
+                          }))
+                else
+                  Padding(
+                    padding: const EdgeInsets.only(top: 80),
+                    child: SpinKitFadingCube(
+                      color: AppTheme.dandelion,
+                      size: 40,
+                    ),
+                  )
+              ],
+            ),
+          )),
     );
   }
 }
