@@ -2,6 +2,7 @@ import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/report.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/reports_card.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/summary_apiary_card.dart';
+import 'package:beecontrol/pages/control_sheet/control_sheet_page.dart';
 import 'package:beecontrol/shared/empty_widget.dart';
 import 'package:beecontrol/shared/info_card.dart';
 import 'package:beecontrol/shared/order_by_widget.dart';
@@ -25,24 +26,24 @@ class ApiaryPage extends StatefulWidget {
 
 class _ApiaryPageState extends State<ApiaryPage> {
   List<Report> reports = [
-    Report(
-        date: DateTime.now(),
-        numHives: 5,
-        orphanBoxes: 2,
-        resume: 'Alimentação, Mel, Própolis',
-        name: 'Ficha de Controle 1'),
-    Report(
-        date: DateTime.now(),
-        numHives: 6,
-        orphanBoxes: 1,
-        resume: 'Limpeza, Instalações, Mel',
-        name: 'Ficha de Controle 2'),
-    Report(
-        date: DateTime.now(),
-        numHives: 5,
-        orphanBoxes: 0,
-        resume: 'Divisão de Enxame, Mel',
-        name: 'Ficha de Controle 3'),
+    // Report(
+    //     date: DateTime.now(),
+    //     numHives: 5,
+    //     orphanBoxes: 2,
+    //     resume: 'Alimentação, Mel, Própolis',
+    //     name: 'Ficha de Controle 1'),
+    // Report(
+    //     date: DateTime.now(),
+    //     numHives: 6,
+    //     orphanBoxes: 1,
+    //     resume: 'Limpeza, Instalações, Mel',
+    //     name: 'Ficha de Controle 2'),
+    // Report(
+    //     date: DateTime.now(),
+    //     numHives: 5,
+    //     orphanBoxes: 0,
+    //     resume: 'Divisão de Enxame, Mel',
+    //     name: 'Ficha de Controle 3'),
   ];
 
   @override
@@ -72,7 +73,12 @@ class _ApiaryPageState extends State<ApiaryPage> {
               Icons.add_rounded,
               color: AppTheme.eclipse,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ControlSheetPage(
+                        apiary: widget.apiary,
+                      )));
+            },
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,

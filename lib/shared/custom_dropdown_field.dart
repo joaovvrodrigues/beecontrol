@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:beecontrol/core/app_theme.dart';
 
 class CustomDropDownField extends StatelessWidget {
@@ -7,10 +8,11 @@ class CustomDropDownField extends StatelessWidget {
     this.errorText,
     required this.hintText,
     this.icon,
+    this.size,
     this.validator,
     this.onSaved,
-    this.size,
     this.items,
+    this.initialValue,
   }) : super(key: key);
 
   final String? errorText;
@@ -20,10 +22,12 @@ class CustomDropDownField extends StatelessWidget {
   final String? Function(String? text)? validator;
   final void Function(String? text)? onSaved;
   final List<DropdownMenuItem<String>>? items;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
+      value: initialValue,
       items: items,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,

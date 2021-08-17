@@ -2,8 +2,10 @@ import 'package:beecontrol/core/app_images.dart';
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/user_model.dart';
+import 'package:beecontrol/shared/custom_checkboxtile.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
 import 'package:beecontrol/shared/custom_text_field.dart';
+import 'package:beecontrol/shared/guide_title.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -73,6 +75,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                               ),
                             ),
+                            GuideTitle(
+                                icon: Ionicons.person_add,
+                                title: 'Meus Dados:'),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 5),
                               child: CustomFormField(
@@ -137,25 +142,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 },
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(Ionicons.home,
-                                        size: 15, color: AppTheme.eclipse),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'End. Residencial:',
-                                      style: AppTextStyle.boldText,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            GuideTitle(
+                                icon: Ionicons.home,
+                                title: 'End. Residencial:'),
                             Row(
                               children: [
                                 Expanded(
@@ -278,19 +267,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                   horizontal: 12, vertical: 8),
                               child: Column(
                                 children: [
-                                  CheckboxListTile(
-                                    value: true,
-                                    onChanged: (value) {},
-                                    title: Text('Manter conectado'),
-                                    checkColor: AppTheme.eclipse,
-                                  ),
-                                  CheckboxListTile(
-                                    value: true,
-                                    onChanged: (value) {},
-                                    title: Text(
-                                        'Desejo receber notícias pelo e-mail'),
-                                    checkColor: AppTheme.eclipse,
-                                  ),
+                                  CustomCheckBox(
+                                      value: true,
+                                      title: 'Manter conectado',
+                                      onChanged: (bool) {}),
+                                  CustomCheckBox(
+                                      value: true,
+                                      title:
+                                          'Desejo receber notícias pelo e-mail',
+                                      onChanged: (bool) {})
                                 ],
                               ),
                             ),

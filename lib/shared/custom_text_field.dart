@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-
-import 'package:beecontrol/core/app_theme.dart';
 import 'package:flutter/services.dart';
 
+import 'package:beecontrol/core/app_theme.dart';
+
 class CustomFormField extends StatelessWidget {
-  const CustomFormField({
-    Key? key,
-    this.errorText,
-    required this.hintText,
-    this.icon,
-    this.validator,
-    this.onSaved,
-    this.onChanged,
-    this.size,
-    this.inputFormatters,
-    this.keyboardType,
-    this.textCapitalization = TextCapitalization.none,
-  }) : super(key: key);
+  const CustomFormField(
+      {Key? key,
+      this.errorText,
+      required this.hintText,
+      this.icon,
+      this.size,
+      this.validator,
+      this.onSaved,
+      this.onChanged,
+      this.inputFormatters,
+      this.keyboardType,
+      this.textCapitalization = TextCapitalization.none,
+      this.initialValue,
+      this.readOnly = false,
+      this.obscureText = false})
+      : super(key: key);
 
   final String? errorText;
   final String hintText;
@@ -28,18 +31,24 @@ class CustomFormField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
+  final String? initialValue;
+  final bool readOnly;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       cursorColor: AppTheme.dandelion,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
+      readOnly: readOnly,
       onSaved: onSaved,
       onChanged: onChanged,
       keyboardType: keyboardType,
       textCapitalization: textCapitalization,
       inputFormatters: inputFormatters,
+      obscureText: obscureText,
       style: TextStyle(
           fontSize: 16, fontWeight: FontWeight.w900, color: AppTheme.dandelion),
       decoration: InputDecoration(

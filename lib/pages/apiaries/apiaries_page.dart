@@ -18,9 +18,6 @@ class ApiariesPage extends StatefulWidget {
 }
 
 class _ApiariesPageState extends State<ApiariesPage> {
-  Apiary apiary = Apiary(
-      city: 'Bambuí', uf: 'MG', numHives: 5, name: 'Apiário Santa Clara');
-
   List<Apiary> apiaries = [
     Apiary(city: 'Bambuí', uf: 'MG', numHives: 5, name: 'Apiário Santa Clara'),
     Apiary(city: 'Bambuí', uf: 'MG', numHives: 3, name: 'Apiário Lagoinha')

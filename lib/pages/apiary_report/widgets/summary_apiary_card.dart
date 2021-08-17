@@ -1,6 +1,9 @@
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/models/apiary.dart';
+import 'package:beecontrol/pages/apiary_options/edit_apiary.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/last_visit.dart';
+import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/total_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
@@ -37,7 +40,7 @@ class SummaryApiaryCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Center(
+                Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
                     child: Column(
@@ -53,6 +56,20 @@ class SummaryApiaryCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: CircularButton(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EditApiaryPage(
+                                apiary: Apiary(
+                                    city: 'Bambuí',
+                                    uf: 'MG',
+                                    numHives: 5,
+                                    name: 'Apiário Santa Clara'))));
+                      },
+                      icon: Icons.mode_edit_outline_rounded),
+                )
               ],
             ),
             Divider(),
