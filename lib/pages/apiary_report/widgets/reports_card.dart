@@ -4,6 +4,7 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 
 import 'package:beecontrol/models/report.dart';
+import 'package:ionicons/ionicons.dart';
 
 class ReportsCard extends StatelessWidget {
   const ReportsCard({
@@ -32,7 +33,7 @@ class ReportsCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12)),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Icon(Icons.inventory_outlined),
+                      child: Icon(Ionicons.document_outline),
                     )),
                 Expanded(
                   child: Text(
@@ -48,7 +49,7 @@ class ReportsCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Icon(
-                    Icons.arrow_forward_ios_rounded,
+                    Ionicons.chevron_forward_outline,
                     size: 12,
                   ),
                 )

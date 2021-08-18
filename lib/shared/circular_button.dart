@@ -66,7 +66,7 @@ class CircularButton extends StatelessWidget {
 //       onPressed: () {
 //        },
 //       child:  Icon(
-//         Icons.arrow_forward,
+//         Ionicons.chevron_forward_outline,
 //         color: Colors.white,
 //         size: 20.0,
 //       ),

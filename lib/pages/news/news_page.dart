@@ -6,6 +6,7 @@ import 'package:beecontrol/pages/news/widgets/news_card.dart';
 import 'package:beecontrol/shared/order_by_widget.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'widgets/weather_card.dart';
 import 'package:provider/provider.dart';
@@ -44,9 +45,10 @@ class _NewsPageState extends State<NewsPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircularButton(onTap: () {}, icon: Icons.menu_rounded),
+                    CircularButton(
+                        onTap: () {}, icon: Ionicons.reorder_two_outline),
                     Text('Página Inicial', style: AppTextStyle.boldTitle),
-                    CircularButton(onTap: () {}, icon: Icons.search_rounded)
+                    CircularButton(onTap: () {}, icon: Ionicons.search_outline)
                   ],
                 )),
           ),
@@ -121,7 +123,7 @@ class _NewsPageState extends State<NewsPage> {
 //                               height: 25,
 //                               width: 25,
 //                               margin: EdgeInsets.only(left: 20),
-//                               child: Icon(Icons.arrow_drop_down_rounded),
+//                               child: Icon(Ionicons.chevron_down_outline),
 //                               decoration: BoxDecoration(
 //                                 boxShadow: [
 //                                   BoxShadow(

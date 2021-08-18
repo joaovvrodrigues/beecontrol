@@ -54,7 +54,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                             Navigator.of(context).pop();
                           }
                         },
-                        icon: Icons.arrow_back_ios_new_outlined),
+                        icon: Ionicons.chevron_back_outline),
                     Text('Editar Apiário', style: AppTextStyle.boldTitle),
                     SizedBox(width: 35)
                   ],
@@ -77,13 +77,14 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                     children: [
                       // apiary name input
                       GuideTitle(
-                          icon: Ionicons.home, title: 'Nome do apiário:'),
+                          icon: Ionicons.cube_outline,
+                          title: 'Nome do apiário:'),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: CustomFormField(
                           hintText: 'Nome',
                           initialValue: apiary.name,
-                          icon: Ionicons.person_outline,
+                          icon: Ionicons.cube_outline,
                           keyboardType: TextInputType.name,
                           textCapitalization: TextCapitalization.words,
                           onSaved: (text) =>

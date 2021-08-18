@@ -1,5 +1,6 @@
 import 'package:beecontrol/pages/control_sheet/widgets/goals_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -47,7 +48,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                   children: [
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
-                        icon: Icons.arrow_back_ios_new_rounded),
+                        icon: Ionicons.chevron_back_outline),
                     Text('Ficha de Controle 1', style: AppTextStyle.boldTitle),
                     SizedBox(width: 35)
                   ],
@@ -57,7 +58,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
             elevation: 8,
             backgroundColor: AppTheme.dandelion,
             child: Icon(
-              Icons.add_rounded,
+              FeatherIcons.plus,
               color: AppTheme.eclipse,
             ),
             onPressed: () {},
@@ -151,7 +152,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: EmptyWidget(
-                                    icon: Ionicons.albums_outline,
+                                    icon: FeatherIcons.package,
                                     text: 'Sem colméias cadastradas'),
                               ),
                               InfoCard(

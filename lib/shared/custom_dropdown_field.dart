@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:ionicons/ionicons.dart';
 
 class CustomDropDownField extends StatelessWidget {
   const CustomDropDownField({
@@ -34,7 +35,7 @@ class CustomDropDownField extends StatelessWidget {
       onSaved: onSaved,
       onChanged: onSaved,
       dropdownColor: Colors.white,
-      icon: Icon(Icons.arrow_drop_down_rounded),
+      icon: Icon(Ionicons.chevron_down_outline),
       style: TextStyle(
           fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.dandelion),
       decoration: InputDecoration(

@@ -6,6 +6,7 @@ import 'package:beecontrol/pages/apiary_report/widgets/last_visit.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/total_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -77,20 +78,19 @@ class SummaryApiaryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TotalWidget(
-                    title: 'Colméias',
-                    amount: 0,
-                    icon: Ionicons.airplane_outline),
+                    title: 'Colméias', amount: 0, icon: FeatherIcons.package),
                 TotalWidget(
                     title: 'Caixas Orfãs',
                     amount: 0,
-                    icon: Icons.inventory_2_outlined),
+                    icon: Icons.safety_divider),
               ],
             ),
             Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TotalWidget(title: 'Visitas', amount: 0, icon: Icons.inventory),
+                TotalWidget(
+                    title: 'Visitas', amount: 0, icon: Ionicons.walk_outline),
                 LastVisit(),
               ],
             ),

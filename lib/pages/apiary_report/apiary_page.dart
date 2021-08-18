@@ -7,11 +7,13 @@ import 'package:beecontrol/shared/empty_widget.dart';
 import 'package:beecontrol/shared/info_card.dart';
 import 'package:beecontrol/shared/order_by_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/shared/circular_button.dart';
+import 'package:ionicons/ionicons.dart';
 
 class ApiaryPage extends StatefulWidget {
   const ApiaryPage({
@@ -26,24 +28,24 @@ class ApiaryPage extends StatefulWidget {
 
 class _ApiaryPageState extends State<ApiaryPage> {
   List<Report> reports = [
-    // Report(
-    //     date: DateTime.now(),
-    //     numHives: 5,
-    //     orphanBoxes: 2,
-    //     resume: 'Alimentação, Mel, Própolis',
-    //     name: 'Ficha de Controle 1'),
-    // Report(
-    //     date: DateTime.now(),
-    //     numHives: 6,
-    //     orphanBoxes: 1,
-    //     resume: 'Limpeza, Instalações, Mel',
-    //     name: 'Ficha de Controle 2'),
-    // Report(
-    //     date: DateTime.now(),
-    //     numHives: 5,
-    //     orphanBoxes: 0,
-    //     resume: 'Divisão de Enxame, Mel',
-    //     name: 'Ficha de Controle 3'),
+    Report(
+        date: DateTime.now(),
+        numHives: 5,
+        orphanBoxes: 2,
+        resume: 'Alimentação, Mel, Própolis',
+        name: 'Ficha de Controle 1'),
+    Report(
+        date: DateTime.now(),
+        numHives: 6,
+        orphanBoxes: 1,
+        resume: 'Limpeza, Instalações, Mel',
+        name: 'Ficha de Controle 2'),
+    Report(
+        date: DateTime.now(),
+        numHives: 5,
+        orphanBoxes: 0,
+        resume: 'Divisão de Enxame, Mel',
+        name: 'Ficha de Controle 3'),
   ];
 
   @override
@@ -60,7 +62,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                   children: [
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
-                        icon: Icons.arrow_back_ios_new_rounded),
+                        icon: Ionicons.chevron_back_outline),
                     Text(widget.apiary.name, style: AppTextStyle.boldTitle),
                     SizedBox(width: 35)
                   ],
@@ -70,7 +72,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
             elevation: 8,
             backgroundColor: AppTheme.dandelion,
             child: Icon(
-              Icons.add_rounded,
+              FeatherIcons.plus,
               color: AppTheme.eclipse,
             ),
             onPressed: () {
@@ -115,7 +117,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: EmptyWidget(
-                                  icon: Icons.inventory_outlined,
+                                  icon: Ionicons.documents_outline,
                                   text: 'Sem relatórios cadastrados'),
                             ),
                             InfoCard(

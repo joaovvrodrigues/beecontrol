@@ -6,8 +6,10 @@ import 'package:beecontrol/pages/apiaries/apiaries_page.dart';
 import 'package:beecontrol/pages/home/home_controller.dart';
 import 'package:beecontrol/pages/news/news_page.dart';
 import 'package:beecontrol/pages/apiary_options/submit_apiary_page.dart';
+import 'package:beecontrol/pages/register/register_page.dart';
 import 'package:beecontrol/pages/settings/settings_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -29,15 +31,15 @@ class _HomePageState extends State<HomePage>
 
   final iconList = <IconData>[
     Ionicons.newspaper_outline,
-    Icons.inventory_2_outlined,
-    Icons.brightness_6,
+    FeatherIcons.package,
+    Ionicons.aperture_outline,
     Ionicons.settings_outline
   ];
 
   final pages = <Widget>[
     NewsPage(),
     ApiariesPage(),
-    SettingsPage(),
+    RegisterPage(),
     SettingsPage()
   ];
 
@@ -57,7 +59,7 @@ class _HomePageState extends State<HomePage>
   }
 
   void _onTap(int index) {
-    if (index != _bottomNavIndex && index != 2) {
+    if (index != _bottomNavIndex) {
       if (index == 1 && _animationController.value == 0.0) {
         _animationController.forward();
       } else if (_animationController.value == 1.0) {
@@ -114,7 +116,7 @@ class _HomePageState extends State<HomePage>
           elevation: 8,
           backgroundColor: AppTheme.dandelion,
           child: Icon(
-            Icons.add_rounded,
+            FeatherIcons.plus,
             color: AppTheme.eclipse,
           ),
           onPressed: () {
@@ -130,7 +132,7 @@ class _HomePageState extends State<HomePage>
           final color = isActive ? AppTheme.dandelion : Colors.grey[400];
           return Icon(
             iconList[index],
-            size: index == 2 ? 0 : 24,
+            size: 24,
             color: color,
           );
         },

@@ -32,7 +32,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircularButton(onTap: () {}, icon: Icons.menu_rounded),
+                      CircularButton(
+                          onTap: () {}, icon: Ionicons.reorder_two_outline),
                       Text('Minhas Configurações',
                           style: AppTextStyle.boldTitle),
                       SizedBox(width: 35)

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:beecontrol/core/app_text_style.dart';
+import 'package:ionicons/ionicons.dart';
 
 class OrderBy extends StatelessWidget {
   const OrderBy(
@@ -22,7 +23,7 @@ class OrderBy extends StatelessWidget {
             Container(
               height: 25,
               width: 25,
-              child: Icon(Icons.arrow_drop_down_rounded),
+              child: Icon(Ionicons.chevron_down_outline),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(

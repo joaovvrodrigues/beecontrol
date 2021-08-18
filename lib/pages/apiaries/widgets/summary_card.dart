@@ -2,6 +2,7 @@ import 'package:beecontrol/core/app_images.dart';
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/shared/total_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 
 class SummaryCard extends StatelessWidget {
@@ -41,11 +42,11 @@ class SummaryCard extends StatelessWidget {
                 TotalWidget(
                     title: 'Apiários',
                     amount: 0,
-                    icon: Ionicons.airplane_outline),
+                    icon: Ionicons.ribbon_outline),
                 TotalWidget(
                     title: 'Caixas Orfãs',
                     amount: 0,
-                    icon: Icons.inventory_2_outlined),
+                    icon: Icons.safety_divider),
               ],
             ),
             Divider(),
@@ -53,11 +54,12 @@ class SummaryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TotalWidget(
-                    title: 'Colméias', amount: 0, icon: Icons.inventory),
+                    title: 'Colméias', amount: 0, icon: FeatherIcons.package),
                 TotalWidget(
                     title: 'Relatórios',
                     amount: 0,
-                    icon: Icons.inventory_outlined),
+                    icon: Ionicons.documents_outline
+),
               ],
             ),
           ],

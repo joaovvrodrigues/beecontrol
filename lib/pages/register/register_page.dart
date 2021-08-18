@@ -35,9 +35,9 @@ class _RegisterPageState extends State<RegisterPage> {
             //       child: Row(
             //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
             //         children: [
-            //           CircularButton(onTap: () {}, icon: Icons.menu_rounded),
+            //           CircularButton(onTap: () {}, icon: Ionicons.reorder_two_outline),
             //           Text('Página Inicial', style: AppTextStyle.boldTitle),
-            //           CircularButton(onTap: () {}, icon: Icons.search_rounded)
+            //           CircularButton(onTap: () {}, icon: Ionicons.search_outline)
             //         ],
             //       )),
             // ),

@@ -1,5 +1,6 @@
 import 'package:beecontrol/pages/apiary_report/apiary_page.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'package:beecontrol/models/apiary.dart';
@@ -59,7 +60,8 @@ class ApiariesCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Icon(
-                Icons.arrow_forward_ios_rounded,
+                Ionicons.chevron_forward_outline
+,
                 size: 12,
               ),
             )

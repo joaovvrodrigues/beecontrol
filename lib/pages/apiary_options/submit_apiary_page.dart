@@ -8,6 +8,7 @@ import 'package:beecontrol/shared/custom_text_field.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -37,7 +38,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                   children: [
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
-                        icon: Icons.arrow_back_ios_new_outlined),
+                        icon: Ionicons.chevron_back_outline),
                     Text('Cadastro de Apiário', style: AppTextStyle.boldTitle),
                     SizedBox(width: 35)
                   ],
@@ -60,12 +61,13 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                     children: [
                       // apiary name input
                       GuideTitle(
-                          icon: Ionicons.home, title: 'Nome do apiário:'),
+                          icon: Ionicons.cube_outline,
+                          title: 'Nome do apiário:'),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: CustomFormField(
                           hintText: 'Nome',
-                          icon: Ionicons.person_outline,
+                          icon: Ionicons.cube_outline,
                           keyboardType: TextInputType.name,
                           textCapitalization: TextCapitalization.words,
                           onSaved: (text) =>
@@ -158,13 +160,13 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
 
                       //apiary number of hives input
                       GuideTitle(
-                          icon: Icons.inventory_2_outlined,
+                          icon: FeatherIcons.package,
                           title: 'Número de Colméias:'),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: CustomFormField(
                           hintText: 'Número de colméias no apiário',
-                          icon: Icons.inventory_2_outlined,
+                          icon: FeatherIcons.package,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],

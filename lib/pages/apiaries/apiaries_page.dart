@@ -7,6 +7,7 @@ import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/empty_widget.dart';
 import 'package:beecontrol/shared/info_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -35,7 +36,8 @@ class _ApiariesPageState extends State<ApiariesPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircularButton(onTap: () {}, icon: Icons.menu_rounded),
+                    CircularButton(
+                        onTap: () {}, icon: Ionicons.reorder_two_outline),
                     Text('Meus Apiários', style: AppTextStyle.boldTitle),
                     SizedBox(width: 35)
                   ],
@@ -60,7 +62,7 @@ class _ApiariesPageState extends State<ApiariesPage> {
                       Column(
                         children: [
                           EmptyWidget(
-                              icon: Ionicons.albums_outline,
+                              icon: FeatherIcons.package,
                               text: 'Sem apiários cadastrados'),
                           InfoCard(
                               title: 'CADASTRE SEUS APIÁRIOS',
