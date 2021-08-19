@@ -18,4 +18,8 @@ flutter run
 
 ## Projeto (work in progress):
 
-<h1 align='center'>https://user-images.githubusercontent.com/31359621/130083574-187524a2-1594-4e45-b18e-60c40b1bfc1d.mp4</h1> 
+
+
+https://user-images.githubusercontent.com/31359621/130083796-96708225-9b21-4953-9646-83e0cd8cdbaf.mp4
+
+
