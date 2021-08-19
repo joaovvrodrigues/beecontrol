@@ -1,18 +1,21 @@
-import 'package:beecontrol/shared/custom_checkboxtile.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/apiary.dart';
+import 'package:beecontrol/models/report.dart';
+import 'package:beecontrol/shared/custom_checkboxtile.dart';
 
 class GoalsApiaryCard extends StatefulWidget {
   const GoalsApiaryCard({
     Key? key,
     required this.apiary,
+    required this.report,
   }) : super(key: key);
 
   final Apiary apiary;
+  final Report report;
 
   static List<String> manejo = [
     'Alimentação',
@@ -79,21 +82,6 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                         ),
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 12),
-                    //   child: ElevatedButton(
-                    //     onPressed: () {
-                    //       setState(() {
-                    //         expanded = !expanded;
-                    //       });
-                    //     },
-                    //     child: Text(expanded ? 'Encolher' : 'Expandir'),
-                    //     style: AppTheme.elevatedButtonStyle.copyWith(
-                    //       minimumSize:
-                    //           MaterialStateProperty.all<Size?>(Size(100, 50)),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
                 Padding(
@@ -135,9 +123,20 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                             children: <Widget>[
                               for (String tipo in GoalsApiaryCard.manejo)
                                 CustomCheckBox(
-                                  value: true,
+                                  value: widget.report.resume.contains(tipo),
                                   title: tipo,
-                                  onChanged: (bool) {},
+                                  onChanged: (value) {
+                                    setState(() {
+                                      if (value!) {
+                                        widget.report.resume.add(tipo);
+                                      } else {
+                                        if (widget.report.resume
+                                            .contains(tipo)) {
+                                          widget.report.resume.remove(tipo);
+                                        }
+                                      }
+                                    });
+                                  },
                                 ),
                             ],
                           )

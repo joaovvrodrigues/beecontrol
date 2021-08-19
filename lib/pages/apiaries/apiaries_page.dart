@@ -1,11 +1,12 @@
 import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/models/apiary.dart';
+import 'package:beecontrol/models/summary.dart';
 import 'package:beecontrol/pages/apiaries/widgets/apiaries_card.dart';
 import 'package:beecontrol/pages/apiaries/widgets/search_widget.dart';
 import 'package:beecontrol/pages/apiaries/widgets/summary_card.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/empty_widget.dart';
 import 'package:beecontrol/shared/info_card.dart';
+import 'package:beecontrol/utils/classes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -19,10 +20,20 @@ class ApiariesPage extends StatefulWidget {
 }
 
 class _ApiariesPageState extends State<ApiariesPage> {
-  List<Apiary> apiaries = [
-    Apiary(city: 'Bambuí', uf: 'MG', numHives: 5, name: 'Apiário Santa Clara'),
-    Apiary(city: 'Bambuí', uf: 'MG', numHives: 3, name: 'Apiário Lagoinha')
-  ];
+  Summary summary =
+      Summary(numApiaries: 0, numHives: 0, numReports: 0, orphanBoxes: 0);
+
+  @override
+  void initState() {
+    summary.numApiaries = apiaries.length;
+    for (var apiary in apiaries) {
+      summary.orphanBoxes += apiary.orphanBoxes;
+      summary.numReports += apiary.reports.length;
+      summary.numHives += apiary.hives.length;
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +66,7 @@ class _ApiariesPageState extends State<ApiariesPage> {
                     ),
                   ),
                   children: [
-                    SummaryCard(),
+                    SummaryCard(summary: summary),
                     SearchWidget(),
                     if (apiaries.isEmpty)
                       Column(

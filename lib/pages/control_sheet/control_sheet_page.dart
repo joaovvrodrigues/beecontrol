@@ -1,4 +1,4 @@
-import 'package:beecontrol/models/hive.dart';
+import 'package:beecontrol/models/report.dart';
 import 'package:beecontrol/pages/control_sheet/widgets/bee_pasture.dart';
 import 'package:beecontrol/pages/control_sheet/widgets/comments.dart';
 import 'package:beecontrol/pages/control_sheet/widgets/goals_card.dart';
@@ -28,28 +28,17 @@ class ControlSheetPage extends StatefulWidget {
 }
 
 class _ControlSheetPageState extends State<ControlSheetPage> {
-  List<Hive> hives = [
-    Hive(
-        name: 'Colméia 1',
-        situation: ['Alimentar', 'Coletar Mel'],
-        production: ['Instalar Suporte']),
-    Hive(
-        name: 'Colméia 2',
-        situation: [],
-        production: ['Instalar Suporte'],
-        orphan: true,
-        motherHive: 1,
-        dateOrphan: DateTime(2021, 02, 12, 12, 30))
-  ];
-
   final formKey = GlobalKey<FormState>();
   PastoApicola? _pastoApicola;
 
-  Apiary apiary = Apiary();
+  Report report = Report(resume: []);
+  Apiary apiary = Apiary(hives: [], reports: []);
 
   @override
   Widget build(BuildContext context) {
     apiary = context.read<Apiary>();
+    report = context.read<Report>();
+
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
@@ -62,7 +51,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
-                    Text('Ficha de Controle 1', style: AppTextStyle.boldTitle),
+                    Text(report.name, style: AppTextStyle.boldTitle),
                     const SizedBox(width: 35, height: 35)
                   ],
                 )),
@@ -88,12 +77,10 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                       duration: const Duration(milliseconds: 375),
                       childAnimationBuilder: (widget) => SlideAnimation(
                             horizontalOffset: 50.0,
-                            child: FadeInAnimation(
-                              child: widget,
-                            ),
+                            child: FadeInAnimation(child: widget),
                           ),
                       children: [
-                        GoalsApiaryCard(apiary: apiary),
+                        GoalsApiaryCard(apiary: apiary, report: report),
                         Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Container(
@@ -120,7 +107,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                               ),
                             )),
                         CommentsCard(),
-                        if (hives.isEmpty)
+                        if (apiary.hives.isEmpty)
                           Column(
                             children: [
                               Padding(
@@ -140,11 +127,11 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                               shrinkWrap: true,
                               padding: EdgeInsets.symmetric(vertical: 5),
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: hives.length,
+                              itemCount: apiary.hives.length,
                               itemBuilder: (context, index) {
-                                return HiveCard(hive: hives[index]);
+                                return HiveCard(hive: apiary.hives[index]);
                               }),
-                        if (hives.isNotEmpty)
+                        if (apiary.hives.isNotEmpty)
                           Padding(
                             padding: const EdgeInsets.only(top: 20, bottom: 80),
                             child: ElevatedButton(

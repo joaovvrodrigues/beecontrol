@@ -1,13 +1,14 @@
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 
 class LastVisit extends StatelessWidget {
   const LastVisit({
     Key? key,
-    this.lastDate,
+    required this.lastDate,
   }) : super(key: key);
-  final String? lastDate;
+  final DateTime? lastDate;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,11 @@ class LastVisit extends StatelessWidget {
                 children: [
                   Text('Última visita',
                       style: TextStyle(fontSize: 14, color: AppTheme.eclipse)),
-                  Text(lastDate ?? '-- / -- / --',
-                      style: AppTextStyle.boldTitle.copyWith(fontSize: 24))
+                  Text(
+                      lastDate != null
+                          ? UtilData.obterDataDDMMAAAA(lastDate!)
+                          : '-- / -- / --',
+                      style: AppTextStyle.boldTitle.copyWith(fontSize: 20))
                 ],
               ),
             ),

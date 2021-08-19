@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:beecontrol/models/report.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
 
 class ReportsCard extends StatelessWidget {
   const ReportsCard({
@@ -19,6 +20,7 @@ class ReportsCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () {
+        context.read<Report>().updateProvider(report);
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => ControlSheetPage()));
       },
@@ -83,8 +85,10 @@ class ReportsCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Resumo:'),
-                        Text(report.resume),
+                        Text('Resumo: '),
+                        Text(report.resume
+                            .toString()
+                            .replaceAll(RegExp(r"[\[\]']"), '')),
                       ],
                     ),
                   )

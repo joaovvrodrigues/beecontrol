@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:transparent_image/transparent_image.dart';
+
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/apiary.dart';
@@ -5,14 +10,13 @@ import 'package:beecontrol/pages/apiary_options/edit_apiary.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/last_visit.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/total_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class SummaryApiaryCard extends StatelessWidget {
-  const SummaryApiaryCard({Key? key}) : super(key: key);
-
+  const SummaryApiaryCard({
+    Key? key,
+    required this.apiary,
+  }) : super(key: key);
+  final Apiary apiary;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -32,7 +36,7 @@ class SummaryApiaryCard extends StatelessWidget {
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
                       image:
-                          //  apiary.image ??
+                          apiary.image ??
                           'https://thumbs.dreamstime.com/b/hives-bees-apiaries-outskirts-forest-hives-bees-apiaries-outskirts-forest-126420117.jpg',
                       fit: BoxFit.cover,
                       height: 50,
@@ -47,9 +51,9 @@ class SummaryApiaryCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Apiário Santa Clara',
+                        Text(apiary.name,
                             style: AppTextStyle.boldTitle),
-                        Text('Bambuí, MG',
+                        Text('${apiary.city}, ${apiary.uf}',
                             style: AppTextStyle.boldTitle.copyWith(
                                 fontSize: 16,
                                 color: AppTheme.eclipse.withAlpha(80))),
@@ -62,12 +66,7 @@ class SummaryApiaryCard extends StatelessWidget {
                   child: CircularButton(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => EditApiaryPage(
-                                apiary: Apiary(
-                                    city: 'Bambuí',
-                                    uf: 'MG',
-                                    numHives: 5,
-                                    name: 'Apiário Santa Clara'))));
+                            builder: (context) => EditApiaryPage()));
                       },
                       icon: Icons.mode_edit_outline_rounded),
                 )
@@ -78,10 +77,10 @@ class SummaryApiaryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TotalWidget(
-                    title: 'Colméias', amount: 0, icon: FeatherIcons.package),
+                    title: 'Colméias', amount: apiary.numHives, icon: FeatherIcons.package),
                 TotalWidget(
                     title: 'Caixas Orfãs',
-                    amount: 0,
+                    amount: apiary.orphanBoxes,
                     icon: Icons.safety_divider),
               ],
             ),
@@ -90,8 +89,8 @@ class SummaryApiaryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TotalWidget(
-                    title: 'Visitas', amount: 0, icon: Ionicons.walk_outline),
-                LastVisit(),
+                    title: 'Visitas', amount: apiary.visits, icon: Ionicons.walk_outline),
+                LastVisit(lastDate: apiary.lastVisit)
               ],
             ),
           ],

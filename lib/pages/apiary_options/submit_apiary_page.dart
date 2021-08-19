@@ -22,7 +22,7 @@ class SubmitApiaryPage extends StatefulWidget {
 
 class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
   final formKey = GlobalKey<FormState>();
-  var apiary = Apiary();
+  var apiary = Apiary(hives: [], reports: []);
 
   @override
   Widget build(BuildContext context) {

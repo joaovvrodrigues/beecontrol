@@ -12,24 +12,24 @@ import 'package:beecontrol/shared/guide_title.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
 import 'package:beecontrol/shared/custom_text_field.dart';
+import 'package:provider/provider.dart';
 
 class EditApiaryPage extends StatefulWidget {
   const EditApiaryPage({
     Key? key,
-    required this.apiary,
   }) : super(key: key);
-  final Apiary apiary;
   @override
   _EditApiaryPageState createState() => _EditApiaryPageState();
 }
 
 class _EditApiaryPageState extends State<EditApiaryPage> {
   final formKey = GlobalKey<FormState>();
-  var apiary = Apiary();
+  var apiary = Apiary(hives: [], reports: []);
 
   @override
   void initState() {
-    apiary = widget.apiary.copyWith();
+    apiary = context.read<Apiary>();
+    // apiary = widget.apiary.copyWith();
     super.initState();
   }
 

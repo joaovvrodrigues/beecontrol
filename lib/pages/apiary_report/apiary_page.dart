@@ -27,31 +27,18 @@ class ApiaryPage extends StatefulWidget {
 }
 
 class _ApiaryPageState extends State<ApiaryPage> {
-  Apiary apiary = Apiary();
-  List<Report> reports = [
-    Report(
-        date: DateTime.now(),
-        numHives: 5,
-        orphanBoxes: 2,
-        resume: 'Alimentação, Mel, Própolis',
-        name: 'Ficha de Controle 1'),
-    Report(
-        date: DateTime.now(),
-        numHives: 6,
-        orphanBoxes: 1,
-        resume: 'Limpeza, Instalações, Mel',
-        name: 'Ficha de Controle 2'),
-    Report(
-        date: DateTime.now(),
-        numHives: 5,
-        orphanBoxes: 0,
-        resume: 'Divisão de Enxame, Mel',
-        name: 'Ficha de Controle 3'),
-  ];
+  Apiary apiary = Apiary(hives: [], reports: []);
+  Report report = Report(resume: []);
+
+  @override
+  void initState() {
+    apiary = context.read<Apiary>();
+    report = context.read<Report>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    apiary = context.read<Apiary>();
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
@@ -77,6 +64,9 @@ class _ApiaryPageState extends State<ApiaryPage> {
               color: AppTheme.eclipse,
             ),
             onPressed: () {
+              report.updateProvider(Report(
+                  date: DateTime.now(),
+                  name: 'Ficha de Controle ${apiary.reports.length + 1}', resume: []));
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => ControlSheetPage()));
             },
@@ -96,7 +86,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                           ),
                         ),
                     children: [
-                      SummaryApiaryCard(),
+                      SummaryApiaryCard(apiary: apiary),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Row(
@@ -110,7 +100,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                           ],
                         ),
                       ),
-                      if (reports.isEmpty)
+                      if (apiary.reports.isEmpty)
                         Column(
                           children: [
                             Padding(
@@ -129,9 +119,10 @@ class _ApiaryPageState extends State<ApiaryPage> {
                         ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: reports.length,
+                            itemCount: apiary.reports.length,
                             itemBuilder: (context, index) {
-                              return ReportsCard(report: reports[index]);
+                              return ReportsCard(
+                                  report: apiary.reports[index]);
                             })
                     ]),
               )))),
