@@ -3,33 +3,41 @@ import 'package:flutter/material.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:ionicons/ionicons.dart';
 
-class CustomDropDownField extends StatelessWidget {
-  const CustomDropDownField({
-    Key? key,
-    this.errorText,
-    required this.hintText,
-    this.icon,
-    this.size,
-    this.validator,
-    this.onSaved,
-    this.items,
-    this.initialValue,
-  }) : super(key: key);
+class CustomDropDownField<T> extends StatelessWidget {
+  const CustomDropDownField(
+      {Key? key,
+      this.errorText,
+      required this.hintText,
+      this.icon,
+      // this.size,
+      this.validator,
+      this.onSaved,
+      this.items,
+      this.initialValue,
+      this.radius = 12,
+      this.style,
+      this.contentPadding,
+      this.isDense = false})
+      : super(key: key);
 
   final String? errorText;
   final String hintText;
   final IconData? icon;
-  final double? size;
-  final String? Function(String? text)? validator;
-  final void Function(String? text)? onSaved;
-  final List<DropdownMenuItem<String>>? items;
-  final String? initialValue;
+  // final double? size;
+  final String? Function(T? text)? validator;
+  final void Function(T? text)? onSaved;
+  final List<DropdownMenuItem<T>>? items;
+  final T? initialValue;
+  final double radius;
+  final TextStyle? style;
+  final EdgeInsets? contentPadding;
+  final bool isDense;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
+    return DropdownButtonFormField<T>(
       // isExpanded: true,
-      // isDense: true,
+      isDense: isDense,
       value: initialValue,
       items: items,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -38,8 +46,11 @@ class CustomDropDownField extends StatelessWidget {
       onChanged: onSaved,
       dropdownColor: Colors.white,
       icon: Icon(Ionicons.chevron_down_outline),
-      style: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.dandelion),
+      style: style ??
+          TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: AppTheme.dandelion),
       decoration: InputDecoration(
         // Configurações do Prefix
         // prefixIcon: Padding(
@@ -71,12 +82,12 @@ class CustomDropDownField extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppTheme.eclipse.withAlpha(80)),
 
-        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+        contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: 25),
 
         // Borda
         border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(12)),
+            borderRadius: BorderRadius.circular(radius)),
       ),
     );
   }

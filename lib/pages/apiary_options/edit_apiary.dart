@@ -134,7 +134,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                             child: Padding(
                                 padding: const EdgeInsets.only(
                                     top: 5, bottom: 5, left: 5),
-                                child: CustomDropDownField(
+                                child: CustomDropDownField<String>(
                                   onSaved: (text) =>
                                       apiary = apiary.copyWith(uf: text),
                                   validator: (text) {
