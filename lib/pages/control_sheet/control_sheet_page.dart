@@ -1,4 +1,8 @@
+import 'package:beecontrol/models/hive.dart';
+import 'package:beecontrol/pages/control_sheet/widgets/bee_pasture.dart';
+import 'package:beecontrol/pages/control_sheet/widgets/comments.dart';
 import 'package:beecontrol/pages/control_sheet/widgets/goals_card.dart';
+import 'package:beecontrol/pages/control_sheet/widgets/hive_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -7,15 +11,9 @@ import 'package:ionicons/ionicons.dart';
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/models/report.dart';
-import 'package:beecontrol/pages/apiary_report/widgets/reports_card.dart';
-import 'package:beecontrol/pages/apiary_report/widgets/summary_apiary_card.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/empty_widget.dart';
 import 'package:beecontrol/shared/info_card.dart';
-import 'package:beecontrol/shared/order_by_widget.dart';
-
-enum PastoApicola { polen, nectar, florada }
 
 class ControlSheetPage extends StatefulWidget {
   const ControlSheetPage({
@@ -30,7 +28,20 @@ class ControlSheetPage extends StatefulWidget {
 }
 
 class _ControlSheetPageState extends State<ControlSheetPage> {
-  List sheets = [];
+  List<Hive> hives = [
+    Hive(
+        name: 'Colméia 1',
+        situation: ['Alimentar', 'Coletar Mel'],
+        production: ['Instalar Suporte']),
+    Hive(
+        name: 'Colméia 2',
+        situation: [],
+        production: ['Instalar Suporte'],
+        orphan: true,
+        motherHive: 1,
+        dateOrphan: DateTime(2021, 02, 12, 12, 30))
+  ];
+
   final formKey = GlobalKey<FormState>();
   PastoApicola? _pastoApicola;
 
@@ -84,69 +95,30 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                         Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Container(
+                              padding: EdgeInsets.all(12),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20)),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text('Pasto Apícula:'),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Expanded(
-                                          child: RadioListTile<PastoApicola>(
-                                            title:
-                                                const Text('Entrada de Pólen'),
-                                            value: PastoApicola.polen,
-                                            groupValue: _pastoApicola,
-                                            contentPadding: EdgeInsets.all(0),
-                                            onChanged: (PastoApicola? value) {
-                                              setState(() {
-                                                _pastoApicola = value;
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: RadioListTile<PastoApicola>(
-                                            title:
-                                                const Text('Entrada de Néctar'),
-                                            value: PastoApicola.nectar,
-                                            groupValue: _pastoApicola,
-                                            contentPadding: EdgeInsets.all(0),
-                                            onChanged: (PastoApicola? value) {
-                                              setState(() {
-                                                _pastoApicola = value;
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: RadioListTile<PastoApicola>(
-                                            title: const Text('Florada'),
-                                            contentPadding: EdgeInsets.all(0),
-                                            value: PastoApicola.florada,
-                                            groupValue: _pastoApicola,
-                                            onChanged: (PastoApicola? value) {
-                                              setState(() {
-                                                _pastoApicola = value;
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12),
+                                      child: BeePasture(
+                                        groupValue: _pastoApicola,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _pastoApicola = value;
+                                          });
+                                        },
+                                      ))
                                 ],
                               ),
                             )),
-                        OrderBy('Data (Decrescente)'),
-                        if (sheets.isEmpty)
+                        CommentsCard(),
+                        if (hives.isEmpty)
                           Column(
                             children: [
                               Padding(
@@ -164,11 +136,20 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                         else
                           ListView.builder(
                               shrinkWrap: true,
+                              padding: EdgeInsets.symmetric(vertical: 5),
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: sheets.length,
+                              itemCount: hives.length,
                               itemBuilder: (context, index) {
-                                return ReportsCard(report: sheets[index]);
-                              })
+                                return HiveCard(hive: hives[index]);
+                              }),
+                        if (hives.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: ElevatedButton(
+                                onPressed: () {},
+                                child: Text('Finalizar Relatório'),
+                                style: AppTheme.elevatedButtonStyle),
+                          ),
                       ]),
                 )),
               ))),
