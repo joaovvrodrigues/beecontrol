@@ -1,26 +1,35 @@
 import 'dart:convert';
 
-class Report {
-  final String name;
-  final DateTime? date;
-  final num numHives;
-  final num orphanBoxes;
-  final String resume;
+import 'package:flutter/foundation.dart';
 
+class Report {
+  String name;
+  DateTime? date;
+  num numHives;
+  num orphanBoxes;
+  List<String> resume;
   Report({
     this.name = '',
     this.date,
     this.numHives = 0,
     this.orphanBoxes = 0,
-    this.resume = '',
+    required this.resume,
   });
+
+  void updateProvider(Report aux) {
+    name = aux.name;
+    date = aux.date;
+    numHives = aux.numHives;
+    orphanBoxes = aux.orphanBoxes;
+    resume = aux.resume;
+  }
 
   Report copyWith({
     String? name,
     DateTime? date,
     num? numHives,
     num? orphanBoxes,
-    String? resume,
+    List<String>? resume,
   }) {
     return Report(
       name: name ?? this.name,
@@ -34,7 +43,7 @@ class Report {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'date': date!.millisecondsSinceEpoch,
+      'date': date,
       'numHives': numHives,
       'orphanBoxes': orphanBoxes,
       'resume': resume,
@@ -47,7 +56,7 @@ class Report {
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       numHives: map['numHives'],
       orphanBoxes: map['orphanBoxes'],
-      resume: map['resume'],
+      resume: List<String>.from(map['resume']),
     );
   }
 
@@ -63,21 +72,21 @@ class Report {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Report &&
-      other.name == name &&
-      other.date == date &&
-      other.numHives == numHives &&
-      other.orphanBoxes == orphanBoxes &&
-      other.resume == resume;
+        other.name == name &&
+        other.date == date &&
+        other.numHives == numHives &&
+        other.orphanBoxes == orphanBoxes &&
+        listEquals(other.resume, resume);
   }
 
   @override
   int get hashCode {
     return name.hashCode ^
-      date.hashCode ^
-      numHives.hashCode ^
-      orphanBoxes.hashCode ^
-      resume.hashCode;
+        date.hashCode ^
+        numHives.hashCode ^
+        orphanBoxes.hashCode ^
+        resume.hashCode;
   }
 }
