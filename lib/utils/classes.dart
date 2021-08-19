@@ -32,13 +32,13 @@ List<String> manejo = [
         visits: 3,
         reports: [
           Report(
-              date: DateTime(2021, 11, 12, 10, 30),
+              date: DateTime(2021, 06, 12, 10, 30),
               numHives: 5,
               orphanBoxes: 2,
               resume: ['Alimentação', 'Colheita de Mel', 'Colheita de Própolis'],
               name: 'Ficha de Controle 1'),
           Report(
-              date: DateTime(2021, 12, 10, 10, 30),
+              date: DateTime(2021, 07, 10, 10, 30),
               numHives: 6,
               orphanBoxes: 1,
               resume: ['Limpeza', 'Instalar Suportes', 'Colheita de Mel'],
@@ -73,13 +73,13 @@ List<String> manejo = [
 
   List<Report> reports = [
       Report(
-              date: DateTime(2021, 11, 12, 10, 30),
+              date: DateTime(2021, 06, 12, 10, 30),
               numHives: 5,
               orphanBoxes: 2,
               resume: ['Alimentação', 'Colheita de Mel', 'Colheita de Própolis'],
               name: 'Ficha de Controle 1'),
           Report(
-              date: DateTime(2021, 12, 10, 10, 30),
+              date: DateTime(2021, 07, 10, 10, 30),
               numHives: 6,
               orphanBoxes: 1,
               resume: ['Limpeza', 'Instalar Suportes', 'Colheita de Mel'],

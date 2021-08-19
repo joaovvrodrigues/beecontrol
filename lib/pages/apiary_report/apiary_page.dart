@@ -1,40 +1,48 @@
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/models/report.dart';
+import 'package:beecontrol/pages/apiary_report/apiary_controller.dart';
+import 'package:beecontrol/pages/apiary_report/widgets/order_by.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/reports_card.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/summary_apiary_card.dart';
 import 'package:beecontrol/pages/control_sheet/control_sheet_page.dart';
 import 'package:beecontrol/shared/empty_widget.dart';
 import 'package:beecontrol/shared/info_card.dart';
-import 'package:beecontrol/shared/order_by_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:ionicons/ionicons.dart';
 
 class ApiaryPage extends StatefulWidget {
   const ApiaryPage({
     Key? key,
-    // required this.apiary,
+    // required this.controller.apiary,
   }) : super(key: key);
-  // final Apiary apiary;
+  // final Apiary controller.apiary;
 
   @override
   _ApiaryPageState createState() => _ApiaryPageState();
 }
 
 class _ApiaryPageState extends State<ApiaryPage> {
-  Apiary apiary = Apiary(hives: [], reports: []);
-  Report report = Report(resume: []);
+  ApiaryController controller = ApiaryController();
 
   @override
   void initState() {
-    apiary = context.read<Apiary>();
-    report = context.read<Report>();
+    context.read<Apiary>().reports.sort((a, b) => -a.date!.compareTo(b.date!));
+    controller.apiary = context.read<Apiary>();
+    controller.report = context.read<Report>();
+
     super.initState();
+  }
+
+  void onSaved(text) {
+    setState(() {
+      controller.sortList(text);
+    });
   }
 
   @override
@@ -51,7 +59,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
-                    Text(apiary.name, style: AppTextStyle.boldTitle),
+                    Text(controller.apiary.name, style: AppTextStyle.boldTitle),
                     const SizedBox(width: 35, height: 35)
                   ],
                 )),
@@ -64,9 +72,11 @@ class _ApiaryPageState extends State<ApiaryPage> {
               color: AppTheme.eclipse,
             ),
             onPressed: () {
-              report.updateProvider(Report(
+              controller.report.updateProvider(Report(
                   date: DateTime.now(),
-                  name: 'Ficha de Controle ${apiary.reports.length + 1}', resume: []));
+                  name:
+                      'Ficha de Controle ${controller.apiary.reports.length + 1}',
+                  resume: []));
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => ControlSheetPage()));
             },
@@ -86,21 +96,15 @@ class _ApiaryPageState extends State<ApiaryPage> {
                           ),
                         ),
                     children: [
-                      SummaryApiaryCard(apiary: apiary),
+                      SummaryApiaryCard(apiary: controller.apiary),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Ordernar por: ',
-                                style: AppTextStyle.boldText),
-                            SizedBox(width: 12),
-                            Expanded(child: OrderBy('Data (Decrescente)')),
-                          ],
-                        ),
+                        child: OrderBy(
+                            orderByList: controller.orderByList,
+                            orderBy: controller.orderBy,
+                            onSaved: onSaved),
                       ),
-                      if (apiary.reports.isEmpty)
+                      if (controller.apiary.reports.isEmpty)
                         Column(
                           children: [
                             Padding(
@@ -119,10 +123,10 @@ class _ApiaryPageState extends State<ApiaryPage> {
                         ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: apiary.reports.length,
+                            itemCount: controller.apiary.reports.length,
                             itemBuilder: (context, index) {
                               return ReportsCard(
-                                  report: apiary.reports[index]);
+                                  report: controller.apiary.reports[index]);
                             })
                     ]),
               )))),
