@@ -1,5 +1,7 @@
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/models/feed.dart';
+import 'package:beecontrol/models/report.dart';
 import 'package:beecontrol/models/weather.dart';
 import 'package:beecontrol/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,9 @@ class MyApp extends StatelessWidget {
                   iconCode: '01d', id: 121998, temperature: 0, time: 0)),
           ChangeNotifierProvider<Feed>(
             create: (_) => Feed(),
-          )
+          ),
+          Provider<Apiary>(create: (_) => Apiary(hives: [], reports: [])),
+          Provider<Report>(create: (_) => Report(resume: []))
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
