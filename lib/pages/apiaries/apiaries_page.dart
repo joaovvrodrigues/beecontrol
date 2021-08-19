@@ -29,22 +29,21 @@ class _ApiariesPageState extends State<ApiariesPage> {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80.0),
+            preferredSize: Size.fromHeight(55.0),
             child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CircularButton(
                         onTap: () {}, icon: Ionicons.reorder_two_outline),
                     Text('Meus Apiários', style: AppTextStyle.boldTitle),
-                    SizedBox(width: 35)
+                    const SizedBox(width: 35, height: 35)
                   ],
                 )),
           ),
           body: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(12),
               child: AnimationLimiter(
                   child: Column(
                 children: AnimationConfiguration.toStaggeredList(

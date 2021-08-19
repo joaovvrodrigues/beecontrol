@@ -38,10 +38,9 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80.0),
+            preferredSize: Size.fromHeight(55.0),
             child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -56,7 +55,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                         },
                         icon: Ionicons.chevron_back_outline),
                     Text('Editar Apiário', style: AppTextStyle.boldTitle),
-                    SizedBox(width: 35)
+                    const SizedBox(width: 35, height: 35)
                   ],
                 )),
           ),
@@ -145,7 +144,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                                   },
                                   initialValue: apiary.uf,
                                   hintText: 'UF',
-                                  icon: Ionicons.business_outline,
+                                  // icon: Ionicons.business_outline,
                                   items: Estados.listaEstadosSigla
                                       .map((String uf) {
                                     return DropdownMenuItem(

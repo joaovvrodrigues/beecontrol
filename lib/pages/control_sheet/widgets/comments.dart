@@ -1,6 +1,4 @@
-import 'package:beecontrol/core/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 class CommentsCard extends StatelessWidget {
   const CommentsCard({Key? key}) : super(key: key);
@@ -16,18 +14,18 @@ class CommentsCard extends StatelessWidget {
           children: [
             Text('Observações:'),
             TextField(
-              decoration: InputDecoration(
-                  hintText: 'Observações',
-                  suffixIcon: Container(
-                      decoration: BoxDecoration(
-                          color: AppTheme.dandelion,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Icon(
-                        Ionicons.create_outline,
-                        size: 20,
-                        color: AppTheme.eclipse,
-                      ))),
-            )
+                // decoration: InputDecoration(
+                //     hintText: 'Observações',
+                //     suffixIcon: Container(
+                //         decoration: BoxDecoration(
+                //             color: AppTheme.dandelion,
+                //             borderRadius: BorderRadius.circular(12)),
+                //         child: Icon(
+                //           Ionicons.create_outline,
+                //           size: 20,
+                //           color: AppTheme.eclipse,
+                //         ))),
+                )
           ],
         ));
   }

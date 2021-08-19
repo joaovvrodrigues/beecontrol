@@ -38,10 +38,9 @@ class _NewsPageState extends State<NewsPage> {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80.0),
+            preferredSize: Size.fromHeight(55.0),
             child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -58,7 +57,7 @@ class _NewsPageState extends State<NewsPage> {
               children: [
                 WeatherCard(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

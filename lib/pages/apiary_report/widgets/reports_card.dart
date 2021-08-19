@@ -1,5 +1,6 @@
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/pages/control_sheet/control_sheet_page.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,15 @@ class ReportsCard extends StatelessWidget {
     required this.report,
   }) : super(key: key);
   final Report report;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => ControlSheetPage()));
+      },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5),
         padding: EdgeInsets.all(10),

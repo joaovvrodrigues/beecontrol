@@ -28,10 +28,10 @@ class _RegisterPageState extends State<RegisterPage> {
     return SafeArea(
         child: Scaffold(
             // appBar: PreferredSize(
-            //   preferredSize: Size.fromHeight(80.0),
+            //   preferredSize: Size.fromHeight(55.0),
             //   child: Padding(
             //       padding:
-            //           const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            //           const EdgeInsets.symmetric(horizontal: 20),
             //       child: Row(
             //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
             //         children: [
@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               padding: const EdgeInsets.all(12.0),
                               child: Image.asset(
                                 AppImages.logo,
-                                height: 150,
+                                height: 125,
                               ),
                             ),
                             Center(
@@ -246,7 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                         top: 5, bottom: 5, left: 5),
                                     child: CustomFormField(
                                       hintText: 'Número',
-                                      icon: Ionicons.home_outline,
+                                      // icon: Ionicons.home_outline,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly
                                       ],
@@ -263,15 +263,16 @@ class _RegisterPageState extends State<RegisterPage> {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 8),
+                              padding: const EdgeInsets.symmetric(vertical: 8),
                               child: Column(
                                 children: [
                                   CustomCheckBox(
+                                      contentPadding: EdgeInsets.all(0),
                                       value: true,
                                       title: 'Manter conectado',
                                       onChanged: (bool) {}),
                                   CustomCheckBox(
+                                      contentPadding: EdgeInsets.all(0),
                                       value: true,
                                       title:
                                           'Desejo receber notícias pelo e-mail',

@@ -53,17 +53,21 @@ class CustomFormField extends StatelessWidget {
           fontSize: 16, fontWeight: FontWeight.w900, color: AppTheme.dandelion),
       decoration: InputDecoration(
         // Configurações do Prefix
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Icon(
-            icon,
-            size: size,
-          ),
-        ),
-        prefixIconConstraints: BoxConstraints(
-          minWidth: 50,
-          minHeight: 25,
-        ),
+        prefixIcon: icon != null
+            ? Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Icon(
+                  icon,
+                  size: size,
+                ),
+              )
+            : null,
+        prefixIconConstraints: icon != null
+            ? BoxConstraints(
+                minWidth: 50,
+                minHeight: 25,
+              )
+            : null,
 
         // Configurações do fundo
         filled: true,

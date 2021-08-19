@@ -41,7 +41,7 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
         ),
         child: AnimatedContainer(
             duration: Duration(milliseconds: 400),
-            height: expanded ? 525 : 170,
+            height: expanded ? 600 : 220,
             curve: Curves.ease,
             child: ListView(
               children: [
@@ -79,22 +79,37 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            expanded = !expanded;
-                          });
-                        },
-                        child: Text(expanded ? 'Encolher' : 'Expandir'),
-                        style: AppTheme.elevatedButtonStyle.copyWith(
-                          minimumSize:
-                              MaterialStateProperty.all<Size?>(Size(100, 50)),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 12),
+                    //   child: ElevatedButton(
+                    //     onPressed: () {
+                    //       setState(() {
+                    //         expanded = !expanded;
+                    //       });
+                    //     },
+                    //     child: Text(expanded ? 'Encolher' : 'Expandir'),
+                    //     style: AppTheme.elevatedButtonStyle.copyWith(
+                    //       minimumSize:
+                    //           MaterialStateProperty.all<Size?>(Size(100, 50)),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        expanded = !expanded;
+                      });
+                    },
+                    child: Text(expanded ? 'Encolher' : 'Expandir'),
+                    style: AppTheme.elevatedButtonStyle.copyWith(
+                      minimumSize:
+                          MaterialStateProperty.all<Size?>(Size(100, 50)),
+                    ),
+                  ),
                 ),
                 Divider(),
                 Padding(

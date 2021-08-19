@@ -25,10 +25,9 @@ class _SettingsPageState extends State<SettingsPage> {
     return SafeArea(
         child: Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(80.0),
+              preferredSize: Size.fromHeight(55.0),
               child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -36,7 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           onTap: () {}, icon: Ionicons.reorder_two_outline),
                       Text('Minhas Configurações',
                           style: AppTextStyle.boldTitle),
-                      SizedBox(width: 35)
+                      const SizedBox(width: 35, height: 35)
                     ],
                   )),
             ),

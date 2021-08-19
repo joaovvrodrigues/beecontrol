@@ -1,7 +1,6 @@
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/pages/control_sheet/widgets/hive_options.dart';
-import 'package:beecontrol/shared/order_by_widget.dart';
 
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter/material.dart';
@@ -34,26 +33,26 @@ class _HiveCardState extends State<HiveCard> {
             children: [
               Icon(
                 FeatherIcons.package,
-                size: 40,
+                size: 30,
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: Text(
                     widget.hive.name,
-                    style: AppTextStyle.boldText.copyWith(fontSize: 18),
+                    style: AppTextStyle.boldText.copyWith(fontSize: 16),
                   ),
                 ),
               ),
               if (widget.hive.orphan)
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Orfã da Colméia ${widget.hive.motherHive}',
-                        style: AppTextStyle.boldText.copyWith(fontSize: 18),
+                        style: AppTextStyle.boldText.copyWith(fontSize: 16),
                       ),
                       Text(
                         timeago.format(widget.hive.dateOrphan!,

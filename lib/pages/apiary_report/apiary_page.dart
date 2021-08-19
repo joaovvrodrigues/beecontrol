@@ -9,7 +9,7 @@ import 'package:beecontrol/shared/order_by_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-
+import 'package:provider/provider.dart';
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/shared/circular_button.dart';
@@ -18,15 +18,16 @@ import 'package:ionicons/ionicons.dart';
 class ApiaryPage extends StatefulWidget {
   const ApiaryPage({
     Key? key,
-    required this.apiary,
+    // required this.apiary,
   }) : super(key: key);
-  final Apiary apiary;
+  // final Apiary apiary;
 
   @override
   _ApiaryPageState createState() => _ApiaryPageState();
 }
 
 class _ApiaryPageState extends State<ApiaryPage> {
+  Apiary apiary = Apiary();
   List<Report> reports = [
     Report(
         date: DateTime.now(),
@@ -50,21 +51,21 @@ class _ApiaryPageState extends State<ApiaryPage> {
 
   @override
   Widget build(BuildContext context) {
+    apiary = context.read<Apiary>();
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80.0),
+            preferredSize: Size.fromHeight(55.0),
             child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
-                    Text(widget.apiary.name, style: AppTextStyle.boldTitle),
-                    SizedBox(width: 35)
+                    Text(apiary.name, style: AppTextStyle.boldTitle),
+                    const SizedBox(width: 35, height: 35)
                   ],
                 )),
           ),
@@ -76,10 +77,8 @@ class _ApiaryPageState extends State<ApiaryPage> {
               color: AppTheme.eclipse,
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ControlSheetPage(
-                        apiary: widget.apiary,
-                      )));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ControlSheetPage()));
             },
           ),
           floatingActionButtonLocation:
@@ -99,7 +98,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                     children: [
                       SummaryApiaryCard(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

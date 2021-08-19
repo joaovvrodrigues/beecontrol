@@ -14,7 +14,7 @@ class BeePasture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
           child: RadioListTile<PastoApicola>(
@@ -22,6 +22,7 @@ class BeePasture extends StatelessWidget {
               value: PastoApicola.polen,
               groupValue: groupValue,
               contentPadding: EdgeInsets.all(0),
+              dense: true,
               onChanged: onChanged),
         ),
         Expanded(
@@ -29,6 +30,7 @@ class BeePasture extends StatelessWidget {
               title: const Text('Entrada de Néctar'),
               value: PastoApicola.nectar,
               groupValue: groupValue,
+              dense: true,
               contentPadding: EdgeInsets.all(0),
               onChanged: onChanged),
         ),
@@ -38,6 +40,7 @@ class BeePasture extends StatelessWidget {
               contentPadding: EdgeInsets.all(0),
               value: PastoApicola.florada,
               groupValue: groupValue,
+              dense: true,
               onChanged: onChanged),
         ),
       ],

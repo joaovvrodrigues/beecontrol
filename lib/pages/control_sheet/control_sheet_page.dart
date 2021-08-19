@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
-
+import 'package:provider/provider.dart';
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/apiary.dart';
@@ -18,10 +18,10 @@ import 'package:beecontrol/shared/info_card.dart';
 class ControlSheetPage extends StatefulWidget {
   const ControlSheetPage({
     Key? key,
-    required this.apiary,
+    // required this.apiary,
   }) : super(key: key);
 
-  final Apiary apiary;
+  // final Apiary apiary;
 
   @override
   _ControlSheetPageState createState() => _ControlSheetPageState();
@@ -45,15 +45,17 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
   final formKey = GlobalKey<FormState>();
   PastoApicola? _pastoApicola;
 
+  Apiary apiary = Apiary();
+
   @override
   Widget build(BuildContext context) {
+    apiary = context.read<Apiary>();
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80.0),
+            preferredSize: Size.fromHeight(55.0),
             child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -61,7 +63,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                         onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
                     Text('Ficha de Controle 1', style: AppTextStyle.boldTitle),
-                    SizedBox(width: 35)
+                    const SizedBox(width: 35, height: 35)
                   ],
                 )),
           ),
@@ -91,7 +93,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                             ),
                           ),
                       children: [
-                        GoalsApiaryCard(apiary: widget.apiary),
+                        GoalsApiaryCard(apiary: apiary),
                         Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Container(
@@ -105,7 +107,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                   Text('Pasto Apícula:'),
                                   Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 12),
+                                          horizontal: 0),
                                       child: BeePasture(
                                         groupValue: _pastoApicola,
                                         onChanged: (value) {
@@ -144,7 +146,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                               }),
                         if (hives.isNotEmpty)
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            padding: const EdgeInsets.only(top: 20, bottom: 80),
                             child: ElevatedButton(
                                 onPressed: () {},
                                 child: Text('Finalizar Relatório'),

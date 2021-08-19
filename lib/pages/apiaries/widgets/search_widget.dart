@@ -10,7 +10,7 @@ class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      margin: const EdgeInsets.symmetric(vertical: 25),
+      margin: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: Colors.white),
       child: Row(
@@ -18,10 +18,8 @@ class SearchWidget extends StatelessWidget {
           Expanded(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Text(
-              'Digite o nome do Apiário',
-              style: AppTextStyle.boldTitleAlpha90
-            ),
+            child: Text('Digite o nome do Apiário',
+                style: AppTextStyle.boldTitleAlpha90),
           )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),

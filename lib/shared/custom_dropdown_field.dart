@@ -28,6 +28,8 @@ class CustomDropDownField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
+      // isExpanded: true,
+      // isDense: true,
       value: initialValue,
       items: items,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -40,17 +42,17 @@ class CustomDropDownField extends StatelessWidget {
           fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.dandelion),
       decoration: InputDecoration(
         // Configurações do Prefix
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Icon(
-            icon,
-            size: size,
-          ),
-        ),
-        prefixIconConstraints: BoxConstraints(
-          minWidth: 50,
-          minHeight: 25,
-        ),
+        // prefixIcon: Padding(
+        //   padding: const EdgeInsets.all(12.0),
+        //   child: Icon(
+        //     icon,
+        //     size: size,
+        //   ),
+        // ),
+        // prefixIconConstraints: BoxConstraints(
+        //   minWidth: 50,
+        //   minHeight: 25,
+        // ),
 
         // Configurações do fundo
         filled: true,

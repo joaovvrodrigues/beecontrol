@@ -29,10 +29,9 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80.0),
+            preferredSize: Size.fromHeight(55.0),
             child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -40,7 +39,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                         onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
                     Text('Cadastro de Apiário', style: AppTextStyle.boldTitle),
-                    SizedBox(width: 35)
+                    const SizedBox(width: 35, height: 35)
                   ],
                 )),
           ),
