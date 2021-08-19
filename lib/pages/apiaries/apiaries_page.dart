@@ -1,5 +1,5 @@
 import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/models/summary.dart';
+import 'package:beecontrol/pages/apiaries/apiaries_controller.dart';
 import 'package:beecontrol/pages/apiaries/widgets/apiaries_card.dart';
 import 'package:beecontrol/pages/apiaries/widgets/search_widget.dart';
 import 'package:beecontrol/pages/apiaries/widgets/summary_card.dart';
@@ -20,19 +20,37 @@ class ApiariesPage extends StatefulWidget {
 }
 
 class _ApiariesPageState extends State<ApiariesPage> {
-  Summary summary =
-      Summary(numApiaries: 0, numHives: 0, numReports: 0, orphanBoxes: 0);
+  ApiariesController controller = ApiariesController();
+  TextEditingController textController = TextEditingController();
 
   @override
   void initState() {
-    summary.numApiaries = apiaries.length;
-    for (var apiary in apiaries) {
-      summary.orphanBoxes += apiary.orphanBoxes;
-      summary.numReports += apiary.reports.length;
-      summary.numHives += apiary.hives.length;
-    }
-
+    controller.initSummary();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  void search(String text) async {
+    await Future.delayed(Duration(milliseconds: 200)).then((value) {
+      setState(() {
+        if (text.isNotEmpty) {
+          controller.search(text);
+        } else {
+          controller.clear();
+        }
+      });
+    });
+  }
+
+  void clear() {
+    setState(() {
+      controller.clear();
+    });
   }
 
   @override
@@ -66,8 +84,12 @@ class _ApiariesPageState extends State<ApiariesPage> {
                     ),
                   ),
                   children: [
-                    SummaryCard(summary: summary),
-                    SearchWidget(),
+                    SummaryCard(summary: controller.summary),
+                    SearchWidget(
+                      clear: clear,
+                      search: search,
+                      textController: textController,
+                    ),
                     if (apiaries.isEmpty)
                       Column(
                         children: [
@@ -80,7 +102,7 @@ class _ApiariesPageState extends State<ApiariesPage> {
                                   'Cadastre seu primeiro apiário, adicione os relatórios e controle o seu manejo!')
                         ],
                       )
-                    else
+                    else if (textController.value.text == '')
                       ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
@@ -88,6 +110,26 @@ class _ApiariesPageState extends State<ApiariesPage> {
                           itemBuilder: (context, index) {
                             return ApiariesCard(apiary: apiaries[index]);
                           })
+                    else if (controller.searchApiaries.isEmpty)
+                      EmptyWidget(
+                          icon: FeatherIcons.package,
+                          text: 'Aípiário não encontrado')
+                    else
+                      AnimationLimiter(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: controller.searchApiaries.length,
+                              itemBuilder: (context, index) {
+                                return AnimationConfiguration.staggeredList(
+                                    position: index,
+                                    duration: const Duration(milliseconds: 200),
+                                    child: SlideAnimation(
+                                        child: FadeInAnimation(
+                                            child: ApiariesCard(
+                                                apiary: controller
+                                                    .searchApiaries[index]))));
+                              }))
                   ],
                 ),
               )))),

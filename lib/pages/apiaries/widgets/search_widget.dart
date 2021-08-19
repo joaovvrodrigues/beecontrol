@@ -1,10 +1,21 @@
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/shared/circular_button.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
+import 'package:beecontrol/core/app_text_style.dart';
+import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/shared/circular_button.dart';
+
 class SearchWidget extends StatelessWidget {
-  const SearchWidget({Key? key}) : super(key: key);
+  const SearchWidget({
+    Key? key,
+    required this.search,
+    required this.clear,
+    required this.textController,
+  }) : super(key: key);
+  final Function(String) search;
+  final VoidCallback clear;
+
+  final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +29,35 @@ class SearchWidget extends StatelessWidget {
           Expanded(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Text('Digite o nome do Apiário',
-                style: AppTextStyle.boldTitleAlpha90),
+            child: TextField(
+                onChanged: search,
+                controller: textController,
+                decoration: InputDecoration(
+                    hintText: 'Digite o nome do Apiário',
+                    hintStyle: AppTextStyle.boldTitleAlpha90,
+                    border: InputBorder.none),
+                style:
+                    AppTextStyle.boldTitle.copyWith(color: AppTheme.dandelion)),
+
+            // Text('Digite o nome do Apiário',
+            //     style: AppTextStyle.boldTitleAlpha90),
           )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: CircularButton(
-                onTap: () {
-                  print('Search');
-                },
-                icon: Ionicons.search_outline),
+            child: ValueListenableBuilder<TextEditingValue>(
+                valueListenable: textController,
+                builder: (_, value, ___) {
+                  return CircularButton(
+                      onTap: () {
+                        if (value.text.isNotEmpty) {
+                          textController.clear();
+                          clear();
+                        }
+                      },
+                      icon: value.text == ''
+                          ? Ionicons.search_outline
+                          : Ionicons.close_outline);
+                }),
           )
         ],
       ),
