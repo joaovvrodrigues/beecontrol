@@ -75,19 +75,9 @@ class _WeatherCardState extends State<WeatherCard> {
                                   ),
                           ),
                           expanded && weather.id != 121998
-                              ? Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Max: ${weather.maxTemperature!.toStringAsFixed(0)}° C        Min: ${weather.minTemperature!.toStringAsFixed(0)}° C',
-                                      style: AppTextStyle.boldText,
-                                    ),
-                                    Text(
-                                      'Umidade: ${weather.humidity!.toStringAsFixed(0)}%',
-                                      style: AppTextStyle.boldText,
-                                    ),
-                                  ],
+                              ? Text(
+                                  'Umidade: ${weather.humidity!.toStringAsFixed(0)}%',
+                                  style: AppTextStyle.boldText,
                                 )
                               : Text(
                                   'Acompanhe aqui os dados climáticos da sua região',

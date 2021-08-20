@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:beecontrol/models/weather.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../http/http_exception.dart';
@@ -26,9 +27,10 @@ class WeatherApiClient {
   // }
 
   Future<Weather> getWeatherData(String cityName) async {
-    final url = '$baseUrl/data/2.5/weather?q=$cityName&appid=$apiKey';
+    final url =
+        '$baseUrl/data/2.5/weather?q=$cityName&appid=$apiKey&units=metric&lang=pt_br';
 
-    print('fetching $url');
+    debugPrint('fetching $url');
     final res = await http.get(Uri.parse(url));
     if (res.statusCode != 200) {
       throw HTTPException(res.statusCode, "unable to fetch weather data");
@@ -38,8 +40,9 @@ class WeatherApiClient {
   }
 
   Future<List<Weather>> getForecast(String cityName) async {
-    final url = '$baseUrl/data/2.5/forecast?q=$cityName&appid=$apiKey';
-    print('fetching $url');
+    final url =
+        '$baseUrl/data/2.5/forecast/daily?q=$cityName&cnt=7&appid=$apiKey&units=metric&lang=pt_br';
+    debugPrint('fetching $url');
     final res = await http.get(Uri.parse(url));
     if (res.statusCode != 200) {
       throw HTTPException(res.statusCode, "unable to fetch weather data");
@@ -47,6 +50,7 @@ class WeatherApiClient {
 
     final forecastJson = json.decode(res.body);
     List<Weather> weathers = Weather.fromForecastJson(forecastJson);
+    // List<Weather> weathers = [];
     return weathers;
   }
 }

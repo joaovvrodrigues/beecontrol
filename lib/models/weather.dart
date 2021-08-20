@@ -20,8 +20,6 @@ class Weather extends ChangeNotifier {
   double? windSpeed;
 
   double temperature;
-  double? maxTemperature;
-  double? minTemperature;
 
   List<Weather>? forecast;
   Weather({
@@ -36,8 +34,6 @@ class Weather extends ChangeNotifier {
     this.main,
     this.cityName,
     this.windSpeed,
-    this.maxTemperature,
-    this.minTemperature,
   });
 
   void refresh(Weather _w) {
@@ -48,8 +44,6 @@ class Weather extends ChangeNotifier {
     main = _w.main;
     cityName = _w.cityName;
     temperature = _w.temperature;
-    maxTemperature = _w.maxTemperature;
-    minTemperature = _w.minTemperature;
     sunrise = _w.sunrise;
     sunset = _w.sunset;
     humidity = _w.humidity;
@@ -67,9 +61,7 @@ class Weather extends ChangeNotifier {
       iconCode: weather['icon'],
       main: weather['main'],
       cityName: json['name'],
-      temperature: intToDouble(json['main']['temp']) - 273.15,
-      maxTemperature: intToDouble(json['main']['temp_max']) - 273.15,
-      minTemperature: intToDouble(json['main']['temp_min']) - 273.15,
+      temperature: intToDouble(json['main']['temp']),
       sunrise: json['sys']['sunrise'],
       sunset: json['sys']['sunset'],
       humidity: json['main']['humidity'],
@@ -83,9 +75,8 @@ class Weather extends ChangeNotifier {
       weathers.add(Weather(
           time: item['dt'],
           temperature: intToDouble(
-                item['main']['temp'],
-              ) -
-              273.15,
+            item['temp']['day'],
+          ),
           iconCode: item['weather'][0]['icon']));
     }
     return weathers;
@@ -145,8 +136,6 @@ class Weather extends ChangeNotifier {
       'cityName': cityName,
       'windSpeed': windSpeed,
       'temperature': temperature,
-      'maxTemperature': maxTemperature,
-      'minTemperature': minTemperature,
       'forecast': forecast?.map((x) => x.toMap()).toList(),
     };
   }
