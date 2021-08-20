@@ -1,15 +1,24 @@
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/apiary.dart';
+import 'package:beecontrol/models/bee_hive.dart';
 import 'package:beecontrol/models/feed.dart';
 import 'package:beecontrol/models/report.dart';
 import 'package:beecontrol/models/weather.dart';
 import 'package:beecontrol/pages/home/home_page.dart';
+import 'package:beecontrol/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(ApiaryAdapter());
+  Hive.registerAdapter(BeeHiveAdapter());
+  Hive.registerAdapter(ReportAdapter());
+  await Hive.openBox<Apiary>(CONSTANTS.box);
   runApp(MyApp());
 }
 
@@ -33,16 +42,15 @@ class MyApp extends StatelessWidget {
           Provider<Report>(create: (_) => Report(resume: []))
         ],
         child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [Locale('pt', 'BR')],
-          title: 'Bee Control',
-          theme: AppTheme.lightTheme,
-          home: HomePage(),
-        ));
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [Locale('pt', 'BR')],
+            title: 'Bee Control',
+            theme: AppTheme.lightTheme,
+            home: HomePage()));
   }
 }

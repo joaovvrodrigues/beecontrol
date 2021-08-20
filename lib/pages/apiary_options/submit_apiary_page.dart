@@ -1,15 +1,18 @@
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/apiary.dart';
+import 'package:beecontrol/models/bee_hive.dart';
+import 'package:beecontrol/pages/apiary_options/apiary_options_controller.dart';
 import 'package:beecontrol/shared/guide_title.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
 import 'package:beecontrol/shared/custom_text_field.dart';
+import 'package:beecontrol/utils/constants.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -22,7 +25,8 @@ class SubmitApiaryPage extends StatefulWidget {
 
 class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
   final formKey = GlobalKey<FormState>();
-  var apiary = Apiary(hives: [], reports: []);
+
+  ApiaryOptionsController controller = ApiaryOptionsController();
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +73,8 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           icon: Ionicons.cube_outline,
                           keyboardType: TextInputType.name,
                           textCapitalization: TextCapitalization.words,
-                          onSaved: (text) =>
-                              apiary = apiary.copyWith(name: text),
+                          onSaved: (text) => controller.apiary =
+                              controller.apiary.copyWith(name: text),
                           validator: (text) {
                             if (text == null || text.isEmpty) {
                               return 'Este campo é obrigatório';
@@ -88,6 +92,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           icon: Ionicons.business_outline,
                           title: 'Endereço do Apiário:'),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             flex: 3,
@@ -98,8 +103,8 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                                 hintText: 'Cidade',
                                 icon: Ionicons.business_outline,
                                 textCapitalization: TextCapitalization.words,
-                                onSaved: (text) =>
-                                    apiary = apiary.copyWith(city: text),
+                                onSaved: (text) => controller.apiary =
+                                    controller.apiary.copyWith(city: text),
                                 validator: (text) {
                                   if (text == null || text.isEmpty) {
                                     return 'Este campo é obrigatório';
@@ -116,9 +121,9 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                             child: Padding(
                                 padding: const EdgeInsets.only(
                                     top: 5, bottom: 5, left: 5),
-                                child:  CustomDropDownField<String>(
-                                  onSaved: (text) =>
-                                      apiary = apiary.copyWith(uf: text),
+                                child: CustomDropDownField<String>(
+                                  onSaved: (text) => controller.apiary =
+                                      controller.apiary.copyWith(uf: text),
                                   validator: (text) {
                                     if (text == null || text.isEmpty) {
                                       return 'Este campo é obrigatório';
@@ -169,13 +174,9 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          onSaved: (text) => apiary =
-                              apiary.copyWith(numHives: int.parse(text!)),
-                          validator: (text) {
-                            if (text == null || text.isEmpty) {
-                              return 'Este campo é obrigatório';
-                            }
-                          },
+                          onSaved: (text) => controller.apiary = controller
+                              .apiary
+                              .copyWith(numHives: int.parse(text!)),
                         ),
                       ),
                       Text(
@@ -190,8 +191,23 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
+                              if (controller.apiary.numHives > 0) {
+                                List<BeeHive> hives = [];
+                                for (var i = 0;
+                                    i < controller.apiary.numHives;
+                                    i++) {
+                                  hives.add(BeeHive(
+                                      name: 'Colméia ${i + 1}',
+                                      situation: [],
+                                      production: []));
+                                }
+                                controller.apiary.hives.addAll(hives);
+                              }
+                              controller.apiary.id =
+                                  Hive.box(CONSTANTS.box).length + 1;
+                              Hive.box(CONSTANTS.box).add(controller.apiary);
+                              Navigator.of(context).pop();
                             }
-                            print(apiary.toString());
                           },
                           child: Text('Cadastrar Apiário'),
                           style: AppTheme.elevatedButtonStyle,

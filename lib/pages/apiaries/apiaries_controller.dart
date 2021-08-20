@@ -1,12 +1,16 @@
 import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/models/summary.dart';
-import 'package:beecontrol/utils/classes.dart';
 
 class ApiariesController {
   Summary summary =
       Summary(numApiaries: 0, numHives: 0, numReports: 0, orphanBoxes: 0);
 
   List<Apiary> searchApiaries = [];
+  List<Apiary> apiaries = [];
+
+  void create(Apiary apiary) {
+    apiaries.add(apiary);
+  }
 
   void search(String text) {
     searchApiaries.clear();
@@ -22,6 +26,9 @@ class ApiariesController {
   }
 
   void initSummary() {
+    summary =
+        Summary(numApiaries: 0, numHives: 0, numReports: 0, orphanBoxes: 0);
+
     summary.numApiaries = apiaries.length;
     for (var apiary in apiaries) {
       summary.orphanBoxes += apiary.orphanBoxes;

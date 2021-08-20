@@ -5,7 +5,7 @@ import 'package:beecontrol/pages/control_sheet/widgets/hive_options.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter/material.dart';
 
-import 'package:beecontrol/models/hive.dart';
+import 'package:beecontrol/models/bee_hive.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class HiveCard extends StatefulWidget {
@@ -13,7 +13,7 @@ class HiveCard extends StatefulWidget {
     Key? key,
     required this.hive,
   }) : super(key: key);
-  final Hive hive;
+  final BeeHive hive;
 
   @override
   _HiveCardState createState() => _HiveCardState();

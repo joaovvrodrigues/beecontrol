@@ -6,7 +6,6 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/pages/apiary_options/edit_apiary.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/last_visit.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/total_widget.dart';
@@ -15,8 +14,10 @@ class SummaryApiaryCard extends StatelessWidget {
   const SummaryApiaryCard({
     Key? key,
     required this.apiary,
+    required this.editFunction,
   }) : super(key: key);
   final Apiary apiary;
+  final VoidCallback editFunction;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -35,8 +36,7 @@ class SummaryApiaryCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(100),
                     child: FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
-                      image:
-                          apiary.image ??
+                      image: apiary.image ??
                           'https://thumbs.dreamstime.com/b/hives-bees-apiaries-outskirts-forest-hives-bees-apiaries-outskirts-forest-126420117.jpg',
                       fit: BoxFit.cover,
                       height: 50,
@@ -51,8 +51,7 @@ class SummaryApiaryCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(apiary.name,
-                            style: AppTextStyle.boldTitle),
+                        Text(apiary.name, style: AppTextStyle.boldTitle),
                         Text('${apiary.city}, ${apiary.uf}',
                             style: AppTextStyle.boldTitle.copyWith(
                                 fontSize: 16,
@@ -64,10 +63,7 @@ class SummaryApiaryCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: CircularButton(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => EditApiaryPage()));
-                      },
+                      onTap: editFunction,
                       icon: Icons.mode_edit_outline_rounded),
                 )
               ],
@@ -77,7 +73,9 @@ class SummaryApiaryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TotalWidget(
-                    title: 'Colméias', amount: apiary.numHives, icon: FeatherIcons.package),
+                    title: 'Colméias',
+                    amount: apiary.numHives,
+                    icon: FeatherIcons.package),
                 TotalWidget(
                     title: 'Caixas Orfãs',
                     amount: apiary.orphanBoxes,
@@ -89,7 +87,9 @@ class SummaryApiaryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TotalWidget(
-                    title: 'Visitas', amount: apiary.visits, icon: Ionicons.walk_outline),
+                    title: 'Visitas',
+                    amount: apiary.visits,
+                    icon: Ionicons.walk_outline),
                 LastVisit(lastDate: apiary.lastVisit)
               ],
             ),

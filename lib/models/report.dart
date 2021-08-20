@@ -1,14 +1,23 @@
 import 'dart:convert';
+import 'package:hive/hive.dart';
 
 import 'package:flutter/foundation.dart';
-
+part 'report.g.dart';
+@HiveType(typeId: 2)
 class Report {
+  @HiveField(0)
   String name;
+  @HiveField(1)
   DateTime? date;
+  @HiveField(2)
   num numHives;
+  @HiveField(3)
   num orphanBoxes;
+  @HiveField(4)
   List<String> resume;
+  @HiveField(5)
   String comments;
+  @HiveField(6)
   int? beePasture;
 
   Report(

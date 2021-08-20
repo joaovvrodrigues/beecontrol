@@ -1,18 +1,22 @@
+import 'package:beecontrol/models/apiary.dart';
+import 'package:beecontrol/utils/constants.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/shared/guide_title.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
 import 'package:beecontrol/shared/custom_text_field.dart';
 import 'package:provider/provider.dart';
+
+import 'apiary_options_controller.dart';
 
 class EditApiaryPage extends StatefulWidget {
   const EditApiaryPage({
@@ -24,12 +28,12 @@ class EditApiaryPage extends StatefulWidget {
 
 class _EditApiaryPageState extends State<EditApiaryPage> {
   final formKey = GlobalKey<FormState>();
-  var apiary = Apiary(hives: [], reports: []);
+  ApiaryOptionsController controller = ApiaryOptionsController();
 
   @override
   void initState() {
-    apiary = context.read<Apiary>();
-    // apiary = widget.apiary.copyWith();
+    controller.apiary = context.read<Apiary>();
+    // controller.apiary = widget.controller.apiary.copyWith();
     super.initState();
   }
 
@@ -45,14 +49,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CircularButton(
-                        onTap: () {
-                          if (formKey.currentState!.validate()) {
-                            formKey.currentState!.save();
-
-                            print(apiary.toString());
-                            Navigator.of(context).pop();
-                          }
-                        },
+                        onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
                     Text('Editar Apiário', style: AppTextStyle.boldTitle),
                     const SizedBox(width: 35, height: 35)
@@ -82,12 +79,12 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: CustomFormField(
                           hintText: 'Nome',
-                          initialValue: apiary.name,
+                          initialValue: controller.apiary.name,
                           icon: Ionicons.cube_outline,
                           keyboardType: TextInputType.name,
                           textCapitalization: TextCapitalization.words,
-                          onSaved: (text) =>
-                              apiary = apiary.copyWith(name: text),
+                          onSaved: (text) => controller.apiary =
+                              controller.apiary.copyWith(name: text),
                           validator: (text) {
                             if (text == null || text.isEmpty) {
                               return 'Este campo é obrigatório';
@@ -113,11 +110,11 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                                   top: 5, bottom: 5, right: 5),
                               child: CustomFormField(
                                 hintText: 'Cidade',
-                                initialValue: apiary.city,
+                                initialValue: controller.apiary.city,
                                 icon: Ionicons.business_outline,
                                 textCapitalization: TextCapitalization.words,
-                                onSaved: (text) =>
-                                    apiary = apiary.copyWith(city: text),
+                                onSaved: (text) => controller.apiary =
+                                    controller.apiary.copyWith(city: text),
                                 validator: (text) {
                                   if (text == null || text.isEmpty) {
                                     return 'Este campo é obrigatório';
@@ -135,14 +132,14 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                                 padding: const EdgeInsets.only(
                                     top: 5, bottom: 5, left: 5),
                                 child: CustomDropDownField<String>(
-                                  onSaved: (text) =>
-                                      apiary = apiary.copyWith(uf: text),
+                                  onSaved: (text) => controller.apiary =
+                                      controller.apiary.copyWith(uf: text),
                                   validator: (text) {
                                     if (text == null || text.isEmpty) {
                                       return 'Este campo é obrigatório';
                                     }
                                   },
-                                  initialValue: apiary.uf,
+                                  initialValue: controller.apiary.uf,
                                   hintText: 'UF',
                                   // icon: Ionicons.business_outline,
                                   items: Estados.listaEstadosSigla
@@ -174,14 +171,36 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                           // alignment: Alignment.topCenter,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 30),
 
-                      // register button
+                      // save button
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 40),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                formKey.currentState!.save();
+                                Hive.box(CONSTANTS.box).deleteAt(controller.apiary.id);
+                                // controller.update(controller.apiary);
+                                // controller.apiaries = context.read<Apiaries>();
+                                // controller.apiaries!.update(controller.apiary);
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            child: Text('Salvar Apiário'),
+                            style: AppTheme.elevatedButtonStyle),
+                      ),
+
+                      // delete button
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
                         child: ElevatedButton(
                           onPressed: () {
-                            print('Excluir');
+                            // controller.delete(controller.apiary);
+                            // controller.apiaries = context.read<Apiaries>();
+                            // controller.apiaries!.remove(controller.apiary.id!);
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
                           },
                           child: Text('Excluir Apiário'),
                           style: AppTheme.elevatedButtonStyle.copyWith(

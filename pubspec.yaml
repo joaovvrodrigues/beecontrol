@@ -44,8 +44,13 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   transparent_image: ^2.0.0
   animated_bottom_navigation_bar: ^0.3.2
+  path_provider: ^2.0.2
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
+  hive_generator: ^1.1.0
+  build_runner: ^2.1.1
   flutter_test:
     sdk: flutter
 

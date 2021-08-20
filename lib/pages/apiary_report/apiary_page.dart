@@ -1,6 +1,7 @@
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/models/report.dart';
+import 'package:beecontrol/pages/apiary_options/edit_apiary_page.dart';
 import 'package:beecontrol/pages/apiary_report/apiary_controller.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/order_by.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/reports_card.dart';
@@ -33,7 +34,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
   @override
   void initState() {
     context.read<Apiary>().reports.sort((a, b) => -a.date!.compareTo(b.date!));
-    controller.apiary = context.read<Apiary>();
+
     controller.report = context.read<Report>();
 
     super.initState();
@@ -45,8 +46,21 @@ class _ApiaryPageState extends State<ApiaryPage> {
     });
   }
 
+  void editFunction() async {
+    // bool? refresh = await 
+    
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => EditApiaryPage()));
+
+    // if (refresh != null && refresh) {
+    //   print('asasa');
+    //   setState(() {});
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
+    controller.apiary = context.watch<Apiary>();
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
@@ -96,7 +110,9 @@ class _ApiaryPageState extends State<ApiaryPage> {
                           ),
                         ),
                     children: [
-                      SummaryApiaryCard(apiary: controller.apiary),
+                      SummaryApiaryCard(
+                          apiary: controller.apiary,
+                          editFunction: editFunction),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         child: OrderBy(

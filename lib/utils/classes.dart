@@ -1,5 +1,5 @@
 import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/models/hive.dart';
+import 'package:beecontrol/models/bee_hive.dart';
 import 'package:beecontrol/models/report.dart';
 
 List<String> manejo = [
@@ -14,6 +14,7 @@ List<String> manejo = [
 
 List<Apiary> apiaries = [
   Apiary(
+      id: 0,
       city: 'Bambuí',
       uf: 'MG',
       numHives: 0,
@@ -21,6 +22,7 @@ List<Apiary> apiaries = [
       hives: [],
       reports: []),
   Apiary(
+      id: 1,
       city: 'Bambuí',
       uf: 'MG',
       numHives: 3,
@@ -53,18 +55,18 @@ List<Apiary> apiaries = [
                 "Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb."),
       ],
       hives: [
-        Hive(
+        BeeHive(
             name: 'Colméia 1',
             situation: ['Alimentar', 'Coletar Mel'],
             production: ['Instalar Suporte']),
-        Hive(
+        BeeHive(
             name: 'Colméia 2',
             situation: [],
             production: ['Instalar Suporte'],
             orphan: true,
             motherHive: 1,
             dateOrphan: DateTime(2021, 02, 12, 12, 30)),
-        Hive(
+        BeeHive(
             name: 'Colméia 3',
             situation: ['Alimentar', 'Coletar Mel'],
             production: ['Instalar Suporte']),
@@ -92,12 +94,12 @@ List<Report> reports = [
       name: 'Ficha de Controle 3'),
 ];
 
-List<Hive> hives = [
-  Hive(
+List<BeeHive> hives = [
+  BeeHive(
       name: 'Colméia 1',
       situation: ['Alimentar', 'Coletar Mel'],
       production: ['Instalar Suporte']),
-  Hive(
+  BeeHive(
       name: 'Colméia 2',
       situation: [],
       production: ['Instalar Suporte'],
