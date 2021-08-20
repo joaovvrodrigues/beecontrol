@@ -8,13 +8,17 @@ class Report {
   num numHives;
   num orphanBoxes;
   List<String> resume;
-  Report({
-    this.name = '',
-    this.date,
-    this.numHives = 0,
-    this.orphanBoxes = 0,
-    required this.resume,
-  });
+  String comments;
+  int? beePasture;
+
+  Report(
+      {this.name = '',
+      this.date,
+      this.numHives = 0,
+      this.orphanBoxes = 0,
+      required this.resume,
+      this.comments = '',
+      this.beePasture}); // : assert(beePasture < 3, 'beePasture must be less than 3');
 
   void updateProvider(Report aux) {
     name = aux.name;
@@ -22,6 +26,8 @@ class Report {
     numHives = aux.numHives;
     orphanBoxes = aux.orphanBoxes;
     resume = aux.resume;
+    comments = aux.comments;
+    beePasture = aux.beePasture;
   }
 
   Report copyWith({
@@ -30,6 +36,8 @@ class Report {
     num? numHives,
     num? orphanBoxes,
     List<String>? resume,
+    String? comments,
+    int? beePasture,
   }) {
     return Report(
       name: name ?? this.name,
@@ -37,6 +45,8 @@ class Report {
       numHives: numHives ?? this.numHives,
       orphanBoxes: orphanBoxes ?? this.orphanBoxes,
       resume: resume ?? this.resume,
+      comments: comments ?? this.comments,
+      beePasture: beePasture ?? this.beePasture,
     );
   }
 
@@ -47,6 +57,8 @@ class Report {
       'numHives': numHives,
       'orphanBoxes': orphanBoxes,
       'resume': resume,
+      'comments': comments,
+      'beePasture': beePasture,
     };
   }
 
@@ -57,6 +69,8 @@ class Report {
       numHives: map['numHives'],
       orphanBoxes: map['orphanBoxes'],
       resume: List<String>.from(map['resume']),
+      comments: map['comments'],
+      beePasture: map['beePasture'],
     );
   }
 
@@ -66,7 +80,7 @@ class Report {
 
   @override
   String toString() {
-    return 'Report(name: $name, date: $date, numHives: $numHives, orphanBoxes: $orphanBoxes, resume: $resume)';
+    return 'Report(name: $name, date: $date, numHives: $numHives, orphanBoxes: $orphanBoxes, resume: $resume, comments: $comments, beePasture: $beePasture)';
   }
 
   @override
@@ -78,7 +92,9 @@ class Report {
         other.date == date &&
         other.numHives == numHives &&
         other.orphanBoxes == orphanBoxes &&
-        listEquals(other.resume, resume);
+        listEquals(other.resume, resume) &&
+        other.comments == comments &&
+        other.beePasture == beePasture;
   }
 
   @override
@@ -87,6 +103,8 @@ class Report {
         date.hashCode ^
         numHives.hashCode ^
         orphanBoxes.hashCode ^
-        resume.hashCode;
+        resume.hashCode ^
+        comments.hashCode ^
+        beePasture.hashCode;
   }
 }

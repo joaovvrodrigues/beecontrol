@@ -78,20 +78,20 @@ class _HiveCardState extends State<HiveCard> {
                   ),
                   for (var item in widget.hive.situation)
                     HiveOptions(item: item),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Icon(
-                        FeatherIcons.plus,
-                        color: AppTheme.eclipse,
-                      ),
-                      style: AppTheme.elevatedButtonStyle.copyWith(
-                        minimumSize:
-                            MaterialStateProperty.all<Size?>(Size(162, 40)),
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(vertical: 5),
+                  //   child: ElevatedButton(
+                  //     onPressed: () {},
+                  //     child: Icon(
+                  //       FeatherIcons.plus,
+                  //       color: AppTheme.eclipse,
+                  //     ),
+                  //     style: AppTheme.elevatedButtonStyle.copyWith(
+                  //       minimumSize:
+                  //           MaterialStateProperty.all<Size?>(Size(162, 40)),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               Column(

@@ -29,16 +29,22 @@ class ControlSheetPage extends StatefulWidget {
 
 class _ControlSheetPageState extends State<ControlSheetPage> {
   final formKey = GlobalKey<FormState>();
-  PastoApicola? _pastoApicola;
 
   Report report = Report(resume: []);
   Apiary apiary = Apiary(hives: [], reports: []);
 
+  TextEditingController textController = TextEditingController();
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     apiary = context.read<Apiary>();
     report = context.read<Report>();
+    textController.text = report.comments;
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
@@ -96,17 +102,17 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 0),
                                       child: BeePasture(
-                                        groupValue: _pastoApicola,
+                                        groupValue: report.beePasture,
                                         onChanged: (value) {
                                           setState(() {
-                                            _pastoApicola = value;
+                                            report.beePasture = value;
                                           });
                                         },
                                       ))
                                 ],
                               ),
                             )),
-                        CommentsCard(),
+                        CommentsCard(textController: textController),
                         if (apiary.hives.isEmpty)
                           Column(
                             children: [

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CommentsCard extends StatelessWidget {
-  const CommentsCard({Key? key}) : super(key: key);
+  const CommentsCard({
+    Key? key,
+    required this.textController,
+  }) : super(key: key);
+
+  final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
@@ -13,19 +18,16 @@ class CommentsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Observações:'),
-            TextField(
-                // decoration: InputDecoration(
-                //     hintText: 'Observações',
-                //     suffixIcon: Container(
-                //         decoration: BoxDecoration(
-                //             color: AppTheme.dandelion,
-                //             borderRadius: BorderRadius.circular(12)),
-                //         child: Icon(
-                //           Ionicons.create_outline,
-                //           size: 20,
-                //           color: AppTheme.eclipse,
-                //         ))),
-                )
+            ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: 150),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Insira observações aqui'),
+                maxLines: null,
+                controller: textController,
+              ),
+            )
           ],
         ));
   }
