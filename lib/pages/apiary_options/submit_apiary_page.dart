@@ -1,18 +1,15 @@
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/bee_hive.dart';
 import 'package:beecontrol/pages/apiary_options/apiary_options_controller.dart';
 import 'package:beecontrol/shared/guide_title.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
 import 'package:beecontrol/shared/custom_text_field.dart';
-import 'package:beecontrol/utils/constants.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -191,21 +188,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
-                              if (controller.apiary.numHives > 0) {
-                                List<BeeHive> hives = [];
-                                for (var i = 0;
-                                    i < controller.apiary.numHives;
-                                    i++) {
-                                  hives.add(BeeHive(
-                                      name: 'Colméia ${i + 1}',
-                                      situation: [],
-                                      production: []));
-                                }
-                                controller.apiary.hives.addAll(hives);
-                              }
-                              controller.apiary.id =
-                                  Hive.box(CONSTANTS.box).length + 1;
-                              Hive.box(CONSTANTS.box).add(controller.apiary);
+                              controller.createApiary();
                               Navigator.of(context).pop();
                             }
                           },
