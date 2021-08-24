@@ -76,11 +76,14 @@ class _ApiaryPageState extends State<ApiaryPage> {
               FeatherIcons.plus,
               color: AppTheme.eclipse,
             ),
-            onPressed: () => openReport(Report(
-                date: DateTime.now(),
-                name:
-                    'Ficha de Controle ${controller.apiary.reports.length + 1}',
-                resume: [])),
+            onPressed: () {
+              openReport(Report(
+                  date: DateTime.now(),
+                  name:
+                      'Ficha de Controle ${controller.apiary.reports.length + 1}',
+                  resume: [],
+                  newReport: true));
+            },
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
@@ -97,8 +100,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                           ),
                         ),
                     children: [
-                      SummaryApiaryCard(
-                          apiary: controller.apiary),
+                      SummaryApiaryCard(apiary: controller.apiary),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         child: OrderBy(

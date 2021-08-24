@@ -8,6 +8,19 @@ class ControlSheetController {
   Report report = Report(resume: []);
   Apiary apiary = Apiary(hives: [], reports: []);
 
+  void divideHive(num mother) {
+    apiary.hives.add(BeeHive(
+        name: 'Colméia ${apiary.hives.length + 1}',
+        dateOrphan: DateTime.now(),
+        motherHive: mother,
+        orphan: true,
+        situation: [],
+        production: []));
+    report.numHives = apiary.hives.length;
+    report.orphanBoxes++;
+    apiary.orphanBoxes++;
+  }
+
   void addHive() {
     apiary.hives.add(BeeHive(
         name: 'Colméia ${apiary.hives.length + 1}',

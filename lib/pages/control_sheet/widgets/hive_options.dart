@@ -14,11 +14,11 @@ class HiveOptions extends StatelessWidget {
       margin: const EdgeInsets.all(2.5),
       padding: const EdgeInsets.all(3.0),
       decoration: BoxDecoration(
-          border: Border.all(color: AppTheme.eclipse.withAlpha(180)),
+          border: Border.all(color: AppTheme.eclipse.withAlpha(100)),
           borderRadius: BorderRadius.circular(12)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 6),
-        child: Text(item),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Align(alignment: Alignment.centerLeft, child: Text(item)),
       ),
     );
   }

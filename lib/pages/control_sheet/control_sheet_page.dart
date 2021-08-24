@@ -37,13 +37,27 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
   @override
   void initState() {
     controller.report = Report.fromJson(widget.report.toJson());
+
     textController.text = controller.report.comments;
     controller.apiary = Apiary.fromJson(context.read<Apiary>().toJson());
+    if (controller.report.newReport) {
+      for (var hive in controller.apiary.hives) {
+        hive.situation.clear();
+        hive.situation.addAll(hive.production);
+        hive.production.clear();
+      }
+    }
     super.initState();
   }
 
   void onChanged(String obs) {
     controller.report.comments = obs;
+  }
+
+  void divideHive(num mother) {
+    setState(() {
+      controller.divideHive(mother);
+    });
   }
 
   @override
@@ -147,7 +161,8 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                               itemCount: controller.apiary.hives.length,
                               itemBuilder: (context, index) {
                                 return HiveCard(
-                                    hive: controller.apiary.hives[index]);
+                                    hive: controller.apiary.hives[index],
+                                    divideHive: divideHive);
                               }),
                         if (controller.apiary.hives.isNotEmpty)
                           Padding(

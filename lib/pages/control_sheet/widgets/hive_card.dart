@@ -1,22 +1,23 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:timeago/timeago.dart' as timeago;
+
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/models/bee_hive.dart';
 import 'package:beecontrol/pages/control_sheet/widgets/hive_options.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
-import 'package:ionicons/ionicons.dart';
-
-import 'package:timeago/timeago.dart' as timeago;
-import 'package:flutter/material.dart';
-
-import 'package:beecontrol/models/bee_hive.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class HiveCard extends StatefulWidget {
   const HiveCard({
     Key? key,
     required this.hive,
+    required this.divideHive,
   }) : super(key: key);
   final BeeHive hive;
+  final Function(num mother) divideHive;
 
   @override
   _HiveCardState createState() => _HiveCardState();
@@ -146,7 +147,7 @@ class _HiveCardState extends State<HiveCard> {
                                     decoration: BoxDecoration(
                                         border: Border.all(
                                             color: AppTheme.eclipse
-                                                .withAlpha(180)),
+                                                .withAlpha(100)),
                                         borderRadius:
                                             BorderRadius.circular(12)),
                                     child: CustomDropDownField<String>(
@@ -155,6 +156,11 @@ class _HiveCardState extends State<HiveCard> {
                                         setState(() {
                                           widget.hive.production[i] = text!;
                                         });
+
+                                        if (text! == 'Dividir') {
+                                           widget.divideHive(int.parse(
+                                                widget.hive.name.substring(7)));
+                                        }
                                       },
                                       initialValue:
                                           widget.hive.production[i] == 'null'
