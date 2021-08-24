@@ -44,8 +44,9 @@ class _NewsPageState extends State<NewsPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircularButton(
-                        onTap: () {}, icon: Ionicons.reorder_two_outline),
+                    // CircularButton(
+                    //     onTap: () {}, icon: Ionicons.reorder_two_outline), 
+                    const SizedBox(width: 35, height: 35),
                     Text('Página Inicial', style: AppTextStyle.boldTitle),
                     CircularButton(onTap: () {}, icon: Ionicons.search_outline)
                   ],

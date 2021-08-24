@@ -1,6 +1,5 @@
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/models/user_model.dart';
-import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/custom_text_field.dart';
 import 'package:beecontrol/shared/guide_title.dart';
 import 'package:brasil_fields/brasil_fields.dart';
@@ -31,8 +30,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircularButton(
-                          onTap: () {}, icon: Ionicons.reorder_two_outline),
+                      // CircularButton(
+                      //     onTap: () {}, icon: Ionicons.reorder_two_outline),
+                      const SizedBox(width: 35, height: 35),
                       Text('Minhas Configurações',
                           style: AppTextStyle.boldTitle),
                       const SizedBox(width: 35, height: 35)

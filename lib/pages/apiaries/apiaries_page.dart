@@ -4,7 +4,6 @@ import 'package:beecontrol/pages/apiaries/apiaries_controller.dart';
 import 'package:beecontrol/pages/apiaries/widgets/apiaries_card.dart';
 import 'package:beecontrol/pages/apiaries/widgets/search_widget.dart';
 import 'package:beecontrol/pages/apiaries/widgets/summary_card.dart';
-import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/empty_widget.dart';
 import 'package:beecontrol/shared/info_card.dart';
 import 'package:beecontrol/utils/constants.dart';
@@ -12,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hive/hive.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class ApiariesPage extends StatefulWidget {
@@ -68,8 +66,9 @@ class _ApiariesPageState extends State<ApiariesPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircularButton(
-                        onTap: () {}, icon: Ionicons.reorder_two_outline),
+                    // CircularButton(
+                    //     onTap: () {}, icon: Ionicons.reorder_two_outline),
+                    const SizedBox(width: 35, height: 35),
                     Text('Meus Apiários', style: AppTextStyle.boldTitle),
                     const SizedBox(width: 35, height: 35)
                   ],
