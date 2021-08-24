@@ -1,28 +1,29 @@
-import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/apiary.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
+
+import 'package:beecontrol/core/app_text_style.dart';
+import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/report.dart';
-import 'package:beecontrol/pages/apiary_options/edit_apiary_page.dart';
 import 'package:beecontrol/pages/apiary_report/apiary_controller.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/order_by.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/reports_card.dart';
 import 'package:beecontrol/pages/apiary_report/widgets/summary_apiary_card.dart';
 import 'package:beecontrol/pages/control_sheet/control_sheet_page.dart';
+import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/empty_widget.dart';
 import 'package:beecontrol/shared/info_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:provider/provider.dart';
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/shared/circular_button.dart';
-import 'package:ionicons/ionicons.dart';
 
 class ApiaryPage extends StatefulWidget {
   const ApiaryPage({
     Key? key,
-    // required this.controller.apiary,
+    // required this.id,
   }) : super(key: key);
   // final Apiary controller.apiary;
+  // final String id;
 
   @override
   _ApiaryPageState createState() => _ApiaryPageState();
@@ -34,9 +35,6 @@ class _ApiaryPageState extends State<ApiaryPage> {
   @override
   void initState() {
     context.read<Apiary>().reports.sort((a, b) => -a.date!.compareTo(b.date!));
-
-    controller.report = context.read<Report>();
-
     super.initState();
   }
 
@@ -46,16 +44,9 @@ class _ApiaryPageState extends State<ApiaryPage> {
     });
   }
 
-  void editFunction() async {
-    // bool? refresh = await 
-    
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => EditApiaryPage()));
-
-    // if (refresh != null && refresh) {
-    //   print('asasa');
-    //   setState(() {});
-    // }
+  void openReport(Report report) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ControlSheetPage(report: report)));
   }
 
   @override
@@ -85,15 +76,11 @@ class _ApiaryPageState extends State<ApiaryPage> {
               FeatherIcons.plus,
               color: AppTheme.eclipse,
             ),
-            onPressed: () {
-              controller.report.updateProvider(Report(
-                  date: DateTime.now(),
-                  name:
-                      'Ficha de Controle ${controller.apiary.reports.length + 1}',
-                  resume: []));
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ControlSheetPage()));
-            },
+            onPressed: () => openReport(Report(
+                date: DateTime.now(),
+                name:
+                    'Ficha de Controle ${controller.apiary.reports.length + 1}',
+                resume: [])),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
@@ -111,8 +98,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                         ),
                     children: [
                       SummaryApiaryCard(
-                          apiary: controller.apiary,
-                          editFunction: editFunction),
+                          apiary: controller.apiary),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         child: OrderBy(
@@ -142,7 +128,10 @@ class _ApiaryPageState extends State<ApiaryPage> {
                             itemCount: controller.apiary.reports.length,
                             itemBuilder: (context, index) {
                               return ReportsCard(
-                                  report: controller.apiary.reports[index]);
+                                report: controller.apiary.reports[index],
+                                onTap: () => openReport(
+                                    controller.apiary.reports[index]),
+                              );
                             })
                     ]),
               )))),
