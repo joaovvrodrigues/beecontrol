@@ -1,3 +1,4 @@
+import 'package:beecontrol/pages/apiary_options/edit_apiary_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
@@ -14,10 +15,9 @@ class SummaryApiaryCard extends StatelessWidget {
   const SummaryApiaryCard({
     Key? key,
     required this.apiary,
-    required this.editFunction,
   }) : super(key: key);
   final Apiary apiary;
-  final VoidCallback editFunction;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -63,7 +63,8 @@ class SummaryApiaryCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: CircularButton(
-                      onTap: editFunction,
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EditApiaryPage())),
                       icon: Icons.mode_edit_outline_rounded),
                 )
               ],
@@ -74,7 +75,7 @@ class SummaryApiaryCard extends StatelessWidget {
               children: [
                 TotalWidget(
                     title: 'Colméias',
-                    amount: apiary.numHives,
+                    amount: apiary.hives.length,
                     icon: FeatherIcons.package),
                 TotalWidget(
                     title: 'Caixas Orfãs',
