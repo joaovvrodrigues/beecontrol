@@ -21,6 +21,10 @@ class ControlSheetController {
     apiary.lastVisit = report.date;
     int index = int.parse(report.name.substring(18));
 
+    for (var hive in apiary.hives) {
+      hive.production.removeWhere((element) => element == 'null');
+    }
+
     if (apiary.reports.length >= index) {
       apiary.reports[apiary.reports
           .indexWhere((element) => element.date == report.date)] = report;

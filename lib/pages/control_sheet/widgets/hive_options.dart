@@ -11,7 +11,6 @@ class HiveOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
       margin: const EdgeInsets.all(2.5),
       padding: const EdgeInsets.all(3.0),
       decoration: BoxDecoration(
