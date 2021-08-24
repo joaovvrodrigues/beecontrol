@@ -174,9 +174,15 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           keyboardType: TextInputType.number,
-                          onSaved: (text) => controller.apiary = controller
-                              .apiary
-                              .copyWith(numHives: int.parse(text!)),
+                          onSaved: (text) {
+                            if (text == null || text.length == 0) {
+                              controller.apiary =
+                                  controller.apiary.copyWith(numHives: 0);
+                            } else {
+                              controller.apiary = controller.apiary
+                                  .copyWith(numHives: int.parse(text));
+                            }
+                          },
                           validator: (text) {
                             if (text != null && text.length > 2) {
                               return 'Este campo deve conter menos de 3 caracteres';
