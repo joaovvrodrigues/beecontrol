@@ -1,4 +1,5 @@
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/models/apiaries.dart';
 import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/models/bee_hive.dart';
 import 'package:beecontrol/models/feed.dart';
@@ -38,8 +39,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<Feed>(
             create: (_) => Feed(),
           ),
-          Provider<Apiary>(create: (_) => Apiary(hives: [], reports: [])),
-          Provider<Report>(create: (_) => Report(resume: []))
+          ChangeNotifierProvider<Apiaries>(create: (_) => Apiaries())
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: const [Locale('pt', 'BR')],
             title: 'Bee Control',
+            color: AppTheme.seashell,
             theme: AppTheme.lightTheme,
             home: HomePage()));
   }

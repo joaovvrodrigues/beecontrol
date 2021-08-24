@@ -8,10 +8,8 @@ import 'package:beecontrol/pages/news/news_page.dart';
 import 'package:beecontrol/pages/apiary_options/submit_apiary_page.dart';
 import 'package:beecontrol/pages/register/register_page.dart';
 import 'package:beecontrol/pages/settings/settings_page.dart';
-import 'package:beecontrol/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -84,7 +82,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    Hive.openBox(CONSTANTS.box);
+    // Hive.openBox(CONSTANTS.box);
 
     loadWeather();
     loadFeed();
@@ -113,24 +111,7 @@ class _HomePageState extends State<HomePage>
     feed = context.read<Feed>();
     return Scaffold(
       extendBody: true,
-      body:
-          // FutureBuilder<Box>(
-          //     future: Hive.openBox(CONSTANTS.box),
-          //     builder: (context, box) {
-          //       if (box.connectionState == ConnectionState.done) {
-          //         if (box.hasError) {
-          //           return Text(box.error.toString());
-          //         }
-          //         return
-
-          pages[_bottomNavIndex],
-
-      //   } else {
-      //     return Center(
-      //       child: CircularProgressIndicator(),
-      //     );
-      //   }
-      // }),
+      body: pages[_bottomNavIndex],
       floatingActionButton: ScaleTransition(
         scale: animation,
         child: FloatingActionButton(
@@ -140,10 +121,10 @@ class _HomePageState extends State<HomePage>
             FeatherIcons.plus,
             color: AppTheme.eclipse,
           ),
-          onPressed: () {
+          onPressed: () =>
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => SubmitApiaryPage()));
-          },
+                MaterialPageRoute(builder: (context) => SubmitApiaryPage()))
+          ,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
