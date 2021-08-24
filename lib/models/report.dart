@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 
 import 'package:flutter/foundation.dart';
 part 'report.g.dart';
+
 @HiveType(typeId: 2)
 class Report {
   @HiveField(0)
@@ -62,7 +63,7 @@ class Report {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'date': date,
+      'date': date != null ? date.toString() : DateTime.now().toString(),
       'numHives': numHives,
       'orphanBoxes': orphanBoxes,
       'resume': resume,
@@ -74,7 +75,7 @@ class Report {
   factory Report.fromMap(Map<String, dynamic> map) {
     return Report(
       name: map['name'],
-      date: DateTime.fromMillisecondsSinceEpoch(map['date']),
+      date: DateTime.parse( map['date']),
       numHives: map['numHives'],
       orphanBoxes: map['orphanBoxes'],
       resume: List<String>.from(map['resume']),

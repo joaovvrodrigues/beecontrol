@@ -9,7 +9,7 @@ import 'package:beecontrol/models/report.dart';
 part 'apiary.g.dart';
 
 @HiveType(typeId: 1)
-class Apiary {
+class Apiary extends ChangeNotifier {
   @HiveField(0)
   String id;
   @HiveField(1)
@@ -21,16 +21,14 @@ class Apiary {
   @HiveField(4)
   String? image;
   @HiveField(5)
-  num numHives;
-  @HiveField(6)
   num visits;
-  @HiveField(7)
+  @HiveField(6)
   num orphanBoxes;
-  @HiveField(8)
+  @HiveField(7)
   DateTime? lastVisit;
-  @HiveField(9)
+  @HiveField(8)
   List<Report> reports = [];
-  @HiveField(10)
+  @HiveField(9)
   List<BeeHive> hives = [];
 
   Apiary({
@@ -39,7 +37,6 @@ class Apiary {
     this.city = 'Bambuí',
     this.uf = 'MG',
     this.image,
-    this.numHives = 0,
     this.visits = 0,
     this.orphanBoxes = 0,
     this.lastVisit,
@@ -53,12 +50,17 @@ class Apiary {
     city = aux.city;
     uf = aux.uf;
     image = aux.image;
-    numHives = aux.numHives;
     visits = aux.visits;
     orphanBoxes = aux.orphanBoxes;
     lastVisit = aux.lastVisit;
     reports = aux.reports;
     hives = aux.hives;
+    notifyListeners();
+  }
+
+  void add(BeeHive beeHive) {
+    hives.add(beeHive);
+    notifyListeners();
   }
 
   Apiary copyWith({
@@ -67,7 +69,6 @@ class Apiary {
     String? city,
     String? uf,
     String? image,
-    num? numHives,
     num? visits,
     num? orphanBoxes,
     DateTime? lastVisit,
@@ -80,7 +81,6 @@ class Apiary {
       city: city ?? this.city,
       uf: uf ?? this.uf,
       image: image ?? this.image,
-      numHives: numHives ?? this.numHives,
       visits: visits ?? this.visits,
       orphanBoxes: orphanBoxes ?? this.orphanBoxes,
       lastVisit: lastVisit ?? this.lastVisit,
@@ -96,10 +96,10 @@ class Apiary {
       'city': city,
       'uf': uf,
       'image': image,
-      'numHives': numHives,
       'visits': visits,
       'orphanBoxes': orphanBoxes,
-      'lastVisit': lastVisit,
+      'lastVisit':
+          lastVisit != null ? lastVisit.toString() : DateTime.now().toString(),
       'reports': reports.map((x) => x.toMap()).toList(),
       'hives': hives.map((x) => x.toMap()).toList(),
     };
@@ -112,10 +112,9 @@ class Apiary {
       city: map['city'],
       uf: map['uf'],
       image: map['image'],
-      numHives: map['numHives'],
       visits: map['visits'],
       orphanBoxes: map['orphanBoxes'],
-      lastVisit: DateTime.fromMillisecondsSinceEpoch(map['lastVisit']),
+      lastVisit: DateTime.parse(map['lastVisit']),
       reports: List<Report>.from(map['reports']?.map((x) => Report.fromMap(x))),
       hives: List<BeeHive>.from(map['hives']?.map((x) => BeeHive.fromMap(x))),
     );
@@ -127,7 +126,7 @@ class Apiary {
 
   @override
   String toString() {
-    return 'Apiary(id: $id, name: $name, city: $city, uf: $uf, image: $image, numHives: $numHives, visits: $visits, orphanBoxes: $orphanBoxes, lastVisit: $lastVisit, reports: $reports, hives: $hives)';
+    return 'Apiary(id: $id, name: $name, city: $city, uf: $uf, image: $image, visits: $visits, orphanBoxes: $orphanBoxes, lastVisit: $lastVisit, reports: $reports, hives: $hives)';
   }
 
   @override
@@ -140,7 +139,6 @@ class Apiary {
         other.city == city &&
         other.uf == uf &&
         other.image == image &&
-        other.numHives == numHives &&
         other.visits == visits &&
         other.orphanBoxes == orphanBoxes &&
         other.lastVisit == lastVisit &&
@@ -155,7 +153,6 @@ class Apiary {
         city.hashCode ^
         uf.hashCode ^
         image.hashCode ^
-        numHives.hashCode ^
         visits.hashCode ^
         orphanBoxes.hashCode ^
         lastVisit.hashCode ^

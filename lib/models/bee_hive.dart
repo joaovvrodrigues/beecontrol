@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:flutter/foundation.dart';
 part 'bee_hive.g.dart';
+
 @HiveType(typeId: 3)
 class BeeHive {
   @HiveField(0)
@@ -52,7 +53,9 @@ class BeeHive {
       'production': production,
       'orphan': orphan,
       'motherHive': motherHive,
-      'dateOrphan': dateOrphan,
+      'dateOrphan': dateOrphan != null
+          ? dateOrphan.toString()
+          : DateTime.now().toString(),
     };
   }
 
@@ -63,7 +66,7 @@ class BeeHive {
       production: List<String>.from(map['production']),
       orphan: map['orphan'],
       motherHive: map['motherHive'],
-      dateOrphan: map['dateOrphan'],
+      dateOrphan: DateTime.parse(map['dateOrphan']),
     );
   }
 

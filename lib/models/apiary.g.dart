@@ -22,12 +22,11 @@ class ApiaryAdapter extends TypeAdapter<Apiary> {
       city: fields[2] as String,
       uf: fields[3] as String,
       image: fields[4] as String?,
-      numHives: fields[5] as num,
-      visits: fields[6] as num,
-      orphanBoxes: fields[7] as num,
-      lastVisit: fields[8] as DateTime?,
-      reports: (fields[9] as List).cast<Report>(),
-      hives: (fields[10] as List).cast<BeeHive>(),
+      visits: fields[5] as num,
+      orphanBoxes: fields[6] as num,
+      lastVisit: fields[7] as DateTime?,
+      reports: (fields[8] as List).cast<Report>(),
+      hives: (fields[9] as List).cast<BeeHive>(),
     );
   }
 
@@ -46,16 +45,14 @@ class ApiaryAdapter extends TypeAdapter<Apiary> {
       ..writeByte(4)
       ..write(obj.image)
       ..writeByte(5)
-      ..write(obj.numHives)
-      ..writeByte(6)
       ..write(obj.visits)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.orphanBoxes)
-      ..writeByte(8)
+      ..writeByte(7)
       ..write(obj.lastVisit)
-      ..writeByte(9)
+      ..writeByte(8)
       ..write(obj.reports)
-      ..writeByte(10)
+      ..writeByte(9)
       ..write(obj.hives);
   }
 
