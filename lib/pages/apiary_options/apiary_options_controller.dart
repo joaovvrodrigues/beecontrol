@@ -1,20 +1,32 @@
 import 'package:beecontrol/models/apiary.dart';
+import 'package:beecontrol/models/bee_hive.dart';
+import 'package:beecontrol/utils/constants.dart';
+import 'package:hive/hive.dart';
+import 'package:uuid/uuid.dart';
 
 class ApiaryOptionsController {
-  var apiary = Apiary(hives: [], reports: []);
+  var apiary =
+      Apiary(hives: [], reports: [], numHives: 0, visits: 0, orphanBoxes: 0);
+  var uuid = Uuid();
 
+  void saveApiary() {
+    Hive.box<Apiary>(CONSTANTS.box).put(apiary.id, apiary);
+  }
 
-  // void create(Apiary apiary) {
-  //   _apiaryDao.create(apiary);
-  // }
+  void deleteApiary() async {
+    Hive.box<Apiary>(CONSTANTS.box).delete(apiary.id);
+  }
 
-  // void update(Apiary apiary) {
-  //   _apiaryDao.update(apiary);
-  //   // apiaryList[index] = apiary;
-  // }
-
-  // void delete(Apiary apiary) {
-  //   _apiaryDao.delete(apiary);
-  //   // apiaryList.remove(apiary);
-  // }
+  void createApiary() async {
+    if (apiary.numHives > 0) {
+      List<BeeHive> hives = [];
+      for (var i = 0; i < apiary.numHives; i++) {
+        hives.add(
+            BeeHive(name: 'Colméia ${i + 1}', situation: [], production: []));
+      }
+      apiary.hives.addAll(hives);
+    }
+    apiary.id = uuid.v1();
+    await Hive.box<Apiary>(CONSTANTS.box).put(apiary.id, apiary);
+  }
 }
