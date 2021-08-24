@@ -1,5 +1,6 @@
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/models/apiaries.dart';
 import 'package:beecontrol/pages/apiary_options/apiary_options_controller.dart';
 import 'package:beecontrol/shared/guide_title.dart';
 import 'package:beecontrol/shared/circular_button.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:provider/provider.dart';
 
 class SubmitApiaryPage extends StatefulWidget {
   const SubmitApiaryPage({Key? key}) : super(key: key);
@@ -171,9 +173,15 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
+                          keyboardType: TextInputType.number,
                           onSaved: (text) => controller.apiary = controller
                               .apiary
                               .copyWith(numHives: int.parse(text!)),
+                          validator: (text) {
+                            if (text != null && text.length > 2) {
+                              return 'Este campo deve conter menos de 3 caracteres';
+                            }
+                          },
                         ),
                       ),
                       Text(
@@ -189,6 +197,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
                               controller.createApiary();
+                              context.read<Apiaries>().add(controller.apiary);
                               Navigator.of(context).pop();
                             }
                           },

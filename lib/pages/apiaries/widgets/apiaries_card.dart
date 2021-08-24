@@ -2,7 +2,6 @@ import 'package:beecontrol/pages/apiary_report/apiary_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:provider/provider.dart';
 import 'package:beecontrol/models/apiary.dart';
 
 class ApiariesCard extends StatelessWidget {
@@ -18,10 +17,10 @@ class ApiariesCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () {
-        Apiary api = context.read<Apiary>();
-        api.updateProvider(apiary);
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ApiaryPage()));
+        // Apiary api = context.read<Apiary>();
+        // api.updateProvider(apiary);
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ApiaryPage(id: apiary.id)));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5),
@@ -65,7 +64,11 @@ class ApiariesCard extends StatelessWidget {
                 Ionicons.chevron_forward_outline,
                 size: 12,
               ),
-            )
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            //   child: Text('#${apiary.id}'),
+            // )
           ],
         ),
       ),

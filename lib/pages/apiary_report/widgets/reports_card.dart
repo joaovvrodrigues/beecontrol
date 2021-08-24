@@ -1,28 +1,27 @@
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/pages/control_sheet/control_sheet_page.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
-
-import 'package:beecontrol/models/report.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:provider/provider.dart';
+
+import 'package:beecontrol/core/app_text_style.dart';
+import 'package:beecontrol/core/app_theme.dart';
+import 'package:beecontrol/models/report.dart';
 
 class ReportsCard extends StatelessWidget {
   const ReportsCard({
     Key? key,
     required this.report,
+    required this.onTap,
   }) : super(key: key);
   final Report report;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () {
-        context.read<Report>().updateProvider(report);
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ControlSheetPage()));
+        // context.read<Report>().updateProvider(report);
+        onTap();
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5),

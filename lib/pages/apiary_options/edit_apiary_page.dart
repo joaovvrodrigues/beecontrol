@@ -1,27 +1,28 @@
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/utils/constants.dart';
+import 'package:beecontrol/models/apiaries.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/shared/guide_title.dart';
+import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
 import 'package:beecontrol/shared/custom_text_field.dart';
-import 'package:provider/provider.dart';
+import 'package:beecontrol/shared/guide_title.dart';
 
 import 'apiary_options_controller.dart';
 
 class EditApiaryPage extends StatefulWidget {
   const EditApiaryPage({
     Key? key,
+    required this.apiary,
   }) : super(key: key);
+  final Apiary apiary;
   @override
   _EditApiaryPageState createState() => _EditApiaryPageState();
 }
@@ -32,8 +33,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
 
   @override
   void initState() {
-    controller.apiary = context.read<Apiary>();
-    // controller.apiary = widget.controller.apiary.copyWith();
+    controller.apiary = widget.apiary.copyWith();
     super.initState();
   }
 
@@ -180,11 +180,11 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
                                 formKey.currentState!.save();
-                                Hive.box(CONSTANTS.box).deleteAt(controller.apiary.id);
-                                // controller.update(controller.apiary);
-                                // controller.apiaries = context.read<Apiaries>();
-                                // controller.apiaries!.update(controller.apiary);
-                                Navigator.of(context).pop();
+                                controller.saveApiary();
+                                context
+                                    .read<Apiaries>()
+                                    .update(controller.apiary);
+                                Navigator.of(context).pop(true);
                               }
                             },
                             child: Text('Salvar Apiário'),
@@ -195,10 +195,12 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: ElevatedButton(
-                          onPressed: () {
-                            // controller.delete(controller.apiary);
-                            // controller.apiaries = context.read<Apiaries>();
-                            // controller.apiaries!.remove(controller.apiary.id!);
+                          onPressed: () async {
+                            controller.deleteApiary();
+                            context
+                                .read<Apiaries>()
+                                .remove(controller.apiary.id);
+
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           },

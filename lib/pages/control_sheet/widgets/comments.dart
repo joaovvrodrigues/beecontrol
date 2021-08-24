@@ -4,9 +4,11 @@ class CommentsCard extends StatelessWidget {
   const CommentsCard({
     Key? key,
     required this.textController,
+    required this.onChanged,
   }) : super(key: key);
 
   final TextEditingController textController;
+  final Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class CommentsCard extends StatelessWidget {
             ConstrainedBox(
               constraints: BoxConstraints(maxHeight: 150),
               child: TextField(
+                onChanged: onChanged,
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Insira observações aqui'),
