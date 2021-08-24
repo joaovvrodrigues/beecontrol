@@ -76,8 +76,8 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
               controller.addHive();
             }),
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
+          // floatingActionButtonLocation:
+          //     FloatingActionButtonLocation.centerFloat,
           body: SingleChildScrollView(
               padding: const EdgeInsets.all(20),
               child: Form(
