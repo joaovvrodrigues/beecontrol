@@ -1,5 +1,4 @@
 import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/apiaries.dart';
 import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/models/bee_hive.dart';
 import 'package:beecontrol/models/feed.dart';
