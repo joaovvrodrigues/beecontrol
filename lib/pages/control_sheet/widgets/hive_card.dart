@@ -151,6 +151,7 @@ class _HiveCardState extends State<HiveCard> {
                                         borderRadius:
                                             BorderRadius.circular(12)),
                                     child: CustomDropDownField<String>(
+                                      isDense: true,
                                       hintText: 'Opção',
                                       onSaved: (text) {
                                         setState(() {
@@ -158,8 +159,8 @@ class _HiveCardState extends State<HiveCard> {
                                         });
 
                                         if (text! == 'Dividir') {
-                                           widget.divideHive(int.parse(
-                                                widget.hive.name.substring(7)));
+                                          widget.divideHive(int.parse(
+                                              widget.hive.name.substring(7)));
                                         }
                                       },
                                       initialValue:
