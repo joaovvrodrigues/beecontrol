@@ -69,6 +69,7 @@ class _ApiariesPageState extends State<ApiariesPage> {
   @override
   Widget build(BuildContext context) {
     controller.apiaries = context.watch<Apiaries>();
+    controller.initSummary();
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
