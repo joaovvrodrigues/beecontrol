@@ -24,6 +24,8 @@ void main() async {
 
 const uiStyle = SystemUiOverlayStyle(
   statusBarColor: AppTheme.seashell,
+  statusBarIconBrightness: Brightness.dark,
+  statusBarBrightness: Brightness.dark,
 );
 
 class MyApp extends StatelessWidget {
@@ -38,7 +40,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<Feed>(
             create: (_) => Feed(),
           ),
-          ChangeNotifierProvider<Apiary>(create: (_) => Apiary(hives: [], reports: [])),
+          ChangeNotifierProvider<Apiary>(
+              create: (_) => Apiary(hives: [], reports: [])),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
