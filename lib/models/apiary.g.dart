@@ -17,7 +17,7 @@ class ApiaryAdapter extends TypeAdapter<Apiary> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Apiary(
-      id: fields[0] as int,
+      id: fields[0] as String,
       name: fields[1] as String,
       city: fields[2] as String,
       uf: fields[3] as String,

@@ -1,16 +1,17 @@
 import 'dart:convert';
-import 'package:hive/hive.dart';
 
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 
 import 'package:beecontrol/models/bee_hive.dart';
 import 'package:beecontrol/models/report.dart';
 
 part 'apiary.g.dart';
+
 @HiveType(typeId: 1)
 class Apiary {
   @HiveField(0)
-  int id;
+  String id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -33,7 +34,7 @@ class Apiary {
   List<BeeHive> hives = [];
 
   Apiary({
-    this.id = 0,
+    this.id = '0',
     this.name = '',
     this.city = 'Bambuí',
     this.uf = 'MG',
@@ -61,7 +62,7 @@ class Apiary {
   }
 
   Apiary copyWith({
-    int? id,
+    String? id,
     String? name,
     String? city,
     String? uf,
@@ -114,7 +115,7 @@ class Apiary {
       numHives: map['numHives'],
       visits: map['visits'],
       orphanBoxes: map['orphanBoxes'],
-      lastVisit: map['lastVisit'],
+      lastVisit: DateTime.fromMillisecondsSinceEpoch(map['lastVisit']),
       reports: List<Report>.from(map['reports']?.map((x) => Report.fromMap(x))),
       hives: List<BeeHive>.from(map['hives']?.map((x) => BeeHive.fromMap(x))),
     );

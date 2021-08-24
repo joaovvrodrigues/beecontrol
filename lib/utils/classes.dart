@@ -14,7 +14,7 @@ List<String> manejo = [
 
 List<Apiary> apiaries = [
   Apiary(
-      id: 0,
+      id: '0',
       city: 'Bambuí',
       uf: 'MG',
       numHives: 0,
@@ -22,7 +22,7 @@ List<Apiary> apiaries = [
       hives: [],
       reports: []),
   Apiary(
-      id: 1,
+      id: '1',
       city: 'Bambuí',
       uf: 'MG',
       numHives: 3,
