@@ -1,4 +1,3 @@
-import 'package:beecontrol/models/apiaries.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,9 +19,9 @@ import 'apiary_options_controller.dart';
 class EditApiaryPage extends StatefulWidget {
   const EditApiaryPage({
     Key? key,
-    required this.apiary,
+    // required this.apiary,
   }) : super(key: key);
-  final Apiary apiary;
+  // final Apiary apiary;
   @override
   _EditApiaryPageState createState() => _EditApiaryPageState();
 }
@@ -33,7 +32,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
 
   @override
   void initState() {
-    controller.apiary = widget.apiary.copyWith();
+    controller.apiary = context.read<Apiary>().copyWith();
     super.initState();
   }
 
@@ -182,9 +181,9 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                                 formKey.currentState!.save();
                                 controller.saveApiary();
                                 context
-                                    .read<Apiaries>()
-                                    .update(controller.apiary);
-                                Navigator.of(context).pop(true);
+                                    .read<Apiary>()
+                                    .updateProvider(controller.apiary);
+                                Navigator.of(context).pop();
                               }
                             },
                             child: Text('Salvar Apiário'),
@@ -197,10 +196,6 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                         child: ElevatedButton(
                           onPressed: () async {
                             controller.deleteApiary();
-                            context
-                                .read<Apiaries>()
-                                .remove(controller.apiary.id);
-
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           },
