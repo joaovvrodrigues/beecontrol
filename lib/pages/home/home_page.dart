@@ -22,8 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  // final autoSizeGroup = AutoSizeGroup();
-  var _bottomNavIndex = 0; //default index of a first screen
+  var _bottomNavIndex = 0; 
 
   late AnimationController _animationController;
   late Animation<double> animation;
@@ -60,9 +59,9 @@ class _HomePageState extends State<HomePage>
 
   void _onTap(int index) {
     if (index != _bottomNavIndex) {
-      if (index == 1 && _animationController.value == 0.0) {
+      if (index == 1) {
         _animationController.forward();
-      } else if (_animationController.value == 1.0) {
+      } else {
         _animationController.reverse();
       }
 
@@ -75,15 +74,12 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     _animationController.dispose();
-    // Hive.close();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    // Hive.openBox(CONSTANTS.box);
-
     loadWeather();
     loadFeed();
 
@@ -121,10 +117,8 @@ class _HomePageState extends State<HomePage>
             FeatherIcons.plus,
             color: AppTheme.eclipse,
           ),
-          onPressed: () =>
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => SubmitApiaryPage()))
-          ,
+          onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => SubmitApiaryPage())),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
