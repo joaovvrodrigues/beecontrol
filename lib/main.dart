@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<Feed>(
             create: (_) => Feed(),
           ),
-          ChangeNotifierProvider<Apiaries>(create: (_) => Apiaries())
+          ChangeNotifierProvider<Apiary>(create: (_) => Apiary(hives: [], reports: [])),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
