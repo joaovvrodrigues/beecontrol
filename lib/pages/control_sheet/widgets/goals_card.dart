@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -111,7 +112,7 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                             ? 'Objetivos do Manejo:'
                             : 'Clique expandir para editar objetivos do manejo'),
                       ),
-                      Text('Data: 06/08/2021'),
+                      Text('Data: ${UtilData.obterDataDDMMAAAA(widget.report.date ?? DateTime.now())}'),
                     ],
                   ),
                 ),
