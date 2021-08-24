@@ -33,7 +33,7 @@ class ApiaryAdapter extends TypeAdapter<Apiary> {
   @override
   void write(BinaryWriter writer, Apiary obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
