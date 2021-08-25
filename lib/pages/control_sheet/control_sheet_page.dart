@@ -33,21 +33,13 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
   final formKey = GlobalKey<FormState>();
   TextEditingController textController = TextEditingController();
   ControlSheetController controller = ControlSheetController();
-  FocusNode focusNode = FocusNode();
 
   @override
   void initState() {
     controller.report = Report.fromJson(widget.report.toJson());
-
     textController.text = controller.report.comments;
     controller.apiary = Apiary.fromJson(context.read<Apiary>().toJson());
-    if (controller.report.newReport) {
-      for (var hive in controller.report.hives) {
-        hive.situation.clear();
-        hive.situation.addAll(hive.production);
-        hive.production.clear();
-      }
-    }
+    controller.initHives();
     super.initState();
   }
 
@@ -64,133 +56,125 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: GestureDetector(
-        onTap: () {
-          if (focusNode.hasFocus) focusNode.unfocus();
-        },
-        child: Scaffold(
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(55.0),
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircularButton(
-                          onTap: () => Navigator.of(context).pop(),
-                          icon: Ionicons.chevron_back_outline),
-                      Text(controller.report.name,
-                          style: AppTextStyle.boldTitle),
-                      const SizedBox(width: 35, height: 35)
-                    ],
-                  )),
+      child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(55.0),
+            child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircularButton(
+                        onTap: () => Navigator.of(context).pop(),
+                        icon: Ionicons.chevron_back_outline),
+                    Text(controller.report.name, style: AppTextStyle.boldTitle),
+                    const SizedBox(width: 35, height: 35)
+                  ],
+                )),
+          ),
+          floatingActionButton: FloatingActionButton(
+            elevation: 8,
+            backgroundColor: AppTheme.dandelion,
+            child: Icon(
+              FeatherIcons.plus,
+              color: AppTheme.eclipse,
             ),
-            floatingActionButton: FloatingActionButton(
-              elevation: 8,
-              backgroundColor: AppTheme.dandelion,
-              child: Icon(
-                FeatherIcons.plus,
-                color: AppTheme.eclipse,
-              ),
-              onPressed: () => setState(() {
-                controller.addHive();
-              }),
-            ),
-            // floatingActionButtonLocation:
-            //     FloatingActionButtonLocation.centerFloat,
-            body: SingleChildScrollView(
-                padding: const EdgeInsets.all(20),
-                child: Form(
-                  key: formKey,
-                  child: AnimationLimiter(
-                      child: Column(
-                    children: AnimationConfiguration.toStaggeredList(
-                        duration: const Duration(milliseconds: 375),
-                        childAnimationBuilder: (widget) => SlideAnimation(
-                              horizontalOffset: 50.0,
-                              child: FadeInAnimation(child: widget),
-                            ),
-                        children: [
-                          GoalsApiaryCard(
-                              apiary: controller.apiary,
-                              report: controller.report),
+            onPressed: () => setState(() {
+              controller.addHive();
+            }),
+          ),
+          // floatingActionButtonLocation:
+          //     FloatingActionButtonLocation.centerFloat,
+          body: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Form(
+                key: formKey,
+                child: AnimationLimiter(
+                    child: Column(
+                  children: AnimationConfiguration.toStaggeredList(
+                      duration: const Duration(milliseconds: 375),
+                      childAnimationBuilder: (widget) => SlideAnimation(
+                            horizontalOffset: 50.0,
+                            child: FadeInAnimation(child: widget),
+                          ),
+                      children: [
+                        GoalsApiaryCard(
+                            apiary: controller.apiary,
+                            report: controller.report),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Container(
+                              padding: EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Pasto Apícula:'),
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0),
+                                      child: BeePasture(
+                                        groupValue:
+                                            controller.report.beePasture,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            controller.report.beePasture =
+                                                value;
+                                          });
+                                        },
+                                      ))
+                                ],
+                              ),
+                            )),
+                        CommentsCard(
+                            textController: textController,
+                            onChanged: onChanged),
+                        if (controller.report.hives.isEmpty)
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: EmptyWidget(
+                                    icon: FeatherIcons.package,
+                                    text: 'Sem colméias cadastradas'),
+                              ),
+                              InfoCard(
+                                  title: 'CADASTRE SUAS COLMÉIAS',
+                                  text:
+                                      'Cadastre sua primeira colméia, adicione suas informações de manejo e controle seu apiário!')
+                            ],
+                          )
+                        else
+                          ListView.builder(
+                              shrinkWrap: true,
+                              padding: EdgeInsets.symmetric(vertical: 5),
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: controller.report.hives.length,
+                              itemBuilder: (context, index) {
+                                return HiveCard(
+                                    hive: controller.report.hives[index],
+                                    divideHive: divideHive);
+                              }),
+                        if (controller.report.hives.isNotEmpty &&
+                            controller.report.newReport)
                           Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Container(
-                                padding: EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Pasto Apícula:'),
-                                    Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 0),
-                                        child: BeePasture(
-                                          groupValue:
-                                              controller.report.beePasture,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              controller.report.beePasture =
-                                                  value;
-                                            });
-                                          },
-                                        ))
-                                  ],
-                                ),
-                              )),
-                          CommentsCard(
-                              focusNode: focusNode,
-                              textController: textController,
-                              onChanged: onChanged),
-                          if (controller.report.hives.isEmpty)
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: EmptyWidget(
-                                      icon: FeatherIcons.package,
-                                      text: 'Sem colméias cadastradas'),
-                                ),
-                                InfoCard(
-                                    title: 'CADASTRE SUAS COLMÉIAS',
-                                    text:
-                                        'Cadastre sua primeira colméia, adicione suas informações de manejo e controle seu apiário!')
-                              ],
-                            )
-                          else
-                            ListView.builder(
-                                shrinkWrap: true,
-                                padding: EdgeInsets.symmetric(vertical: 5),
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount: controller.report.hives.length,
-                                itemBuilder: (context, index) {
-                                  return HiveCard(
-                                      hive: controller.report.hives[index],
-                                      divideHive: divideHive);
-                                }),
-                          if (controller.report.hives.isNotEmpty &&
-                              controller.report.newReport)
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20, bottom: 80),
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    controller.saveReport();
-                                    context
-                                        .read<Apiary>()
-                                        .updateProvider(controller.apiary);
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('Finalizar Relatório'),
-                                  style: AppTheme.elevatedButtonStyle),
-                            ),
-                        ]),
-                  )),
-                ))),
-      ),
+                            padding: const EdgeInsets.only(top: 20, bottom: 80),
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  controller.saveReport();
+                                  context
+                                      .read<Apiary>()
+                                      .updateProvider(controller.apiary);
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('Finalizar Relatório'),
+                                style: AppTheme.elevatedButtonStyle),
+                          ),
+                      ]),
+                )),
+              ))),
     );
   }
 }

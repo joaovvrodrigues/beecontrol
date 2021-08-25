@@ -5,12 +5,10 @@ class CommentsCard extends StatelessWidget {
     Key? key,
     required this.textController,
     required this.onChanged,
-    required this.focusNode,
   }) : super(key: key);
 
   final TextEditingController textController;
   final Function(String) onChanged;
-  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +23,9 @@ class CommentsCard extends StatelessWidget {
             ConstrainedBox(
               constraints: BoxConstraints(maxHeight: 150),
               child: TextField(
-                focusNode: focusNode,
                 autofocus: false,
                 enableSuggestions: true,
-                // keyboardType: TextInputType.text,
+                keyboardType: TextInputType.text,
                 onChanged: onChanged,
                 decoration: InputDecoration(
                     border: InputBorder.none,
