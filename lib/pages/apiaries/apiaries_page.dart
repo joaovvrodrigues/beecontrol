@@ -25,7 +25,6 @@ class _ApiariesPageState extends State<ApiariesPage> {
   TextEditingController textController = TextEditingController();
   late Box<Apiary> box;
 
-
   @override
   void initState() {
     super.initState();
@@ -77,6 +76,7 @@ class _ApiariesPageState extends State<ApiariesPage> {
           body: ValueListenableBuilder<Box<Apiary>>(
               valueListenable: Hive.box<Apiary>(CONSTANTS.box).listenable(),
               builder: (context, box, widget) {
+                controller.apiaries.clear();
                 controller.apiaries.addAll(box.values.toList());
                 controller.initSummary();
                 return SingleChildScrollView(
@@ -117,8 +117,7 @@ class _ApiariesPageState extends State<ApiariesPage> {
                                 itemCount: controller.apiaries.length,
                                 itemBuilder: (context, index) {
                                   return ApiariesCard(
-                                      apiary:
-                                          controller.apiaries[index]);
+                                      apiary: controller.apiaries[index]);
                                 })
                           else if (controller.searchApiaries.isEmpty)
                             EmptyWidget(
