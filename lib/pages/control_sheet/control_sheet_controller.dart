@@ -8,6 +8,27 @@ class ControlSheetController {
   Report report = Report(hives: [], resume: []);
   Apiary apiary = Apiary(reports: []);
 
+  void initHives() {
+    if (apiary.reports.isEmpty) {
+      if (apiary.numHives > 0) {
+        List<BeeHive> hives = [];
+        for (var i = 0; i < apiary.numHives; i++) {
+          hives.add(
+              BeeHive(name: 'Colméia ${i + 1}', situation: [], production: []));
+        }
+        report.hives.addAll(hives);
+      }
+    } else {
+      if (report.newReport) {
+        for (var hive in report.hives) {
+          hive.situation.clear();
+          hive.situation.addAll(hive.production);
+          hive.production.clear();
+        }
+      }
+    }
+  }
+
   void divideHive(num mother) {
     report.hives.add(BeeHive(
         name: 'Colméia ${report.hives.length + 1}',
@@ -17,6 +38,7 @@ class ControlSheetController {
         situation: [],
         production: []));
     report.numHives = report.hives.length;
+    apiary.numHives = report.hives.length;
     report.orphanBoxes++;
     apiary.orphanBoxes++;
   }
@@ -27,6 +49,7 @@ class ControlSheetController {
         situation: [],
         production: []));
     report.numHives = report.hives.length;
+    apiary.numHives = report.hives.length;
   }
 
   void saveReport() {
