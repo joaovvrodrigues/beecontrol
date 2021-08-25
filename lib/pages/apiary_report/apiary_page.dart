@@ -82,7 +82,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                   name:
                       'Ficha de Controle ${controller.apiary.reports.length + 1}',
                   resume: [],
-                  newReport: true));
+                  newReport: true, hives: []));
             },
           ),
           floatingActionButtonLocation:
@@ -132,7 +132,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                               return ReportsCard(
                                 report: controller.apiary.reports[index],
                                 onTap: () => openReport(
-                                    controller.apiary.reports[index]),
+                                    controller.apiary.reports[index].copyWith(newReport: false)),
                               );
                             })
                     ]),

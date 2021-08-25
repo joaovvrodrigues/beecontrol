@@ -118,7 +118,7 @@ class _ApiariesPageState extends State<ApiariesPage> {
                                 itemBuilder: (context, index) {
                                   return ApiariesCard(
                                       apiary:
-                                          controller.apiaries.getApiary(index));
+                                          controller.apiaries[index]);
                                 })
                           else if (controller.searchApiaries.isEmpty)
                             EmptyWidget(

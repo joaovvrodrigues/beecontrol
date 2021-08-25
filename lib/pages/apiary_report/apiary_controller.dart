@@ -2,8 +2,8 @@ import 'package:beecontrol/models/apiary.dart';
 import 'package:beecontrol/models/report.dart';
 
 class ApiaryController {
-  Apiary apiary = Apiary(hives: [], reports: []);
-  Report report = Report(resume: []);
+  Apiary apiary = Apiary(reports: []);
+  Report report = Report(resume: [], hives: []);
   int orderBy = 0;
   List<String> orderByList = [
     'Data (Decrescente)',

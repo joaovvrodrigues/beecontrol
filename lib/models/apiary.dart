@@ -29,7 +29,7 @@ class Apiary extends ChangeNotifier {
   @HiveField(8)
   List<Report> reports = [];
   @HiveField(9)
-  List<BeeHive> hives = [];
+  int numHives;
 
   Apiary({
     this.id = '0',
@@ -41,7 +41,7 @@ class Apiary extends ChangeNotifier {
     this.orphanBoxes = 0,
     this.lastVisit,
     required this.reports,
-    required this.hives,
+    this.numHives = 0,
   });
 
   void updateProvider(Apiary aux) {
@@ -54,12 +54,12 @@ class Apiary extends ChangeNotifier {
     orphanBoxes = aux.orphanBoxes;
     lastVisit = aux.lastVisit;
     reports = aux.reports;
-    hives = aux.hives;
+     numHives = aux.numHives;
     notifyListeners();
   }
 
-  void add(BeeHive beeHive) {
-    hives.add(beeHive);
+  void add(BeeHive beeHive, int index) {
+    reports[index].hives.add(beeHive);
     notifyListeners();
   }
 
@@ -73,7 +73,7 @@ class Apiary extends ChangeNotifier {
     num? orphanBoxes,
     DateTime? lastVisit,
     List<Report>? reports,
-    List<BeeHive>? hives,
+    int? numHives,
   }) {
     return Apiary(
       id: id ?? this.id,
@@ -85,7 +85,7 @@ class Apiary extends ChangeNotifier {
       orphanBoxes: orphanBoxes ?? this.orphanBoxes,
       lastVisit: lastVisit ?? this.lastVisit,
       reports: reports ?? this.reports,
-      hives: hives ?? this.hives,
+      numHives: numHives ?? this.numHives,
     );
   }
 
@@ -101,7 +101,7 @@ class Apiary extends ChangeNotifier {
       'lastVisit':
           lastVisit != null ? lastVisit.toString() : DateTime.now().toString(),
       'reports': reports.map((x) => x.toMap()).toList(),
-      'hives': hives.map((x) => x.toMap()).toList(),
+       'numHives': numHives,
     };
   }
 
@@ -116,7 +116,7 @@ class Apiary extends ChangeNotifier {
       orphanBoxes: map['orphanBoxes'],
       lastVisit: DateTime.parse(map['lastVisit']),
       reports: List<Report>.from(map['reports']?.map((x) => Report.fromMap(x))),
-      hives: List<BeeHive>.from(map['hives']?.map((x) => BeeHive.fromMap(x))),
+      numHives: map['numHives'],
     );
   }
 
@@ -126,37 +126,37 @@ class Apiary extends ChangeNotifier {
 
   @override
   String toString() {
-    return 'Apiary(id: $id, name: $name, city: $city, uf: $uf, image: $image, visits: $visits, orphanBoxes: $orphanBoxes, lastVisit: $lastVisit, reports: $reports, hives: $hives)';
+    return 'Apiary(id: $id, name: $name, city: $city, uf: $uf, image: $image, visits: $visits, orphanBoxes: $orphanBoxes, lastVisit: $lastVisit, reports: $reports, numHives: $numHives)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is Apiary &&
-        other.id == id &&
-        other.name == name &&
-        other.city == city &&
-        other.uf == uf &&
-        other.image == image &&
-        other.visits == visits &&
-        other.orphanBoxes == orphanBoxes &&
-        other.lastVisit == lastVisit &&
-        listEquals(other.reports, reports) &&
-        listEquals(other.hives, hives);
+      other.id == id &&
+      other.name == name &&
+      other.city == city &&
+      other.uf == uf &&
+      other.image == image &&
+      other.visits == visits &&
+      other.orphanBoxes == orphanBoxes &&
+      other.lastVisit == lastVisit &&
+      listEquals(other.reports, reports) &&
+      other.numHives == numHives;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        name.hashCode ^
-        city.hashCode ^
-        uf.hashCode ^
-        image.hashCode ^
-        visits.hashCode ^
-        orphanBoxes.hashCode ^
-        lastVisit.hashCode ^
-        reports.hashCode ^
-        hives.hashCode;
+      name.hashCode ^
+      city.hashCode ^
+      uf.hashCode ^
+      image.hashCode ^
+      visits.hashCode ^
+      orphanBoxes.hashCode ^
+      lastVisit.hashCode ^
+      reports.hashCode ^
+      numHives.hashCode;
   }
 }

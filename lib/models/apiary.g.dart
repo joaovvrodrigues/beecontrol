@@ -26,7 +26,7 @@ class ApiaryAdapter extends TypeAdapter<Apiary> {
       orphanBoxes: fields[6] as num,
       lastVisit: fields[7] as DateTime?,
       reports: (fields[8] as List).cast<Report>(),
-      hives: (fields[9] as List).cast<BeeHive>(),
+      numHives: fields[9] as int,
     );
   }
 
@@ -53,7 +53,7 @@ class ApiaryAdapter extends TypeAdapter<Apiary> {
       ..writeByte(8)
       ..write(obj.reports)
       ..writeByte(9)
-      ..write(obj.hives);
+      ..write(obj.numHives);
   }
 
   @override

@@ -17,6 +17,7 @@ class ReportAdapter extends TypeAdapter<Report> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Report(
+      newReport: fields[8] as bool,
       name: fields[0] as String,
       date: fields[1] as DateTime?,
       numHives: fields[2] as num,
@@ -24,13 +25,14 @@ class ReportAdapter extends TypeAdapter<Report> {
       resume: (fields[4] as List).cast<String>(),
       comments: fields[5] as String,
       beePasture: fields[6] as int?,
+      hives: (fields[7] as List).cast<BeeHive>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Report obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -44,7 +46,11 @@ class ReportAdapter extends TypeAdapter<Report> {
       ..writeByte(5)
       ..write(obj.comments)
       ..writeByte(6)
-      ..write(obj.beePasture);
+      ..write(obj.beePasture)
+      ..writeByte(7)
+      ..write(obj.hives)
+      ..writeByte(8)
+      ..write(obj.newReport);
   }
 
   @override

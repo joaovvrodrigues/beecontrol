@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 
 class ApiaryOptionsController {
   int numHives = 0;
-  var apiary = Apiary(hives: [], reports: [], visits: 0, orphanBoxes: 0);
+  var apiary = Apiary(reports: [], visits: 0, orphanBoxes: 0);
   var uuid = Uuid();
 
   void saveApiary() {
@@ -18,14 +18,16 @@ class ApiaryOptionsController {
   }
 
   void createApiary() async {
-    if (numHives > 0) {
-      List<BeeHive> hives = [];
-      for (var i = 0; i < numHives; i++) {
-        hives.add(
-            BeeHive(name: 'Colméia ${i + 1}', situation: [], production: []));
-      }
-      apiary.hives.addAll(hives);
-    }
+    //TODO: auto add hives
+    // if (numHives > 0) {
+    //   List<BeeHive> hives = [];
+    //   for (var i = 0; i < numHives; i++) {
+    //     hives.add(
+    //         BeeHive(name: 'Colméia ${i + 1}', situation: [], production: []));
+    //   }
+    //   apiary.hives.addAll(hives);
+    // }
+    apiary.numHives = numHives;
     apiary.id = uuid.v1();
     await Hive.box<Apiary>(CONSTANTS.box).put(apiary.id, apiary);
   }

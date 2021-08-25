@@ -42,7 +42,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
     textController.text = controller.report.comments;
     controller.apiary = Apiary.fromJson(context.read<Apiary>().toJson());
     if (controller.report.newReport) {
-      for (var hive in controller.apiary.hives) {
+      for (var hive in controller.report.hives) {
         hive.situation.clear();
         hive.situation.addAll(hive.production);
         hive.production.clear();
@@ -145,7 +145,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                               focusNode: focusNode,
                               textController: textController,
                               onChanged: onChanged),
-                          if (controller.apiary.hives.isEmpty)
+                          if (controller.report.hives.isEmpty)
                             Column(
                               children: [
                                 Padding(
@@ -165,13 +165,14 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                 shrinkWrap: true,
                                 padding: EdgeInsets.symmetric(vertical: 5),
                                 physics: NeverScrollableScrollPhysics(),
-                                itemCount: controller.apiary.hives.length,
+                                itemCount: controller.report.hives.length,
                                 itemBuilder: (context, index) {
                                   return HiveCard(
-                                      hive: controller.apiary.hives[index],
+                                      hive: controller.report.hives[index],
                                       divideHive: divideHive);
                                 }),
-                          if (controller.apiary.hives.isNotEmpty)
+                          if (controller.report.hives.isNotEmpty &&
+                              controller.report.newReport)
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 20, bottom: 80),

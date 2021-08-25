@@ -45,7 +45,7 @@ class _NewsPageState extends State<NewsPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // CircularButton(
-                    //     onTap: () {}, icon: Ionicons.reorder_two_outline), 
+                    //     onTap: () {}, icon: Ionicons.reorder_two_outline),
                     const SizedBox(width: 35, height: 35),
                     Text('Página Inicial', style: AppTextStyle.boldTitle),
                     CircularButton(onTap: () {}, icon: Ionicons.search_outline)
@@ -64,10 +64,8 @@ class _NewsPageState extends State<NewsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Ordernar por: ', style: AppTextStyle.boldText),
-                      SizedBox(width: 5),
+                      SizedBox(width: 20),
                       Expanded(child: OrderBy('Apicultura')),
-                      SizedBox(width: 5),
-                      Expanded(child: OrderBy('Recentes')),
                     ],
                   ),
                 ),
@@ -111,10 +109,6 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 }
-
-
-
-
 
 /// CUSTOM DROPDOWN
 // DropdownButton<String>(

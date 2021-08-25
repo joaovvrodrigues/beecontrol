@@ -75,7 +75,7 @@ class SummaryApiaryCard extends StatelessWidget {
               children: [
                 TotalWidget(
                     title: 'Colméias',
-                    amount: apiary.hives.length,
+                    amount: apiary.numHives,
                     icon: FeatherIcons.package),
                 TotalWidget(
                     title: 'Caixas Orfãs',

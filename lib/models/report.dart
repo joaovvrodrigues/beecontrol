@@ -1,13 +1,14 @@
 import 'dart:convert';
-import 'package:hive/hive.dart';
 
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
+
+import 'bee_hive.dart';
+
 part 'report.g.dart';
 
 @HiveType(typeId: 2)
 class Report {
-  bool newReport;
-
   @HiveField(0)
   String name;
   @HiveField(1)
@@ -22,29 +23,29 @@ class Report {
   String comments;
   @HiveField(6)
   int? beePasture;
+  @HiveField(7)
+  List<BeeHive> hives = [];
+  @HiveField(8)
+  bool newReport;
 
-  Report(
-      {this.name = '',
-      this.date,
-      this.numHives = 0,
-      this.orphanBoxes = 0,
-      required this.resume,
-      this.comments = '',
-      this.beePasture,
-      this.newReport =
-          false}); // : assert(beePasture < 3, 'beePasture must be less than 3');
+  Report({
+    this.newReport = false,
+    this.name = '',
+    this.date,
+    this.numHives = 0,
+    this.orphanBoxes = 0,
+    required this.resume,
+    this.comments = '',
+    this.beePasture,
+    required this.hives,
+  }); //: assert(beePasture < 3, 'beePasture must be less than 3');
 
-  void updateProvider(Report aux) {
-    name = aux.name;
-    date = aux.date;
-    numHives = aux.numHives;
-    orphanBoxes = aux.orphanBoxes;
-    resume = aux.resume;
-    comments = aux.comments;
-    beePasture = aux.beePasture;
+  void add(BeeHive beeHive) {
+    hives.add(beeHive);
   }
 
   Report copyWith({
+    bool? newReport,
     String? name,
     DateTime? date,
     num? numHives,
@@ -52,9 +53,10 @@ class Report {
     List<String>? resume,
     String? comments,
     int? beePasture,
-    bool? newReport,
+    List<BeeHive>? hives,
   }) {
     return Report(
+      newReport: newReport ?? this.newReport,
       name: name ?? this.name,
       date: date ?? this.date,
       numHives: numHives ?? this.numHives,
@@ -62,12 +64,13 @@ class Report {
       resume: resume ?? this.resume,
       comments: comments ?? this.comments,
       beePasture: beePasture ?? this.beePasture,
-      newReport: newReport ?? this.newReport,
+      hives: hives ?? this.hives,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'newReport': newReport,
       'name': name,
       'date': date != null ? date.toString() : DateTime.now().toString(),
       'numHives': numHives,
@@ -75,7 +78,7 @@ class Report {
       'resume': resume,
       'comments': comments,
       'beePasture': beePasture,
-      'newReport': newReport,
+      'hives': hives.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -88,7 +91,8 @@ class Report {
         resume: List<String>.from(map['resume']),
         comments: map['comments'],
         beePasture: map['beePasture'],
-        newReport: map['newReport'] ?? false);
+        newReport: map['newReport'] ?? false,
+        hives: List<BeeHive>.from(map['hives']),);
   }
 
   String toJson() => json.encode(toMap());
@@ -97,7 +101,7 @@ class Report {
 
   @override
   String toString() {
-    return 'Report(name: $name, date: $date, numHives: $numHives, orphanBoxes: $orphanBoxes, resume: $resume, comments: $comments, beePasture: $beePasture)';
+    return 'Report(newReport: $newReport, name: $name, date: $date, numHives: $numHives, orphanBoxes: $orphanBoxes, resume: $resume, comments: $comments, beePasture: $beePasture, hives: $hives)';
   }
 
   @override
@@ -105,23 +109,27 @@ class Report {
     if (identical(this, other)) return true;
 
     return other is Report &&
+        other.newReport == newReport &&
         other.name == name &&
         other.date == date &&
         other.numHives == numHives &&
         other.orphanBoxes == orphanBoxes &&
         listEquals(other.resume, resume) &&
         other.comments == comments &&
-        other.beePasture == beePasture;
+        other.beePasture == beePasture &&
+        listEquals(other.hives, hives);
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^
+    return newReport.hashCode ^
+        name.hashCode ^
         date.hashCode ^
         numHives.hashCode ^
         orphanBoxes.hashCode ^
         resume.hashCode ^
         comments.hashCode ^
-        beePasture.hashCode;
+        beePasture.hashCode ^
+        hives.hashCode;
   }
 }
