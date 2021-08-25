@@ -70,7 +70,6 @@ class Report {
 
   Map<String, dynamic> toMap() {
     return {
-      'newReport': newReport,
       'name': name,
       'date': date != null ? date.toString() : DateTime.now().toString(),
       'numHives': numHives,
@@ -79,20 +78,22 @@ class Report {
       'comments': comments,
       'beePasture': beePasture,
       'hives': hives.map((x) => x.toMap()).toList(),
+      'newReport': newReport,
     };
   }
 
   factory Report.fromMap(Map<String, dynamic> map) {
     return Report(
-        name: map['name'],
-        date: DateTime.parse(map['date']),
-        numHives: map['numHives'],
-        orphanBoxes: map['orphanBoxes'],
-        resume: List<String>.from(map['resume']),
-        comments: map['comments'],
-        beePasture: map['beePasture'],
-        newReport: map['newReport'] ?? false,
-        hives: List<BeeHive>.from(map['hives']),);
+      name: map['name'],
+      date:  DateTime.parse(map['date']),
+      numHives: map['numHives'],
+      orphanBoxes: map['orphanBoxes'],
+      resume: List<String>.from(map['resume']),
+      comments: map['comments'],
+      beePasture: map['beePasture'],
+      hives: List<BeeHive>.from(map['hives']?.map((x) => BeeHive.fromMap(x))),
+      newReport: map['newReport'],
+    );
   }
 
   String toJson() => json.encode(toMap());
