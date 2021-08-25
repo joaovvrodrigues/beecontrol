@@ -33,7 +33,7 @@ class ApiariesController {
     for (var apiary in apiaries) {
       summary.orphanBoxes += apiary.orphanBoxes;
       summary.numReports += apiary.reports.length;
-      summary.numHives += apiary.reports.last.numHives;
+      summary.numHives += apiary.numHives;
     }
   }
 }
