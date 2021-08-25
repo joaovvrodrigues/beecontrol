@@ -76,14 +76,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
               FeatherIcons.plus,
               color: AppTheme.eclipse,
             ),
-            onPressed: () {
-              openReport(Report(
-                  date: DateTime.now(),
-                  name:
-                      'Ficha de Controle ${controller.apiary.reports.length + 1}',
-                  resume: [],
-                  newReport: true, hives: []));
-            },
+            onPressed: () => openReport(controller.addReport()),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
@@ -131,8 +124,9 @@ class _ApiaryPageState extends State<ApiaryPage> {
                             itemBuilder: (context, index) {
                               return ReportsCard(
                                 report: controller.apiary.reports[index],
-                                onTap: () => openReport(
-                                    controller.apiary.reports[index].copyWith(newReport: false)),
+                                onTap: () => openReport(controller
+                                    .apiary.reports[index]
+                                    .copyWith(newReport: false)),
                               );
                             })
                     ]),
