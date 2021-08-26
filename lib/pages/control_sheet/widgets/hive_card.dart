@@ -10,6 +10,8 @@ import 'package:beecontrol/pages/control_sheet/widgets/hive_options.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
 
+import 'divide_dialog.dart';
+
 class HiveCard extends StatefulWidget {
   const HiveCard({
     Key? key,
@@ -17,7 +19,7 @@ class HiveCard extends StatefulWidget {
     required this.divideHive,
   }) : super(key: key);
   final BeeHive hive;
-  final Function(num mother) divideHive;
+  final Function(num mother, {bool count}) divideHive;
 
   @override
   _HiveCardState createState() => _HiveCardState();
@@ -73,10 +75,11 @@ class _HiveCardState extends State<HiveCard> {
                         'Orfã da Colméia ${widget.hive.motherHive}',
                         style: AppTextStyle.boldText.copyWith(fontSize: 16),
                       ),
-                      Text(
-                        timeago.format(widget.hive.dateOrphan!,
-                            locale: 'pt_br'),
-                      ),
+                      if (widget.hive.count)
+                        Text(
+                          timeago.format(widget.hive.dateOrphan!,
+                              locale: 'pt_br'),
+                        ),
                     ],
                   ),
                 ),
@@ -153,14 +156,27 @@ class _HiveCardState extends State<HiveCard> {
                                     child: CustomDropDownField<String>(
                                       isDense: true,
                                       hintText: 'Opção',
-                                      onSaved: (text) {
+                                      onSaved: (text) async {
                                         setState(() {
                                           widget.hive.production[i] = text!;
                                         });
-
                                         if (text! == 'Dividir') {
-                                          widget.divideHive(int.parse(
-                                              widget.hive.name.substring(7)));
+                                          bool? divide = await showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return DivideDialog(
+                                                  hive: widget.hive,
+                                                  divideHive:
+                                                      widget.divideHive);
+                                            },
+                                          );
+
+                                          if (!(divide ?? true)) {
+                                            setState(() {
+                                              widget.hive.production[i] =
+                                                  'null';
+                                            });
+                                          }
                                         }
                                       },
                                       initialValue:
