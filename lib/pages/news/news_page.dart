@@ -2,11 +2,10 @@ import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/models/feed.dart';
 import 'package:beecontrol/models/weather.dart';
+import 'package:beecontrol/pages/apiary_report/widgets/order_by.dart';
+import 'package:beecontrol/pages/news/news_controller.dart';
 import 'package:beecontrol/pages/news/widgets/news_card.dart';
-import 'package:beecontrol/shared/order_by_widget.dart';
-import 'package:beecontrol/shared/circular_button.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'widgets/weather_card.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +24,8 @@ class _NewsPageState extends State<NewsPage> {
       Weather(iconCode: '01d', id: 121998, temperature: 0, time: 0);
   Feed feed = Feed();
 
+  NewsController controller = NewsController();
+
   @override
   void initState() {
     timeago.setLocaleMessages('pt_br', timeago.PtBrMessages());
@@ -37,37 +38,27 @@ class _NewsPageState extends State<NewsPage> {
     feed = context.watch<Feed>();
     return SafeArea(
       child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(55.0),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // CircularButton(
-                    //     onTap: () {}, icon: Ionicons.reorder_two_outline),
-                    const SizedBox(width: 35, height: 35),
-                    Text('Página Inicial', style: AppTextStyle.boldTitle),
-                    CircularButton(onTap: () {}, icon: Ionicons.search_outline)
-                  ],
-                )),
-          ),
+          appBar: null,
           body: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 16),
+                  child: Center(
+                      child: Text('Página Inicial',
+                          style: AppTextStyle.boldTitle)),
+                ),
                 WeatherCard(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Ordernar por: ', style: AppTextStyle.boldText),
-                      SizedBox(width: 20),
-                      Expanded(child: OrderBy('Apicultura')),
-                    ],
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: OrderBy(
+                      title: 'Pesquisar por: ',
+                      orderByList: controller.filter.keys.toList(),
+                      orderBy: controller.indexFilter,
+                      onSaved: (value) async {
+                        feed.refresh(await controller.getNewFeed(value!));
+                      }),
                 ),
                 if (feed.feed != null)
                   AnimationLimiter(
@@ -109,40 +100,3 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 }
-
-/// CUSTOM DROPDOWN
-// DropdownButton<String>(
-//                             value: dropdownValue,
-//                             icon: Container(
-//                               height: 25,
-//                               width: 25,
-//                               margin: EdgeInsets.only(left: 20),
-//                               child: Icon(Ionicons.chevron_down_outline),
-//                               decoration: BoxDecoration(
-//                                 boxShadow: [
-//                                   BoxShadow(
-//                                     color: Colors.grey.withOpacity(0.2),
-//                                     blurRadius: 13,
-//                                     offset: Offset(
-//                                         0, 5), // changes position of shadow
-//                                   ),
-//                                 ],
-//                               ),
-//                             ),
-//                             iconSize: 30,
-//                             elevation: 16,
-//                             style: AppTextStyle.boldText,
-//                             underline: SizedBox(),
-//                             onChanged: (String? newValue) {
-//                               setState(() {
-//                                 dropdownValue = newValue!;
-//                               });
-//                             },
-//                             items: <String>['Apicultura', 'Data']
-//                                 .map<DropdownMenuItem<String>>((String value) {
-//                               return DropdownMenuItem<String>(
-//                                 value: value,
-//                                 child: Text(value),
-//                               );
-//                             }).toList(),
-//                           )
