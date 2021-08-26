@@ -23,13 +23,14 @@ class BeeHiveAdapter extends TypeAdapter<BeeHive> {
       orphan: fields[3] as bool,
       motherHive: fields[4] as num?,
       dateOrphan: fields[5] as DateTime?,
+      count: fields[6] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, BeeHive obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class BeeHiveAdapter extends TypeAdapter<BeeHive> {
       ..writeByte(4)
       ..write(obj.motherHive)
       ..writeByte(5)
-      ..write(obj.dateOrphan);
+      ..write(obj.dateOrphan)
+      ..writeByte(6)
+      ..write(obj.count);
   }
 
   @override

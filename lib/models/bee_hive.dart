@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:hive/hive.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
+
 part 'bee_hive.g.dart';
 
 @HiveType(typeId: 3)
@@ -18,15 +19,17 @@ class BeeHive {
   final num? motherHive;
   @HiveField(5)
   final DateTime? dateOrphan;
+  @HiveField(6)
+  final bool count;
 
-  BeeHive({
-    required this.name,
-    required this.situation,
-    required this.production,
-    this.orphan = false,
-    this.motherHive,
-    this.dateOrphan,
-  });
+  BeeHive(
+      {required this.name,
+      required this.situation,
+      required this.production,
+      this.orphan = false,
+      this.motherHive,
+      this.dateOrphan,
+      this.count = false});
 
   BeeHive copyWith({
     String? name,
@@ -35,6 +38,7 @@ class BeeHive {
     bool? orphan,
     num? motherHive,
     DateTime? dateOrphan,
+    bool? count,
   }) {
     return BeeHive(
       name: name ?? this.name,
@@ -43,6 +47,7 @@ class BeeHive {
       orphan: orphan ?? this.orphan,
       motherHive: motherHive ?? this.motherHive,
       dateOrphan: dateOrphan ?? this.dateOrphan,
+      count: count ?? this.count,
     );
   }
 
@@ -56,6 +61,7 @@ class BeeHive {
       'dateOrphan': dateOrphan != null
           ? dateOrphan.toString()
           : DateTime.now().toString(),
+      'count': count,
     };
   }
 
@@ -67,6 +73,7 @@ class BeeHive {
       orphan: map['orphan'],
       motherHive: map['motherHive'],
       dateOrphan: DateTime.parse(map['dateOrphan']),
+      count: map['count'],
     );
   }
 
@@ -77,7 +84,7 @@ class BeeHive {
 
   @override
   String toString() {
-    return 'Hive(name: $name, situation: $situation, production: $production, orphan: $orphan, motherHive: $motherHive, dateOrphan: $dateOrphan)';
+    return 'BeeHive(name: $name, situation: $situation, production: $production, orphan: $orphan, motherHive: $motherHive, dateOrphan: $dateOrphan, count: $count)';
   }
 
   @override
@@ -90,7 +97,8 @@ class BeeHive {
         listEquals(other.production, production) &&
         other.orphan == orphan &&
         other.motherHive == motherHive &&
-        other.dateOrphan == dateOrphan;
+        other.dateOrphan == dateOrphan &&
+        other.count == count;
   }
 
   @override
@@ -100,6 +108,7 @@ class BeeHive {
         production.hashCode ^
         orphan.hashCode ^
         motherHive.hashCode ^
-        dateOrphan.hashCode;
+        dateOrphan.hashCode ^
+        count.hashCode;
   }
 }
