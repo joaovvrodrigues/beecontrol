@@ -4,13 +4,15 @@ import 'package:beecontrol/core/app_text_style.dart';
 import 'package:beecontrol/shared/custom_dropdown_field.dart';
 
 class OrderBy extends StatelessWidget {
-  const OrderBy({
-    Key? key,
-    required this.orderByList,
-    required this.orderBy,
-    required this.onSaved,
-  }) : super(key: key);
+  const OrderBy(
+      {Key? key,
+      required this.orderByList,
+      required this.orderBy,
+      required this.onSaved,
+      this.title = 'Ordernar por: '})
+      : super(key: key);
 
+  final String title;
   final List<String> orderByList;
   final int orderBy;
   final Function(String?) onSaved;
@@ -21,7 +23,7 @@ class OrderBy extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Ordernar por: ', style: AppTextStyle.boldText),
+        Text(title, style: AppTextStyle.boldText),
         SizedBox(width: 12),
         Expanded(
           child: Padding(
