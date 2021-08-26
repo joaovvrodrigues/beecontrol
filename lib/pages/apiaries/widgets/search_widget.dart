@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-
 import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
 import 'package:beecontrol/shared/circular_button.dart';
 
 class SearchWidget extends StatelessWidget {
@@ -36,11 +34,7 @@ class SearchWidget extends StatelessWidget {
                     hintText: 'Digite o nome do Apiário',
                     hintStyle: AppTextStyle.boldTitleAlpha90,
                     border: InputBorder.none),
-                style:
-                    AppTextStyle.boldTitle.copyWith(color: AppTheme.dandelion)),
-
-            // Text('Digite o nome do Apiário',
-            //     style: AppTextStyle.boldTitleAlpha90),
+                style: AppTextStyle.boldTitle),
           )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),

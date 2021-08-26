@@ -50,7 +50,7 @@ class CustomDropDownField<T> extends StatelessWidget {
           TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: AppTheme.dandelion),
+              color: AppTheme.eclipse),
       decoration: InputDecoration(
         // Configurações do Prefix
         // prefixIcon: Padding(

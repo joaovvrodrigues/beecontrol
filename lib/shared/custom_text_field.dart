@@ -50,7 +50,7 @@ class CustomFormField extends StatelessWidget {
       inputFormatters: inputFormatters,
       obscureText: obscureText,
       style: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.w900, color: AppTheme.dandelion),
+          fontSize: 16, fontWeight: FontWeight.w900, color: AppTheme.eclipse),
       decoration: InputDecoration(
         // Configurações do Prefix
         prefixIcon: icon != null
