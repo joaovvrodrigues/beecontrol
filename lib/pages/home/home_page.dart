@@ -31,15 +31,15 @@ class _HomePageState extends State<HomePage>
   final iconList = <IconData>[
     Ionicons.newspaper_outline,
     FeatherIcons.package,
-    Ionicons.aperture_outline,
-    Ionicons.settings_outline
+    // Ionicons.aperture_outline,
+    // Ionicons.settings_outline
   ];
 
   final pages = <Widget>[
     NewsPage(),
     ApiariesPage(),
-    RegisterPage(),
-    SettingsPage()
+    // RegisterPage(),
+    // SettingsPage()
   ];
 
   HomeController controller = HomeController();
