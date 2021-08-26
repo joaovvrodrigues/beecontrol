@@ -6,8 +6,6 @@ import 'package:beecontrol/pages/apiaries/apiaries_page.dart';
 import 'package:beecontrol/pages/home/home_controller.dart';
 import 'package:beecontrol/pages/news/news_page.dart';
 import 'package:beecontrol/pages/apiary_options/submit_apiary_page.dart';
-import 'package:beecontrol/pages/register/register_page.dart';
-import 'package:beecontrol/pages/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:provider/provider.dart';
