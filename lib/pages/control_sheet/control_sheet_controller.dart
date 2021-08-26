@@ -29,13 +29,14 @@ class ControlSheetController {
     }
   }
 
-  void divideHive(num mother) {
+  void divideHive(num mother, {bool count = false}) {
     report.hives.add(BeeHive(
         name: 'Colméia ${report.hives.length + 1}',
         dateOrphan: DateTime.now(),
         motherHive: mother,
         orphan: true,
         situation: [],
+        count: count,
         production: []));
     report.numHives = report.hives.length;
     apiary.numHives = report.hives.length;

@@ -47,9 +47,9 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
     controller.report.comments = obs;
   }
 
-  void divideHive(num mother) {
+  void divideHive(num mother, {bool count = false}) {
     setState(() {
-      controller.divideHive(mother);
+      controller.divideHive(mother, count: count);
     });
   }
 
@@ -171,7 +171,9 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                 },
                                 child: Text('Finalizar Relatório'),
                                 style: AppTheme.elevatedButtonStyle),
-                          ),
+                          )
+                        else
+                          SizedBox(height: 60)
                       ]),
                 )),
               ))),
