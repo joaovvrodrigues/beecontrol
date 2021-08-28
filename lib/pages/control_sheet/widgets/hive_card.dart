@@ -146,6 +146,7 @@ class _HiveCardState extends State<HiveCard> {
                                   maxWidth: 400.0,
                                 ),
                                 child: Container(
+                                    height: 50,
                                     margin: const EdgeInsets.all(2.5),
                                     decoration: BoxDecoration(
                                         border: Border.all(
