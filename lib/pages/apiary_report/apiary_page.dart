@@ -110,10 +110,13 @@ class _ApiaryPageState extends State<ApiaryPage> {
                                   icon: Ionicons.documents_outline,
                                   text: 'Sem relatórios cadastrados'),
                             ),
-                            InfoCard(
-                                title: 'CADASTRE SEU RELATÓRIO',
-                                text:
-                                    'Cadastre seu primeiro relatório, adicione as informações de suas colméias e controle o manejo do seu apiário!')
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 40),
+                              child: InfoCard(
+                                  title: 'CADASTRE SEU RELATÓRIO',
+                                  text:
+                                      'Cadastre seu primeiro relatório, adicione as informações de suas colméias e controle o manejo do seu apiário!'),
+                            )
                           ],
                         )
                       else
