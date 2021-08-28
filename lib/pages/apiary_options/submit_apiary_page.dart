@@ -119,6 +119,15 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                                 padding: const EdgeInsets.only(
                                     top: 5, bottom: 5, left: 5),
                                 child: CustomDropDownField<String>(
+                                  onTap: () {
+                                    FocusScopeNode currentFocus =
+                                        FocusScope.of(context);
+                                    if (!currentFocus.hasPrimaryFocus &&
+                                        currentFocus.focusedChild != null) {
+                                      FocusManager.instance.primaryFocus!
+                                          .unfocus();
+                                    }
+                                  },
                                   onSaved: (text) => controller.apiary =
                                       controller.apiary.copyWith(uf: text),
                                   validator: (text) {

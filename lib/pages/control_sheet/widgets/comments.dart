@@ -25,7 +25,7 @@ class CommentsCard extends StatelessWidget {
               child: TextField(
                 autofocus: false,
                 enableSuggestions: true,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.multiline,
                 onChanged: onChanged,
                 decoration: InputDecoration(
                     border: InputBorder.none,
