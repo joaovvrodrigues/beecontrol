@@ -16,6 +16,7 @@ class CustomDropDownField<T> extends StatelessWidget {
       this.initialValue,
       this.radius = 12,
       this.style,
+      this.onTap,
       this.contentPadding,
       this.isDense = false})
       : super(key: key);
@@ -32,6 +33,7 @@ class CustomDropDownField<T> extends StatelessWidget {
   final TextStyle? style;
   final EdgeInsets? contentPadding;
   final bool isDense;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,9 @@ class CustomDropDownField<T> extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       onSaved: onSaved,
+      isExpanded: true,
+      itemHeight: 52,
+      onTap: onTap,
       onChanged: onSaved,
       dropdownColor: Colors.white,
       icon: Icon(Ionicons.chevron_down_outline),
@@ -52,18 +57,7 @@ class CustomDropDownField<T> extends StatelessWidget {
               fontWeight: FontWeight.w700,
               color: AppTheme.eclipse),
       decoration: InputDecoration(
-        // Configurações do Prefix
-        // prefixIcon: Padding(
-        //   padding: const EdgeInsets.all(12.0),
-        //   child: Icon(
-        //     icon,
-        //     size: size,
-        //   ),
-        // ),
-        // prefixIconConstraints: BoxConstraints(
-        //   minWidth: 50,
-        //   minHeight: 25,
-        // ),
+        // isCollapsed: true,
 
         // Configurações do fundo
         filled: true,
