@@ -45,7 +45,7 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
         ),
         child: AnimatedContainer(
             duration: Duration(milliseconds: 400),
-            height: expanded ? 600 : 220,
+            height: expanded ? 600 : (230 + (widget.report.resume.length * 3)),
             curve: Curves.ease,
             child: ListView(
               children: [
@@ -110,9 +110,14 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                       Flexible(
                         child: Text(expanded
                             ? 'Objetivos do Manejo:'
-                            : 'Clique expandir para editar objetivos do manejo'),
+                            : widget.report.resume.isEmpty
+                                ? 'Clique expandir para editar objetivos do manejo'
+                                : widget.report.resume
+                                    .toString()
+                                    .replaceAll(RegExp(r"[\[\]']"), '')),
                       ),
-                      Text('Data: ${UtilData.obterDataDDMMAAAA(widget.report.date ?? DateTime.now())}'),
+                      Text(
+                          'Data: ${UtilData.obterDataDDMMAAAA(widget.report.date ?? DateTime.now())}'),
                     ],
                   ),
                 ),
