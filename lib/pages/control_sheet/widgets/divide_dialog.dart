@@ -25,7 +25,7 @@ class _DivideDialogState extends State<DivideDialog> {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -67,6 +67,8 @@ class _DivideDialogState extends State<DivideDialog> {
                     style: AppTheme.elevatedButtonStyle.copyWith(
                       minimumSize:
                           MaterialStateProperty.all<Size?>(Size.fromHeight(40)),
+                      padding: MaterialStateProperty.all<EdgeInsets?>(
+                          EdgeInsets.symmetric(horizontal: 5)),
                       backgroundColor:
                           MaterialStateProperty.all<Color?>(AppTheme.sunset),
                     ),
@@ -84,6 +86,8 @@ class _DivideDialogState extends State<DivideDialog> {
                       style: AppTheme.elevatedButtonStyle.copyWith(
                         minimumSize: MaterialStateProperty.all<Size?>(
                             Size.fromHeight(40)),
+                        padding: MaterialStateProperty.all<EdgeInsets?>(
+                            EdgeInsets.symmetric(horizontal: 5)),
                         backgroundColor: MaterialStateProperty.all<Color?>(
                             Colors.green[200]),
                       ),
