@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 class ControlSheetController {
   Report report = Report(hives: [], resume: []);
   Apiary apiary = Apiary(reports: []);
+  bool lastReport = false;
 
   void initHives() {
     if (apiary.reports.isEmpty) {
@@ -25,6 +26,16 @@ class ControlSheetController {
           hive.situation.addAll(hive.production);
           hive.production.clear();
         }
+      }
+    }
+  }
+
+  void findLastReport() {
+    if (apiary.reports.isNotEmpty) {
+      Report last = apiary.reports.firstWhere((element) =>
+          element.name == 'Ficha de Controle ${apiary.reports.length}');
+      if (report.name == last.name) {
+        lastReport = true;
       }
     }
   }

@@ -6,7 +6,7 @@ class BeePasture extends StatelessWidget {
     required this.onChanged,
     required this.groupValue,
   }) : super(key: key);
-  final void Function(int?) onChanged;
+  final void Function(int?)? onChanged;
   final int? groupValue;
 
   static List<String> beePastureList = [
@@ -23,6 +23,7 @@ class BeePasture extends StatelessWidget {
           beePastureList.length,
           (index) => Expanded(
             child: RadioListTile<int>(
+                toggleable: true,
                 title: Text(beePastureList[index]),
                 value: index,
                 groupValue: groupValue,

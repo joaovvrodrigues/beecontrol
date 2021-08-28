@@ -5,10 +5,12 @@ class CommentsCard extends StatelessWidget {
     Key? key,
     required this.textController,
     required this.onChanged,
+    required this.readOnly,
   }) : super(key: key);
 
   final TextEditingController textController;
   final Function(String) onChanged;
+  final bool readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +25,11 @@ class CommentsCard extends StatelessWidget {
             ConstrainedBox(
               constraints: BoxConstraints(maxHeight: 150),
               child: TextField(
+                readOnly: readOnly,
                 autofocus: false,
                 enableSuggestions: true,
-                keyboardType: TextInputType.multiline,
+                textCapitalization: TextCapitalization.words,
+                keyboardType: TextInputType.text,
                 onChanged: onChanged,
                 decoration: InputDecoration(
                     border: InputBorder.none,

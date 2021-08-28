@@ -40,7 +40,14 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
     textController.text = controller.report.comments;
     controller.apiary = Apiary.fromJson(context.read<Apiary>().toJson());
     controller.initHives();
+    findLast();
     super.initState();
+  }
+
+  void findLast() {
+    setState(() {
+      controller.findLastReport();
+    });
   }
 
   void onChanged(String obs) {
@@ -72,19 +79,20 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                   ],
                 )),
           ),
-          floatingActionButton: FloatingActionButton(
-            elevation: 8,
-            backgroundColor: AppTheme.dandelion,
-            child: Icon(
-              FeatherIcons.plus,
-              color: AppTheme.eclipse,
-            ),
-            onPressed: () => setState(() {
-              controller.addHive();
-            }),
-          ),
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.centerFloat,
+          floatingActionButton:
+              (controller.report.newReport || controller.lastReport)
+                  ? FloatingActionButton(
+                      elevation: 8,
+                      backgroundColor: AppTheme.dandelion,
+                      child: Icon(
+                        FeatherIcons.plus,
+                        color: AppTheme.eclipse,
+                      ),
+                      onPressed: () => setState(() {
+                        controller.addHive();
+                      }),
+                    )
+                  : null,
           body: GestureDetector(
             onTap: () {
               FocusScopeNode currentFocus = FocusScope.of(context);
@@ -107,6 +115,8 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                             ),
                         children: [
                           GoalsApiaryCard(
+                              readOnly: !(controller.report.newReport ||
+                                  controller.lastReport),
                               apiary: controller.apiary,
                               report: controller.report),
                           Padding(
@@ -124,21 +134,27 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 0),
                                         child: BeePasture(
-                                          groupValue:
-                                              controller.report.beePasture,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              controller.report.beePasture =
-                                                  value;
-                                            });
-                                          },
-                                        ))
+                                            groupValue:
+                                                controller.report.beePasture,
+                                            onChanged: (controller
+                                                        .report.newReport ||
+                                                    controller.lastReport)
+                                                ? (value) {
+                                                    setState(() {
+                                                      controller.report
+                                                          .beePasture = value;
+                                                    });
+                                                  }
+                                                : null))
                                   ],
                                 ),
                               )),
                           CommentsCard(
-                              textController: textController,
-                              onChanged: onChanged),
+                            textController: textController,
+                            onChanged: onChanged,
+                            readOnly: !(controller.report.newReport ||
+                                controller.lastReport),
+                          ),
                           if (controller.report.hives.isEmpty)
                             Column(
                               children: [
@@ -162,11 +178,14 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                 itemCount: controller.report.hives.length,
                                 itemBuilder: (context, index) {
                                   return HiveCard(
+                                      readOnly: !(controller.report.newReport ||
+                                          controller.lastReport),
                                       hive: controller.report.hives[index],
                                       divideHive: divideHive);
                                 }),
                           if (controller.report.hives.isNotEmpty &&
-                              controller.report.newReport)
+                              (controller.report.newReport ||
+                                  controller.lastReport))
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 20, bottom: 80),
@@ -178,7 +197,9 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                         .updateProvider(controller.apiary);
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('Finalizar Relatório'),
+                                  child: Text(controller.lastReport
+                                      ? 'Salvar Relatório'
+                                      : 'Finalizar Relatório'),
                                   style: AppTheme.elevatedButtonStyle),
                             )
                           else
