@@ -1,7 +1,11 @@
-import 'package:brasil_fields/brasil_fields.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+// 🌎 Project imports:
 import '../../../core/app_text_style.dart';
 import '../../../core/app_theme.dart';
 import '../../../models/apiary.dart';

@@ -1,6 +1,10 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:ionicons/ionicons.dart';
 
+// 🌎 Project imports:
 import '../core/app_images.dart';
 import '../core/app_text_style.dart';
 

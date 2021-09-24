@@ -1,11 +1,15 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
+// 📦 Package imports:
+import 'package:ionicons/ionicons.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../../core/app_text_style.dart';
-import '../../../shared/circular_button.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+// 🌎 Project imports:
+import '../../../core/app_text_style.dart';
+import '../../../shared/circular_button.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard({

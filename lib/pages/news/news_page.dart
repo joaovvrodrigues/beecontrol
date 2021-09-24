@@ -1,3 +1,13 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:provider/provider.dart';
+import 'package:timeago/timeago.dart' as timeago;
+
+// 🌎 Project imports:
 import '../../core/app_text_style.dart';
 import '../../core/app_theme.dart';
 import '../../models/feed.dart';
@@ -5,12 +15,7 @@ import '../../models/weather.dart';
 import '../apiary_report/widgets/order_by.dart';
 import 'news_controller.dart';
 import 'widgets/news_card.dart';
-import 'package:flutter/material.dart';
-import 'package:timeago/timeago.dart' as timeago;
 import 'widgets/weather_card.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);

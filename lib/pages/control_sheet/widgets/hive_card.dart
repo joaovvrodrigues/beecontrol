@@ -1,16 +1,19 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
+// 🌎 Project imports:
 import '../../../core/app_text_style.dart';
 import '../../../core/app_theme.dart';
 import '../../../models/bee_hive.dart';
-import 'hive_options.dart';
 import '../../../shared/circular_button.dart';
 import '../../../shared/custom_dropdown_field.dart';
-
 import 'divide_dialog.dart';
+import 'hive_options.dart';
 
 class HiveCard extends StatefulWidget {
   const HiveCard(

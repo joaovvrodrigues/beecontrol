@@ -1,5 +1,7 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 🌎 Project imports:
 import '../../../core/app_text_style.dart';
 
 /// General utility widget used to render a cell divided into three rows

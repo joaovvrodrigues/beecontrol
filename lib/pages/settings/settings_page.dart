@@ -1,12 +1,17 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:brasil_fields/brasil_fields.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:ionicons/ionicons.dart';
+
+// 🌎 Project imports:
 import '../../core/app_text_style.dart';
 import '../../models/user_model.dart';
 import '../../shared/custom_text_field.dart';
 import '../../shared/guide_title.dart';
-import 'package:brasil_fields/brasil_fields.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:ionicons/ionicons.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);

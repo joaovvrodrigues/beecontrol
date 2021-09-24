@@ -1,15 +1,19 @@
-import '../../apiary_options/edit_apiary_page.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+// 🌎 Project imports:
 import '../../../core/app_text_style.dart';
 import '../../../core/app_theme.dart';
 import '../../../models/apiary.dart';
-import 'last_visit.dart';
 import '../../../shared/circular_button.dart';
 import '../../../shared/total_widget.dart';
+import '../../apiary_options/edit_apiary_page.dart';
+import 'last_visit.dart';
 
 class SummaryApiaryCard extends StatelessWidget {
   const SummaryApiaryCard({

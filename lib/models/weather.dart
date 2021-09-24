@@ -1,9 +1,12 @@
+// 🎯 Dart imports:
 import 'dart:convert';
 
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-import '../utils/weather_icon_mapper.dart';
+// 🌎 Project imports:
 import '../utils/converters.dart';
+import '../utils/weather_icon_mapper.dart';
 
 class Weather extends ChangeNotifier {
   int? id;

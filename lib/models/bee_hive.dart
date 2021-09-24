@@ -1,6 +1,10 @@
+// 🎯 Dart imports:
 import 'dart:convert';
 
+// 🐦 Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// 📦 Package imports:
 import 'package:hive/hive.dart';
 
 part 'bee_hive.g.dart';

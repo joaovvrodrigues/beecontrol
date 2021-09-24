@@ -1,6 +1,9 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 🌎 Project imports:
 import '../core/app_text_style.dart';
 import '../core/app_theme.dart';
-import 'package:flutter/material.dart';
 
 class GuideTitle extends StatelessWidget {
   const GuideTitle({Key? key, required this.icon, required this.title})

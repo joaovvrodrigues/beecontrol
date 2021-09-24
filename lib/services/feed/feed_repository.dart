@@ -1,6 +1,9 @@
-import '../http/http_exception.dart';
+// 📦 Package imports:
 import 'package:http/http.dart' as http;
 import 'package:webfeed/webfeed.dart';
+
+// 🌎 Project imports:
+import '../http/http_exception.dart';
 
 const String apiculture =
     'https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSkwyMHZNREYyYmpNMUVnVndkQzFDVWlnQVAB?hl=pt-BR&gl=BR&ceid=BR:pt-419';

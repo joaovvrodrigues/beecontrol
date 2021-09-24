@@ -1,15 +1,20 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
+
+// 🌎 Project imports:
 import '../../core/app_theme.dart';
 import '../../models/feed.dart';
 import '../../models/weather.dart';
 import '../apiaries/apiaries_page.dart';
-import 'home_controller.dart';
-import '../news/news_page.dart';
 import '../apiary_options/submit_apiary_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:provider/provider.dart';
-import 'package:ionicons/ionicons.dart';
+import '../news/news_page.dart';
+import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

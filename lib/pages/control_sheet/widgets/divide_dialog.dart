@@ -1,5 +1,7 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 🌎 Project imports:
 import '../../../core/app_text_style.dart';
 import '../../../core/app_theme.dart';
 import '../../../models/bee_hive.dart';

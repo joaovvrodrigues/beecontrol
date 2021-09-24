@@ -1,8 +1,14 @@
+// 🎯 Dart imports:
 import 'dart:convert';
-import '../../models/weather.dart';
+
+// 🐦 Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// 📦 Package imports:
 import 'package:http/http.dart' as http;
 
+// 🌎 Project imports:
+import '../../models/weather.dart';
 import '../http/http_exception.dart';
 
 /// Wrapper around the open weather map api

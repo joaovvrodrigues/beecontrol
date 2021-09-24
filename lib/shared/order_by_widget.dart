@@ -1,7 +1,11 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-import '../core/app_text_style.dart';
+// 📦 Package imports:
 import 'package:ionicons/ionicons.dart';
+
+// 🌎 Project imports:
+import '../core/app_text_style.dart';
 
 class OrderBy extends StatelessWidget {
   const OrderBy(

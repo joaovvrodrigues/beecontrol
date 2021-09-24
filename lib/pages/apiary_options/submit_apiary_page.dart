@@ -1,17 +1,22 @@
-import '../../core/app_text_style.dart';
-import '../../core/app_theme.dart';
-import 'apiary_options_controller.dart';
-import '../../shared/guide_title.dart';
-import '../../shared/circular_button.dart';
-import '../../shared/custom_dropdown_field.dart';
-import '../../shared/custom_text_field.dart';
-import 'package:brasil_fields/brasil_fields.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+// 🌎 Project imports:
+import '../../core/app_text_style.dart';
+import '../../core/app_theme.dart';
+import '../../shared/circular_button.dart';
+import '../../shared/custom_dropdown_field.dart';
+import '../../shared/custom_text_field.dart';
+import '../../shared/guide_title.dart';
+import 'apiary_options_controller.dart';
 
 class SubmitApiaryPage extends StatefulWidget {
   const SubmitApiaryPage({Key? key}) : super(key: key);

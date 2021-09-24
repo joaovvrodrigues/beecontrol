@@ -1,3 +1,13 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:brasil_fields/brasil_fields.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:ionicons/ionicons.dart';
+
+// 🌎 Project imports:
 import '../../core/app_images.dart';
 import '../../core/app_text_style.dart';
 import '../../core/app_theme.dart';
@@ -6,11 +16,6 @@ import '../../shared/custom_checkboxtile.dart';
 import '../../shared/custom_dropdown_field.dart';
 import '../../shared/custom_text_field.dart';
 import '../../shared/guide_title.dart';
-import 'package:brasil_fields/brasil_fields.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:ionicons/ionicons.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

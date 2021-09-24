@@ -1,10 +1,14 @@
-import '../../../models/summary.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 
+// 🌎 Project imports:
 import '../../../core/app_images.dart';
 import '../../../core/app_text_style.dart';
+import '../../../models/summary.dart';
 import '../../../shared/total_widget.dart';
 
 class SummaryCard extends StatelessWidget {

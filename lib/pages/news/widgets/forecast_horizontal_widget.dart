@@ -1,7 +1,12 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
 import '../../../models/weather.dart';
 import 'value_tile.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 /// Renders a horizontal scrolling list of weather conditions
 /// Used to show forecast

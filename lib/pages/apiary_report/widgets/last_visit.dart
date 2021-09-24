@@ -1,7 +1,12 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:brasil_fields/brasil_fields.dart';
+
+// 🌎 Project imports:
 import '../../../core/app_text_style.dart';
 import '../../../core/app_theme.dart';
-import 'package:brasil_fields/brasil_fields.dart';
-import 'package:flutter/material.dart';
 
 class LastVisit extends StatelessWidget {
   const LastVisit({

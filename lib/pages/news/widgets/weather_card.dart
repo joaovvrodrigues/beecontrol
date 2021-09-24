@@ -1,10 +1,14 @@
-import '../../../core/app_text_style.dart';
-import '../../../core/app_theme.dart';
-import '../../../models/weather.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
+// 🌎 Project imports:
+import '../../../core/app_text_style.dart';
+import '../../../core/app_theme.dart';
+import '../../../models/weather.dart';
 import 'forecast_horizontal_widget.dart';
 
 class WeatherCard extends StatefulWidget {
