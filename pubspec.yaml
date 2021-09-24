@@ -66,10 +66,9 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/logoios.png"
-  image_path_ios: "assets/icon/logoios.png"
-  adaptive_icon_foreground: "assets/icon/icon.png"
-  adaptive_icon_background: "assets/icon/background.png"
+  image_path: "assets/images/logo/icon.png"
+  adaptive_icon_foreground: "assets/images/logo/icon.png"
+  adaptive_icon_background: "#FFF3E9"
   remove_alpha_ios: true
 
 
@@ -77,8 +76,8 @@ import_sorter:
   emojis: true
 
 flutter_native_splash:
-  # color: "#FFFFFF"
-  background_image: assets/comida_boteco/background.png
+  color: "#FFF3E9"
+  image: assets/images/logo/logo.png
 
 
 # The following section is specific to Flutter.
