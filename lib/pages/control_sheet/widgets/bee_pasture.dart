@@ -1,6 +1,8 @@
 // 🐦 Flutter imports:
-import 'package:beecontrol/core/app_theme.dart';
 import 'package:flutter/material.dart';
+
+// 🌎 Project imports:
+import '../../../core/app_theme.dart';
 
 class BeePasture extends StatelessWidget {
   const BeePasture({
