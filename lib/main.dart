@@ -28,6 +28,7 @@ void main() async {
 }
 
 const uiStyle = SystemUiOverlayStyle(
+  systemNavigationBarColor: Colors.transparent,
   statusBarColor: AppTheme.seashell,
   statusBarIconBrightness: Brightness.dark,
   statusBarBrightness: Brightness.dark,
@@ -38,7 +39,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setSystemUIOverlayStyle(uiStyle);
+    
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<Weather>(
