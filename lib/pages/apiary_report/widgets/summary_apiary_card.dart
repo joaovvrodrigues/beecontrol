@@ -1,15 +1,15 @@
-import 'package:beecontrol/pages/apiary_options/edit_apiary_page.dart';
+import '../../apiary_options/edit_apiary_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/pages/apiary_report/widgets/last_visit.dart';
-import 'package:beecontrol/shared/circular_button.dart';
-import 'package:beecontrol/shared/total_widget.dart';
+import '../../../core/app_text_style.dart';
+import '../../../core/app_theme.dart';
+import '../../../models/apiary.dart';
+import 'last_visit.dart';
+import '../../../shared/circular_button.dart';
+import '../../../shared/total_widget.dart';
 
 class SummaryApiaryCard extends StatelessWidget {
   const SummaryApiaryCard({
@@ -21,7 +21,7 @@ class SummaryApiaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.all(0),
+        margin: const EdgeInsets.all(0),
         elevation: 0.0,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -64,12 +64,12 @@ class SummaryApiaryCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: CircularButton(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditApiaryPage())),
+                          builder: (context) => const EditApiaryPage())),
                       icon: Icons.mode_edit_outline_rounded),
                 )
               ],
             ),
-            Divider(),
+            const Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -83,7 +83,7 @@ class SummaryApiaryCard extends StatelessWidget {
                     icon: Icons.safety_divider),
               ],
             ),
-            Divider(),
+            const Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

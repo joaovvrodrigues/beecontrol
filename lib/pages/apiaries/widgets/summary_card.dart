@@ -1,11 +1,11 @@
-import 'package:beecontrol/models/summary.dart';
+import '../../../models/summary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 
-import 'package:beecontrol/core/app_images.dart';
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/shared/total_widget.dart';
+import '../../../core/app_images.dart';
+import '../../../core/app_text_style.dart';
+import '../../../shared/total_widget.dart';
 
 class SummaryCard extends StatelessWidget {
   const SummaryCard({
@@ -18,7 +18,7 @@ class SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.all(0),
+        margin: const EdgeInsets.all(0),
         elevation: 0.0,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -34,15 +34,15 @@ class SummaryCard extends StatelessWidget {
                     height: 50,
                   ),
                 ),
-                Center(
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    padding: EdgeInsets.symmetric(vertical: 12.0),
                     child: Text('Resumo Geral', style: AppTextStyle.boldTitle),
                   ),
                 ),
               ],
             ),
-            Divider(),
+            const Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -56,7 +56,7 @@ class SummaryCard extends StatelessWidget {
                     icon: Icons.safety_divider),
               ],
             ),
-            Divider(),
+            const Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

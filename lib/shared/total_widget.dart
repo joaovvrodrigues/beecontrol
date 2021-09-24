@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
+import '../core/app_text_style.dart';
+import '../core/app_theme.dart';
 
 class TotalWidget extends StatelessWidget {
   final String title;
@@ -19,7 +19,7 @@ class TotalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.all(15),
+        margin: const EdgeInsets.all(15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,7 +30,7 @@ class TotalWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title,
-                      style: TextStyle(fontSize: 14, color: AppTheme.eclipse)),
+                      style: const TextStyle(fontSize: 14, color: AppTheme.eclipse)),
                   Text(amount.toString(),
                       style: AppTextStyle.boldTitle.copyWith(fontSize: 24))
                 ],

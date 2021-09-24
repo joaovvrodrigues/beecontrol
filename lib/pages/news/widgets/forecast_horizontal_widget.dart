@@ -1,5 +1,5 @@
-import 'package:beecontrol/models/weather.dart';
-import 'package:beecontrol/pages/news/widgets/value_tile.dart';
+import '../../../models/weather.dart';
+import 'value_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -18,14 +18,14 @@ class ForecastHorizontal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      margin: EdgeInsets.symmetric(horizontal: 25),
+      margin: const EdgeInsets.symmetric(horizontal: 25),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: this.weathers.length,
-        padding: EdgeInsets.only(left: 10, right: 10),
+        itemCount: weathers.length,
+        padding: const EdgeInsets.only(left: 10, right: 10),
         itemBuilder: (context, index) {
-          final item = this.weathers[index];
+          final item = weathers[index];
           return Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Center(

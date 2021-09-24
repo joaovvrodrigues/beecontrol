@@ -7,7 +7,7 @@ intToDouble(dynamic val) {
   } else if (val.runtimeType == int) {
     return val.toDouble();
   } else {
-    throw new Exception("value is not of type 'int' or 'double' got type '" +
+    throw Exception("value is not of type 'int' or 'double' got type '" +
         val.runtimeType.toString() +
         "'");
   }

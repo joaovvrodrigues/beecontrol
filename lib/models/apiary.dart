@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 
-import 'package:beecontrol/models/bee_hive.dart';
-import 'package:beecontrol/models/report.dart';
+import 'bee_hive.dart';
+import 'report.dart';
 
 part 'apiary.g.dart';
 

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 import 'package:share_plus/share_plus.dart';
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/shared/circular_button.dart';
+import '../../../core/app_text_style.dart';
+import '../../../shared/circular_button.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -88,7 +88,7 @@ class NewsCard extends StatelessWidget {
                     ),
                     width: double.infinity,
                     height: 125,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(20),

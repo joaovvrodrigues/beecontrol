@@ -30,9 +30,7 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
       brightness: Brightness.light,
       primaryColor: seashell,
-      accentColor: dandelion,
       scaffoldBackgroundColor: seashell,
-      primarySwatch: dandelionMaterial,
       // bottomAppBarColor: MaterialColor(0xFFFFDE5F, colorCodes),
       backgroundColor: seashell,
       fontFamily: 'Manrope',
@@ -46,16 +44,15 @@ class AppTheme {
       focusColor: morning,
       buttonTheme: ButtonThemeData(
         colorScheme: ColorScheme.fromSwatch(),
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
       ),
-      accentIconTheme: IconThemeData(color: eclipse),
       pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
             TargetPlatform.android: ZoomPageTransitionsBuilder()
-          }));
+          }), colorScheme: ColorScheme.fromSwatch(primarySwatch: dandelionMaterial).copyWith(secondary: dandelion));
 
   InputDecoration inputDecoration(IconData icon) {
     return InputDecoration(
@@ -87,9 +84,9 @@ class AppTheme {
       elevation: 0,
       primary: dandelion,
       textStyle:
-          TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: eclipse),
-      minimumSize: Size(400, 60),
-      padding: EdgeInsets.symmetric(horizontal: 40),
+          const TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: eclipse),
+      minimumSize: const Size(400, 60),
+      padding: const EdgeInsets.symmetric(horizontal: 40),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ));

@@ -1,12 +1,12 @@
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/utils/constants.dart';
+import '../../models/apiary.dart';
+import '../../utils/constants.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
 class ApiaryOptionsController {
   int numHives = 0;
   var apiary = Apiary(reports: [], visits: 0, orphanBoxes: 0);
-  var uuid = Uuid();
+  var uuid = const Uuid();
 
   void saveApiary() {
     Hive.box<Apiary>(CONSTANTS.box).put(apiary.id, apiary);

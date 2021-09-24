@@ -6,13 +6,13 @@ import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/shared/circular_button.dart';
-import 'package:beecontrol/shared/custom_dropdown_field.dart';
-import 'package:beecontrol/shared/custom_text_field.dart';
-import 'package:beecontrol/shared/guide_title.dart';
+import '../../core/app_text_style.dart';
+import '../../core/app_theme.dart';
+import '../../models/apiary.dart';
+import '../../shared/circular_button.dart';
+import '../../shared/custom_dropdown_field.dart';
+import '../../shared/custom_text_field.dart';
+import '../../shared/guide_title.dart';
 
 import 'apiary_options_controller.dart';
 
@@ -41,7 +41,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(55.0),
+            preferredSize: const Size.fromHeight(55.0),
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -50,7 +50,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
-                    Text('Editar Apiário', style: AppTextStyle.boldTitle),
+                    const Text('Editar Apiário', style: AppTextStyle.boldTitle),
                     const SizedBox(width: 35, height: 35)
                   ],
                 )),
@@ -71,7 +71,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                     ),
                     children: [
                       // apiary name input
-                      GuideTitle(
+                      const GuideTitle(
                           icon: Ionicons.cube_outline,
                           title: 'Nome do apiário:'),
                       Padding(
@@ -94,10 +94,10 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                           },
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
                       // apiary address input
-                      GuideTitle(
+                      const GuideTitle(
                           icon: Ionicons.business_outline,
                           title: 'Endereço do Apiário:'),
                       Row(
@@ -161,10 +161,10 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
                       // apiary image input
-                      GuideTitle(
+                      const GuideTitle(
                           icon: Ionicons.image_outline,
                           title: 'Adicione uma foto:'),
                       ClipRRect(
@@ -179,7 +179,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                           // alignment: Alignment.topCenter,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
 
                       // save button
                       Padding(
@@ -195,7 +195,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                                 Navigator.of(context).pop();
                               }
                             },
-                            child: Text('Salvar Apiário'),
+                            child: const Text('Salvar Apiário'),
                             style: AppTheme.elevatedButtonStyle),
                       ),
 
@@ -208,7 +208,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           },
-                          child: Text('Excluir Apiário'),
+                          child: const Text('Excluir Apiário'),
                           style: AppTheme.elevatedButtonStyle.copyWith(
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   AppTheme.monalisa)),

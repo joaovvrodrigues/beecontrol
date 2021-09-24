@@ -1,21 +1,21 @@
-import 'package:beecontrol/models/apiary.dart';
+import '../../models/apiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/report.dart';
-import 'package:beecontrol/pages/apiary_report/apiary_controller.dart';
-import 'package:beecontrol/pages/apiary_report/widgets/order_by.dart';
-import 'package:beecontrol/pages/apiary_report/widgets/reports_card.dart';
-import 'package:beecontrol/pages/apiary_report/widgets/summary_apiary_card.dart';
-import 'package:beecontrol/pages/control_sheet/control_sheet_page.dart';
-import 'package:beecontrol/shared/circular_button.dart';
-import 'package:beecontrol/shared/empty_widget.dart';
-import 'package:beecontrol/shared/info_card.dart';
+import '../../core/app_text_style.dart';
+import '../../core/app_theme.dart';
+import '../../models/report.dart';
+import 'apiary_controller.dart';
+import 'widgets/order_by.dart';
+import 'widgets/reports_card.dart';
+import 'widgets/summary_apiary_card.dart';
+import '../control_sheet/control_sheet_page.dart';
+import '../../shared/circular_button.dart';
+import '../../shared/empty_widget.dart';
+import '../../shared/info_card.dart';
 
 class ApiaryPage extends StatefulWidget {
   const ApiaryPage({
@@ -55,7 +55,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(55.0),
+            preferredSize: const Size.fromHeight(55.0),
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -72,7 +72,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
           floatingActionButton: FloatingActionButton(
             elevation: 8,
             backgroundColor: AppTheme.dandelion,
-            child: Icon(
+            child: const Icon(
               FeatherIcons.plus,
               color: AppTheme.eclipse,
             ),
@@ -103,15 +103,15 @@ class _ApiaryPageState extends State<ApiaryPage> {
                       ),
                       if (controller.apiary.reports.isEmpty)
                         Column(
-                          children: [
+                          children: const [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: EmptyWidget(
                                   icon: Ionicons.documents_outline,
                                   text: 'Sem relatórios cadastrados'),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 40),
+                              padding: EdgeInsets.only(bottom: 40),
                               child: InfoCard(
                                   title: 'CADASTRE SEU RELATÓRIO',
                                   text:
@@ -122,7 +122,7 @@ class _ApiaryPageState extends State<ApiaryPage> {
                       else
                         ListView.builder(
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: controller.apiary.reports.length,
                             itemBuilder: (context, index) {
                               return ReportsCard(

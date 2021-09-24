@@ -1,5 +1,5 @@
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/models/summary.dart';
+import '../../models/apiary.dart';
+import '../../models/summary.dart';
 
 class ApiariesController {
   Summary summary =

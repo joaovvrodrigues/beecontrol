@@ -1,5 +1,6 @@
-import 'package:beecontrol/core/app_text_style.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/app_text_style.dart';
 
 /// General utility widget used to render a cell divided into three rows
 /// First row displays [label]
@@ -10,7 +11,12 @@ class ValueTile extends StatelessWidget {
   final String value;
   final IconData? iconData;
 
-  ValueTile(this.label, this.value, {this.iconData});
+  const ValueTile(
+    this.label,
+    this.value, {
+    Key? key,
+    this.iconData,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +25,21 @@ class ValueTile extends StatelessWidget {
       children: <Widget>[
         Flexible(
           child: Text(
-            this.label,
+            label,
           ),
         ),
-        SizedBox(height: 5),
-        this.iconData != null
+        const SizedBox(height: 5),
+        iconData != null
             ? Flexible(
                 child: Icon(
                 iconData,
                 size: 20,
               ))
-            : SizedBox(),
-        SizedBox(height: 10),
+            : const SizedBox(),
+        const SizedBox(height: 10),
         Flexible(
             child: Text(
-          this.value,
+          value,
           style: AppTextStyle.boldText,
         )),
       ],

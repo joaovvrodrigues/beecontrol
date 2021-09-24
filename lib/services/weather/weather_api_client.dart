@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:beecontrol/models/weather.dart';
+import '../../models/weather.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,7 +9,7 @@ import '../http/http_exception.dart';
 /// https://openweathermap.org/current
 class WeatherApiClient {
   static const baseUrl = 'http://api.openweathermap.org';
-  final apiKey;
+  final String? apiKey;
 
   WeatherApiClient({this.apiKey}) : assert(apiKey != null);
 
@@ -33,7 +33,7 @@ class WeatherApiClient {
     debugPrint('fetching $url');
     final res = await http.get(Uri.parse(url));
     if (res.statusCode != 200) {
-      throw HTTPException(res.statusCode, "unable to fetch weather data");
+      throw HTTPException(res.statusCode, 'unable to fetch weather data');
     }
     final weatherJson = json.decode(res.body);
     return Weather.fromJson(weatherJson);
@@ -45,7 +45,7 @@ class WeatherApiClient {
     debugPrint('fetching $url');
     final res = await http.get(Uri.parse(url));
     if (res.statusCode != 200) {
-      throw HTTPException(res.statusCode, "unable to fetch weather data");
+      throw HTTPException(res.statusCode, 'unable to fetch weather data');
     }
 
     final forecastJson = json.decode(res.body);

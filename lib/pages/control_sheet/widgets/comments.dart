@@ -15,15 +15,15 @@ class CommentsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Observações:'),
+            const Text('Observações:'),
             ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: 150),
+              constraints: const BoxConstraints(maxHeight: 150),
               child: TextField(
                 readOnly: readOnly,
                 autofocus: false,
@@ -31,7 +31,7 @@ class CommentsCard extends StatelessWidget {
                 textCapitalization: TextCapitalization.words,
                 keyboardType: TextInputType.text,
                 onChanged: onChanged,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Insira observações aqui'),
                 maxLines: null,

@@ -2,11 +2,11 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/models/report.dart';
-import 'package:beecontrol/shared/custom_checkboxtile.dart';
+import '../../../core/app_text_style.dart';
+import '../../../core/app_theme.dart';
+import '../../../models/apiary.dart';
+import '../../../models/report.dart';
+import '../../../shared/custom_checkboxtile.dart';
 
 class GoalsApiaryCard extends StatefulWidget {
   const GoalsApiaryCard({
@@ -39,13 +39,13 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.all(0),
+        margin: const EdgeInsets.all(0),
         elevation: 0.0,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: AnimatedContainer(
-            duration: Duration(milliseconds: 400),
+            duration: const Duration(milliseconds: 400),
             height: expanded ? 600 : (230 + (widget.report.resume.length * 3)),
             curve: Curves.ease,
             child: ListView(
@@ -97,11 +97,11 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                     child: Text(expanded ? 'Encolher' : 'Expandir'),
                     style: AppTheme.elevatedButtonStyle.copyWith(
                       minimumSize:
-                          MaterialStateProperty.all<Size?>(Size(100, 50)),
+                          MaterialStateProperty.all<Size?>(const Size(100, 50)),
                     ),
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 20.0, vertical: 10),
@@ -123,7 +123,7 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                   ),
                 ),
                 AnimatedSwitcher(
-                    duration: Duration(milliseconds: 600),
+                    duration: const Duration(milliseconds: 600),
                     child: expanded
                         ? Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -148,7 +148,7 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                                     ),
                             ],
                           )
-                        : SizedBox()),
+                        : const SizedBox()),
               ],
             )));
   }

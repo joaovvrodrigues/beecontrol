@@ -1,4 +1,4 @@
-import 'package:beecontrol/services/feed/feed_repository.dart';
+import '../../services/feed/feed_repository.dart';
 
 class NewsController {
   int indexFilter = 0;
@@ -15,7 +15,7 @@ class NewsController {
         'https://news.google.com/rss/search?q=Abelha%20Rainha%20apicultura&hl=pt-BR&gl=BR&ceid=BR%3Apt-419'
   };
 
-  FeedRepository _feedRepository = FeedRepository();
+  final FeedRepository _feedRepository = FeedRepository();
 
   Future getNewFeed(String term) async {
     var feed = await _feedRepository.getFeed(url: filter[term]!);

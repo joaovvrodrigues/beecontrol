@@ -1,19 +1,19 @@
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/models/report.dart';
-import 'package:beecontrol/pages/control_sheet/control_sheet_controller.dart';
-import 'package:beecontrol/pages/control_sheet/widgets/bee_pasture.dart';
-import 'package:beecontrol/pages/control_sheet/widgets/comments.dart';
-import 'package:beecontrol/pages/control_sheet/widgets/goals_card.dart';
-import 'package:beecontrol/pages/control_sheet/widgets/hive_card.dart';
+import '../../models/apiary.dart';
+import '../../models/report.dart';
+import 'control_sheet_controller.dart';
+import 'widgets/bee_pasture.dart';
+import 'widgets/comments.dart';
+import 'widgets/goals_card.dart';
+import 'widgets/hive_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/shared/circular_button.dart';
-import 'package:beecontrol/shared/empty_widget.dart';
-import 'package:beecontrol/shared/info_card.dart';
+import '../../core/app_text_style.dart';
+import '../../core/app_theme.dart';
+import '../../shared/circular_button.dart';
+import '../../shared/empty_widget.dart';
+import '../../shared/info_card.dart';
 import 'package:provider/provider.dart';
 
 class ControlSheetPage extends StatefulWidget {
@@ -65,7 +65,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(55.0),
+            preferredSize: const Size.fromHeight(55.0),
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -84,7 +84,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                   ? FloatingActionButton(
                       elevation: 8,
                       backgroundColor: AppTheme.dandelion,
-                      child: Icon(
+                      child: const Icon(
                         FeatherIcons.plus,
                         color: AppTheme.eclipse,
                       ),
@@ -122,14 +122,14 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                           Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Container(
-                                padding: EdgeInsets.all(12),
+                                padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Pasto Apícula:'),
+                                    const Text('Pasto Apícula:'),
                                     Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 0),
@@ -157,9 +157,9 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                           ),
                           if (controller.report.hives.isEmpty)
                             Column(
-                              children: [
+                              children: const [
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: EmptyWidget(
                                       icon: FeatherIcons.package,
                                       text: 'Sem colméias cadastradas'),
@@ -173,8 +173,8 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                           else
                             ListView.builder(
                                 shrinkWrap: true,
-                                padding: EdgeInsets.symmetric(vertical: 5),
-                                physics: NeverScrollableScrollPhysics(),
+                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemCount: controller.report.hives.length,
                                 itemBuilder: (context, index) {
                                   return HiveCard(
@@ -203,7 +203,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                   style: AppTheme.elevatedButtonStyle),
                             )
                           else
-                            SizedBox(height: 60)
+                            const SizedBox(height: 60)
                         ]),
                   )),
                 )),

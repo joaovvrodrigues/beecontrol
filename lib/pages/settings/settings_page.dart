@@ -1,7 +1,7 @@
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/models/user_model.dart';
-import 'package:beecontrol/shared/custom_text_field.dart';
-import 'package:beecontrol/shared/guide_title.dart';
+import '../../core/app_text_style.dart';
+import '../../models/user_model.dart';
+import '../../shared/custom_text_field.dart';
+import '../../shared/guide_title.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,18 +24,18 @@ class _SettingsPageState extends State<SettingsPage> {
     return SafeArea(
         child: Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(55.0),
+              preferredSize: const Size.fromHeight(55.0),
               child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       // CircularButton(
                       //     onTap: () {}, icon: Ionicons.reorder_two_outline),
-                      const SizedBox(width: 35, height: 35),
+                      SizedBox(width: 35, height: 35),
                       Text('Minhas Configurações',
                           style: AppTextStyle.boldTitle),
-                      const SizedBox(width: 35, height: 35)
+                      SizedBox(width: 35, height: 35)
                     ],
                   )),
             ),
@@ -54,7 +54,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 ),
                               ),
                           children: [
-                            GuideTitle(
+                            const GuideTitle(
                                 icon: Ionicons.person_add,
                                 title: 'Meus Dados:'),
                             Padding(
@@ -129,7 +129,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 },
                               ),
                             ),
-                            GuideTitle(
+                            const GuideTitle(
                                 icon: Ionicons.home,
                                 title: 'End. Residencial:'),
                             Padding(

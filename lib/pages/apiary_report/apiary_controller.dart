@@ -1,5 +1,5 @@
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/models/report.dart';
+import '../../models/apiary.dart';
+import '../../models/report.dart';
 
 class ApiaryController {
   Apiary apiary = Apiary(reports: []);

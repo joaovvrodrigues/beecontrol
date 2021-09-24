@@ -1,11 +1,11 @@
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/apiary.dart';
-import 'package:beecontrol/models/bee_hive.dart';
-import 'package:beecontrol/models/feed.dart';
-import 'package:beecontrol/models/report.dart';
-import 'package:beecontrol/models/weather.dart';
-import 'package:beecontrol/pages/home/home_page.dart';
-import 'package:beecontrol/utils/constants.dart';
+import 'core/app_theme.dart';
+import 'models/apiary.dart';
+import 'models/bee_hive.dart';
+import 'models/feed.dart';
+import 'models/report.dart';
+import 'models/weather.dart';
+import 'pages/home/home_page.dart';
+import 'utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -19,7 +19,7 @@ void main() async {
   Hive.registerAdapter(BeeHiveAdapter());
   Hive.registerAdapter(ReportAdapter());
   await Hive.openBox<Apiary>(CONSTANTS.box);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 const uiStyle = SystemUiOverlayStyle(
@@ -29,6 +29,8 @@ const uiStyle = SystemUiOverlayStyle(
 );
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(uiStyle);
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            localizationsDelegates: [
+            localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
@@ -54,6 +56,6 @@ class MyApp extends StatelessWidget {
             title: 'Bee Control',
             color: AppTheme.seashell,
             theme: AppTheme.lightTheme,
-            home: HomePage()));
+            home: const HomePage()));
   }
 }

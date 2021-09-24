@@ -1,3 +1,3 @@
 class CONSTANTS{
-  static final box = 'apiaries_box';
+  static const box = 'apiaries_box';
 }

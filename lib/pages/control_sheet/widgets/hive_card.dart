@@ -3,12 +3,12 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/bee_hive.dart';
-import 'package:beecontrol/pages/control_sheet/widgets/hive_options.dart';
-import 'package:beecontrol/shared/circular_button.dart';
-import 'package:beecontrol/shared/custom_dropdown_field.dart';
+import '../../../core/app_text_style.dart';
+import '../../../core/app_theme.dart';
+import '../../../models/bee_hive.dart';
+import 'hive_options.dart';
+import '../../../shared/circular_button.dart';
+import '../../../shared/custom_dropdown_field.dart';
 
 import 'divide_dialog.dart';
 
@@ -44,8 +44,8 @@ class _HiveCardState extends State<HiveCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
-      margin: EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: Column(
@@ -54,7 +54,7 @@ class _HiveCardState extends State<HiveCard> {
         children: [
           Row(
             children: [
-              Icon(
+              const Icon(
                 FeatherIcons.package,
                 size: 30,
               ),
@@ -87,7 +87,7 @@ class _HiveCardState extends State<HiveCard> {
                 ),
             ],
           ),
-          Divider(),
+          const Divider(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -96,8 +96,8 @@ class _HiveCardState extends State<HiveCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text('Situação', style: AppTextStyle.boldText),
                   ),
                   if (widget.hive.situation.isNotEmpty)
@@ -108,7 +108,7 @@ class _HiveCardState extends State<HiveCard> {
                         children: [
                           Flexible(
                               child: ConstrainedBox(
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     minHeight: 50.0,
                                     minWidth: 450.0,
                                     maxHeight: 50.0,
@@ -118,8 +118,8 @@ class _HiveCardState extends State<HiveCard> {
                         ],
                       )
                   else
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 0, 8, 10),
+                    const Padding(
+                        padding: EdgeInsets.fromLTRB(8, 0, 8, 10),
                         child: Text('Nenhum registro'))
                 ],
               ),
@@ -127,8 +127,8 @@ class _HiveCardState extends State<HiveCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text('Produção', style: AppTextStyle.boldText),
                   ),
                   if (widget.hive.production.isNotEmpty)
@@ -140,7 +140,7 @@ class _HiveCardState extends State<HiveCard> {
                               children: [
                                   Flexible(
                                       child: ConstrainedBox(
-                                          constraints: BoxConstraints(
+                                          constraints: const BoxConstraints(
                                             minHeight: 50.0,
                                             minWidth: 450.0,
                                             maxHeight: 50.0,
@@ -157,7 +157,7 @@ class _HiveCardState extends State<HiveCard> {
                                 children: [
                                   Flexible(
                                     child: ConstrainedBox(
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         minHeight: 50.0,
                                         minWidth: 150.0,
                                         maxHeight: 50.0,
@@ -216,7 +216,7 @@ class _HiveCardState extends State<HiveCard> {
                                           )),
                                     ),
                                   ),
-                                  SizedBox(width: 12),
+                                  const SizedBox(width: 12),
                                   CircularButton(
                                       onTap: () {
                                         setState(() {
@@ -242,13 +242,13 @@ class _HiveCardState extends State<HiveCard> {
                       widget.hive.production.add('null');
                     });
                   },
-                  child: Icon(
+                  child: const Icon(
                     FeatherIcons.plus,
                     color: AppTheme.eclipse,
                   ),
                   style: AppTheme.elevatedButtonStyle.copyWith(
                     minimumSize:
-                        MaterialStateProperty.all<Size?>(Size(162, 40)),
+                        MaterialStateProperty.all<Size?>(const Size(162, 40)),
                   ),
                 ),
               ),

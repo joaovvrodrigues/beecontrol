@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
-import 'package:beecontrol/core/app_images.dart';
-import 'package:beecontrol/core/app_text_style.dart';
+import '../core/app_images.dart';
+import '../core/app_text_style.dart';
 
 class InfoCard extends StatelessWidget {
   const InfoCard({
@@ -45,7 +45,7 @@ class InfoCard extends StatelessWidget {
                 style: AppTextStyle.boldTitleAlpha90,
                 textAlign: TextAlign.center,
               )),
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(12),
             child: Icon(Ionicons.arrow_down_outline),
           )

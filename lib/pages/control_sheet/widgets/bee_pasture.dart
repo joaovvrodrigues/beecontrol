@@ -27,7 +27,7 @@ class BeePasture extends StatelessWidget {
                 title: Text(beePastureList[index]),
                 value: index,
                 groupValue: groupValue,
-                contentPadding: EdgeInsets.all(0),
+                contentPadding: const EdgeInsets.all(0),
                 dense: true,
                 onChanged: onChanged),
           ),

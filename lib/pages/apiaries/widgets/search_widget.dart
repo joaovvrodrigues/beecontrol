@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/shared/circular_button.dart';
+import '../../../core/app_text_style.dart';
+import '../../../shared/circular_button.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({

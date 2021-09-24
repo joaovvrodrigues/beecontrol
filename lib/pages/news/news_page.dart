@@ -1,10 +1,10 @@
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/feed.dart';
-import 'package:beecontrol/models/weather.dart';
-import 'package:beecontrol/pages/apiary_report/widgets/order_by.dart';
-import 'package:beecontrol/pages/news/news_controller.dart';
-import 'package:beecontrol/pages/news/widgets/news_card.dart';
+import '../../core/app_text_style.dart';
+import '../../core/app_theme.dart';
+import '../../models/feed.dart';
+import '../../models/weather.dart';
+import '../apiary_report/widgets/order_by.dart';
+import 'news_controller.dart';
+import 'widgets/news_card.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'widgets/weather_card.dart';
@@ -43,13 +43,13 @@ class _NewsPageState extends State<NewsPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5, bottom: 16),
+                const Padding(
+                  padding: EdgeInsets.only(top: 5, bottom: 16),
                   child: Center(
                       child: Text('Página Inicial',
                           style: AppTextStyle.boldTitle)),
                 ),
-                WeatherCard(),
+                const WeatherCard(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: OrderBy(
@@ -64,7 +64,7 @@ class _NewsPageState extends State<NewsPage> {
                   AnimationLimiter(
                       child: ListView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: feed.feed!.items!.length,
                           itemBuilder: (context, index) {
                             return AnimationConfiguration.staggeredList(
@@ -87,8 +87,8 @@ class _NewsPageState extends State<NewsPage> {
                                 ))));
                           }))
                 else
-                  Padding(
-                    padding: const EdgeInsets.only(top: 80),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 80),
                     child: SpinKitFadingCube(
                       color: AppTheme.dandelion,
                       size: 40,

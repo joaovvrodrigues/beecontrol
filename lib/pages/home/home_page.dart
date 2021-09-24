@@ -1,11 +1,11 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/feed.dart';
-import 'package:beecontrol/models/weather.dart';
-import 'package:beecontrol/pages/apiaries/apiaries_page.dart';
-import 'package:beecontrol/pages/home/home_controller.dart';
-import 'package:beecontrol/pages/news/news_page.dart';
-import 'package:beecontrol/pages/apiary_options/submit_apiary_page.dart';
+import '../../core/app_theme.dart';
+import '../../models/feed.dart';
+import '../../models/weather.dart';
+import '../apiaries/apiaries_page.dart';
+import 'home_controller.dart';
+import '../news/news_page.dart';
+import '../apiary_options/submit_apiary_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +34,8 @@ class _HomePageState extends State<HomePage>
   ];
 
   final pages = <Widget>[
-    NewsPage(),
-    ApiariesPage(),
+    const NewsPage(),
+    const ApiariesPage(),
     // RegisterPage(),
     // SettingsPage()
   ];
@@ -82,12 +82,12 @@ class _HomePageState extends State<HomePage>
     loadFeed();
 
     _animationController = AnimationController(
-      duration: Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 800),
       vsync: this,
     );
     curve = CurvedAnimation(
       parent: _animationController,
-      curve: Interval(
+      curve: const Interval(
         0.5,
         1.0,
         curve: Curves.fastOutSlowIn,
@@ -111,12 +111,12 @@ class _HomePageState extends State<HomePage>
         child: FloatingActionButton(
           elevation: 8,
           backgroundColor: AppTheme.dandelion,
-          child: Icon(
+          child: const Icon(
             FeatherIcons.plus,
             color: AppTheme.eclipse,
           ),
           onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => SubmitApiaryPage())),
+              MaterialPageRoute(builder: (context) => const SubmitApiaryPage())),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

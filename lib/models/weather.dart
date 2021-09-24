@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:beecontrol/utils/weather_icon_mapper.dart';
-import 'package:beecontrol/utils/converters.dart';
+import '../utils/weather_icon_mapper.dart';
+import '../utils/converters.dart';
 
 class Weather extends ChangeNotifier {
   int? id;
@@ -83,7 +83,7 @@ class Weather extends ChangeNotifier {
   }
 
   IconData getIconData() {
-    switch (this.iconCode) {
+    switch (iconCode) {
       case '01d':
         return WeatherIcons.clear_day;
       case '01n':

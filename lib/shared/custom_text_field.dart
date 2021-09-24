@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:beecontrol/core/app_theme.dart';
+import '../core/app_theme.dart';
 
 class CustomFormField extends StatelessWidget {
   const CustomFormField(
@@ -49,7 +49,7 @@ class CustomFormField extends StatelessWidget {
       textCapitalization: textCapitalization,
       inputFormatters: inputFormatters,
       obscureText: obscureText,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 16, fontWeight: FontWeight.w900, color: AppTheme.eclipse),
       decoration: InputDecoration(
         // Configurações do Prefix
@@ -63,7 +63,7 @@ class CustomFormField extends StatelessWidget {
               )
             : null,
         prefixIconConstraints: icon != null
-            ? BoxConstraints(
+            ? const BoxConstraints(
                 minWidth: 50,
                 minHeight: 25,
               )
@@ -76,7 +76,7 @@ class CustomFormField extends StatelessWidget {
 
         // Configurações de erro
         errorText: errorText,
-        errorStyle: TextStyle(
+        errorStyle: const TextStyle(
             fontSize: 14, fontWeight: FontWeight.bold, color: AppTheme.sunset),
 
         // Configurações de hint
@@ -86,7 +86,7 @@ class CustomFormField extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppTheme.eclipse.withAlpha(80)),
 
-        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+        contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
 
         // Borda
         border: OutlineInputBorder(

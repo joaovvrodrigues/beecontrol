@@ -1,10 +1,10 @@
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/pages/apiary_options/apiary_options_controller.dart';
-import 'package:beecontrol/shared/guide_title.dart';
-import 'package:beecontrol/shared/circular_button.dart';
-import 'package:beecontrol/shared/custom_dropdown_field.dart';
-import 'package:beecontrol/shared/custom_text_field.dart';
+import '../../core/app_text_style.dart';
+import '../../core/app_theme.dart';
+import 'apiary_options_controller.dart';
+import '../../shared/guide_title.dart';
+import '../../shared/circular_button.dart';
+import '../../shared/custom_dropdown_field.dart';
+import '../../shared/custom_text_field.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +30,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(55.0),
+            preferredSize: const Size.fromHeight(55.0),
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -39,7 +39,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
-                    Text('Cadastro de Apiário', style: AppTextStyle.boldTitle),
+                    const Text('Cadastro de Apiário', style: AppTextStyle.boldTitle),
                     const SizedBox(width: 35, height: 35)
                   ],
                 )),
@@ -60,7 +60,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                     ),
                     children: [
                       // apiary name input
-                      GuideTitle(
+                      const GuideTitle(
                           icon: Ionicons.cube_outline,
                           title: 'Nome do apiário:'),
                       Padding(
@@ -82,10 +82,10 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           },
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
                       // apiary address input
-                      GuideTitle(
+                      const GuideTitle(
                           icon: Ionicons.business_outline,
                           title: 'Endereço do Apiário:'),
                       Row(
@@ -148,10 +148,10 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
                       // apiary image input
-                      GuideTitle(
+                      const GuideTitle(
                           icon: Ionicons.image_outline,
                           title: 'Adicione uma foto:'),
                       ClipRRect(
@@ -166,10 +166,10 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           // alignment: Alignment.topCenter,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
 
                       //apiary number of hives input
-                      GuideTitle(
+                      const GuideTitle(
                           icon: FeatherIcons.package,
                           title: 'Número de Colméias:'),
                       Padding(
@@ -182,7 +182,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           ],
                           keyboardType: TextInputType.number,
                           onSaved: (text) {
-                            if (text != null && text.length != 0) {
+                            if (text != null && text.isNotEmpty) {
                               controller.numHives = int.parse(text);
                             }
                           },
@@ -193,7 +193,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                           },
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Ao preencher esse campo criaremos automáticamente as colméias pra você.',
                         textAlign: TextAlign.center,
                       ),
@@ -209,7 +209,7 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                               Navigator.of(context).pop();
                             }
                           },
-                          child: Text('Cadastrar Apiário'),
+                          child: const Text('Cadastrar Apiário'),
                           style: AppTheme.elevatedButtonStyle,
                         ),
                       ),

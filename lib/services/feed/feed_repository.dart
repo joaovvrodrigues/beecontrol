@@ -1,4 +1,4 @@
-import 'package:beecontrol/services/http/http_exception.dart';
+import '../http/http_exception.dart';
 import 'package:http/http.dart' as http;
 import 'package:webfeed/webfeed.dart';
 
@@ -12,7 +12,7 @@ class FeedRepository {
 
     final response = await client.get(uri);
     if (response.statusCode != 200) {
-      throw HTTPException(response.statusCode, "unable to fetch feed data");
+      throw HTTPException(response.statusCode, 'unable to fetch feed data');
     }
     return RssFeed.parse(response.body);
   }

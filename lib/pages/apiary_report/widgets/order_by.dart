@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/shared/custom_dropdown_field.dart';
+import '../../../core/app_text_style.dart';
+import '../../../shared/custom_dropdown_field.dart';
 
 class OrderBy extends StatelessWidget {
   const OrderBy(
@@ -24,7 +24,7 @@ class OrderBy extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(title, style: AppTextStyle.boldText),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Expanded(
           child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
@@ -32,7 +32,7 @@ class OrderBy extends StatelessWidget {
                 radius: 20,
                 onSaved: onSaved,
                 isDense: true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                 style: AppTextStyle.boldText,
                 icon: Ionicons.business_outline,
                 items: orderByList.map((String value) {

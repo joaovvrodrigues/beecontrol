@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:beecontrol/core/app_theme.dart';
+import '../core/app_theme.dart';
 import 'package:ionicons/ionicons.dart';
 
 class CustomDropDownField<T> extends StatelessWidget {
@@ -50,9 +50,9 @@ class CustomDropDownField<T> extends StatelessWidget {
       onTap: onTap,
       onChanged: onSaved,
       dropdownColor: Colors.white,
-      icon: Icon(Ionicons.chevron_down_outline),
+      icon: const Icon(Ionicons.chevron_down_outline),
       style: style ??
-          TextStyle(
+          const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
               color: AppTheme.eclipse),
@@ -66,7 +66,7 @@ class CustomDropDownField<T> extends StatelessWidget {
 
         // Configurações de erro
         errorText: errorText,
-        errorStyle: TextStyle(
+        errorStyle: const TextStyle(
             fontSize: 14, fontWeight: FontWeight.bold, color: AppTheme.sunset),
 
         // Configurações de hint
@@ -76,7 +76,7 @@ class CustomDropDownField<T> extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppTheme.eclipse.withAlpha(80)),
 
-        contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: 25),
+        contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 25),
 
         // Borda
         border: OutlineInputBorder(

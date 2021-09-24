@@ -1,5 +1,5 @@
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
+import '../../../core/app_text_style.dart';
+import '../../../core/app_theme.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class LastVisit extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.all(25),
+        margin: const EdgeInsets.all(25),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -24,7 +24,7 @@ class LastVisit extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Última visita',
+                  const Text('Última visita',
                       style: TextStyle(fontSize: 14, color: AppTheme.eclipse)),
                   Text(
                       lastDate != null

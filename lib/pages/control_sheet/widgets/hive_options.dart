@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:beecontrol/core/app_theme.dart';
+import '../../../core/app_theme.dart';
 
 class HiveOptions extends StatelessWidget {
   const HiveOptions({

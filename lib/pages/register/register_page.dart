@@ -1,11 +1,11 @@
-import 'package:beecontrol/core/app_images.dart';
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/user_model.dart';
-import 'package:beecontrol/shared/custom_checkboxtile.dart';
-import 'package:beecontrol/shared/custom_dropdown_field.dart';
-import 'package:beecontrol/shared/custom_text_field.dart';
-import 'package:beecontrol/shared/guide_title.dart';
+import '../../core/app_images.dart';
+import '../../core/app_text_style.dart';
+import '../../core/app_theme.dart';
+import '../../models/user_model.dart';
+import '../../shared/custom_checkboxtile.dart';
+import '../../shared/custom_dropdown_field.dart';
+import '../../shared/custom_text_field.dart';
+import '../../shared/guide_title.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -75,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                               ),
                             ),
-                            GuideTitle(
+                            const GuideTitle(
                                 icon: Ionicons.person_add,
                                 title: 'Meus Dados:'),
                             Padding(
@@ -142,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 },
                               ),
                             ),
-                            GuideTitle(
+                            const GuideTitle(
                                 icon: Ionicons.home,
                                 title: 'End. Residencial:'),
                             Row(
@@ -267,16 +267,16 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: Column(
                                 children: [
                                   CustomCheckBox(
-                                      contentPadding: EdgeInsets.all(0),
+                                      contentPadding: const EdgeInsets.all(0),
                                       value: true,
                                       title: 'Manter conectado',
-                                      onChanged: (bool) {}),
+                                      onChanged: (value) {}),
                                   CustomCheckBox(
-                                      contentPadding: EdgeInsets.all(0),
+                                      contentPadding: const EdgeInsets.all(0),
                                       value: true,
                                       title:
                                           'Desejo receber notícias pelo e-mail',
-                                      onChanged: (bool) {})
+                                      onChanged: (value) {})
                                 ],
                               ),
                             ),
@@ -287,9 +287,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                   if (formKey.currentState!.validate()) {
                                     formKey.currentState!.save();
                                   }
-                                  print(user.toString());
+                                 // print(user.toString());
                                 },
-                                child: Text('Criar Conta'),
+                                child: const Text('Criar Conta'),
                                 style: AppTheme.elevatedButtonStyle,
                               ),
                             ),

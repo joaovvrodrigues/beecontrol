@@ -1,8 +1,8 @@
-import 'package:beecontrol/pages/apiary_report/apiary_page.dart';
+import '../../apiary_report/apiary_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:beecontrol/models/apiary.dart';
+import '../../../models/apiary.dart';
 import 'package:provider/provider.dart';
 
 class ApiariesCard extends StatelessWidget {
@@ -20,11 +20,11 @@ class ApiariesCard extends StatelessWidget {
       onTap: () {
         context.read<Apiary>().updateProvider(apiary);
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ApiaryPage()));
+            .push(MaterialPageRoute(builder: (context) => const ApiaryPage()));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 5),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), color: Colors.white),
         child: Row(
@@ -51,15 +51,15 @@ class ApiariesCard extends StatelessWidget {
                   children: [
                     Text(
                       apiary.name,
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                     Text('${apiary.city}, ${apiary.uf}'),
                   ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Icon(
                 Ionicons.chevron_forward_outline,
                 size: 12,

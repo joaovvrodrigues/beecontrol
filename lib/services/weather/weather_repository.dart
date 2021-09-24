@@ -1,4 +1,4 @@
-import 'package:beecontrol/models/weather.dart';
+import '../../models/weather.dart';
 
 import 'weather_api_client.dart';
 

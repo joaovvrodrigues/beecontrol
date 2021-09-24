@@ -1,5 +1,5 @@
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
+import '../core/app_text_style.dart';
+import '../core/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class GuideTitle extends StatelessWidget {
@@ -10,22 +10,20 @@ class GuideTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(icon, size: 15, color: AppTheme.eclipse),
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Icon(icon, size: 15, color: AppTheme.eclipse),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            title,
+            style: AppTextStyle.boldText,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              title,
-              style: AppTextStyle.boldText,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

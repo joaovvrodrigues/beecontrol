@@ -1,6 +1,6 @@
-import 'package:beecontrol/core/app_text_style.dart';
-import 'package:beecontrol/core/app_theme.dart';
-import 'package:beecontrol/models/weather.dart';
+import '../../../core/app_text_style.dart';
+import '../../../core/app_theme.dart';
+import '../../../models/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +21,7 @@ class _WeatherCardState extends State<WeatherCard> {
   Widget build(BuildContext context) {
     var weather = context.watch<Weather>();
     return Card(
-      margin: EdgeInsets.all(0),
+      margin: const EdgeInsets.all(0),
       elevation: 0.0,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -29,14 +29,15 @@ class _WeatherCardState extends State<WeatherCard> {
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
         onTap: () {
-          if (weather.id != 121998)
+          if (weather.id != 121998) {
             setState(() {
               expanded = !expanded;
               opacity = opacity == 0 ? 1 : 0;
             });
+          }
         },
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 400),
           height: expanded ? 280 : 180,
           curve: Curves.ease,
           child: Column(
@@ -63,9 +64,9 @@ class _WeatherCardState extends State<WeatherCard> {
                                         .copyWith(fontSize: 40),
                                   )
                                 : Row(
-                                    children: [
+                                    children: const [
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(8.0),
                                         child: SpinKitFadingCube(
                                           color: AppTheme.dandelion,
                                           size: 40,
@@ -79,7 +80,7 @@ class _WeatherCardState extends State<WeatherCard> {
                                   'Umidade: ${weather.humidity!.toStringAsFixed(0)}%',
                                   style: AppTextStyle.boldText,
                                 )
-                              : Text(
+                              : const Text(
                                   'Acompanhe aqui os dados climáticos da sua região',
                                   style: AppTextStyle.boldText,
                                 )
@@ -100,7 +101,7 @@ class _WeatherCardState extends State<WeatherCard> {
               ),
               Flexible(
                 child: AnimatedOpacity(
-                  duration: Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 500),
                   opacity: opacity,
                   child: ForecastHorizontal(
                     weathers: weather.id == 121998 ? [] : weather.forecast!,
