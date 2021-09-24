@@ -175,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   child: Padding(
                                       padding: const EdgeInsets.only(
                                           top: 5, bottom: 5, left: 5),
-                                      child:  CustomDropDownField<String>(
+                                      child: CustomDropDownField<String>(
                                         onSaved: (text) =>
                                             user = user.copyWith(uf: text),
                                         validator: (text) {
@@ -287,7 +287,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   if (formKey.currentState!.validate()) {
                                     formKey.currentState!.save();
                                   }
-                                 // print(user.toString());
+                                  // print(user.toString());
                                 },
                                 child: const Text('Criar Conta'),
                                 style: AppTheme.elevatedButtonStyle,

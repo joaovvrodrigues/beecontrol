@@ -86,7 +86,8 @@ class CustomFormField extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppTheme.eclipse.withAlpha(80)),
 
-        contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
 
         // Borda
         border: OutlineInputBorder(

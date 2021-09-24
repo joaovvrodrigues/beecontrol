@@ -54,7 +54,7 @@ class Apiary extends ChangeNotifier {
     orphanBoxes = aux.orphanBoxes;
     lastVisit = aux.lastVisit;
     reports = aux.reports;
-     numHives = aux.numHives;
+    numHives = aux.numHives;
     notifyListeners();
   }
 
@@ -101,7 +101,7 @@ class Apiary extends ChangeNotifier {
       'lastVisit':
           lastVisit != null ? lastVisit.toString() : DateTime.now().toString(),
       'reports': reports.map((x) => x.toMap()).toList(),
-       'numHives': numHives,
+      'numHives': numHives,
     };
   }
 
@@ -132,31 +132,31 @@ class Apiary extends ChangeNotifier {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Apiary &&
-      other.id == id &&
-      other.name == name &&
-      other.city == city &&
-      other.uf == uf &&
-      other.image == image &&
-      other.visits == visits &&
-      other.orphanBoxes == orphanBoxes &&
-      other.lastVisit == lastVisit &&
-      listEquals(other.reports, reports) &&
-      other.numHives == numHives;
+        other.id == id &&
+        other.name == name &&
+        other.city == city &&
+        other.uf == uf &&
+        other.image == image &&
+        other.visits == visits &&
+        other.orphanBoxes == orphanBoxes &&
+        other.lastVisit == lastVisit &&
+        listEquals(other.reports, reports) &&
+        other.numHives == numHives;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      city.hashCode ^
-      uf.hashCode ^
-      image.hashCode ^
-      visits.hashCode ^
-      orphanBoxes.hashCode ^
-      lastVisit.hashCode ^
-      reports.hashCode ^
-      numHives.hashCode;
+        name.hashCode ^
+        city.hashCode ^
+        uf.hashCode ^
+        image.hashCode ^
+        visits.hashCode ^
+        orphanBoxes.hashCode ^
+        lastVisit.hashCode ^
+        reports.hashCode ^
+        numHives.hashCode;
   }
 }

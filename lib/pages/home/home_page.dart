@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  var _bottomNavIndex = 0; 
+  var _bottomNavIndex = 0;
 
   late AnimationController _animationController;
   late Animation<double> animation;
@@ -115,8 +115,8 @@ class _HomePageState extends State<HomePage>
             FeatherIcons.plus,
             color: AppTheme.eclipse,
           ),
-          onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const SubmitApiaryPage())),
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const SubmitApiaryPage())),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

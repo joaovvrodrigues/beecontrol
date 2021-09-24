@@ -30,7 +30,8 @@ class TotalWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title,
-                      style: const TextStyle(fontSize: 14, color: AppTheme.eclipse)),
+                      style: const TextStyle(
+                          fontSize: 14, color: AppTheme.eclipse)),
                   Text(amount.toString(),
                       style: AppTextStyle.boldTitle.copyWith(fontSize: 24))
                 ],

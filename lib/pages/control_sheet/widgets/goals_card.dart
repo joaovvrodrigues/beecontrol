@@ -12,7 +12,8 @@ class GoalsApiaryCard extends StatefulWidget {
   const GoalsApiaryCard({
     Key? key,
     required this.apiary,
-    required this.report, required this.readOnly,
+    required this.report,
+    required this.readOnly,
   }) : super(key: key);
 
   final Apiary apiary;
@@ -130,22 +131,24 @@ class _GoalsApiaryCardState extends State<GoalsApiaryCard> {
                             children: <Widget>[
                               for (String tipo in GoalsApiaryCard.manejo)
                                 CustomCheckBox(
-                                    value: widget.report.resume.contains(tipo),
-                                    title: tipo,
-                                    onChanged: widget.readOnly? null :
-                                    (value) {
-                                      setState(() {
-                                        if (value!) {
-                                          widget.report.resume.add(tipo);
-                                        } else {
-                                          if (widget.report.resume
-                                              .contains(tipo)) {
-                                            widget.report.resume.remove(tipo);
-                                          }
-                                        }
-                                      });
-                                    },
-                                    ),
+                                  value: widget.report.resume.contains(tipo),
+                                  title: tipo,
+                                  onChanged: widget.readOnly
+                                      ? null
+                                      : (value) {
+                                          setState(() {
+                                            if (value!) {
+                                              widget.report.resume.add(tipo);
+                                            } else {
+                                              if (widget.report.resume
+                                                  .contains(tipo)) {
+                                                widget.report.resume
+                                                    .remove(tipo);
+                                              }
+                                            }
+                                          });
+                                        },
+                                ),
                             ],
                           )
                         : const SizedBox()),

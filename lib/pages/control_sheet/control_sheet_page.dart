@@ -173,7 +173,8 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                           else
                             ListView.builder(
                                 shrinkWrap: true,
-                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 5),
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: controller.report.hives.length,
                                 itemBuilder: (context, index) {

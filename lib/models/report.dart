@@ -85,7 +85,7 @@ class Report {
   factory Report.fromMap(Map<String, dynamic> map) {
     return Report(
       name: map['name'],
-      date:  DateTime.parse(map['date']),
+      date: DateTime.parse(map['date']),
       numHives: map['numHives'],
       orphanBoxes: map['orphanBoxes'],
       resume: List<String>.from(map['resume']),

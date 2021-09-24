@@ -47,7 +47,8 @@ class Summary {
 
   String toJson() => json.encode(toMap());
 
-  factory Summary.fromJson(String source) => Summary.fromMap(json.decode(source));
+  factory Summary.fromJson(String source) =>
+      Summary.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -57,19 +58,19 @@ class Summary {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Summary &&
-      other.numApiaries == numApiaries &&
-      other.numHives == numHives &&
-      other.numReports == numReports &&
-      other.orphanBoxes == orphanBoxes;
+        other.numApiaries == numApiaries &&
+        other.numHives == numHives &&
+        other.numReports == numReports &&
+        other.orphanBoxes == orphanBoxes;
   }
 
   @override
   int get hashCode {
     return numApiaries.hashCode ^
-      numHives.hashCode ^
-      numReports.hashCode ^
-      orphanBoxes.hashCode;
+        numHives.hashCode ^
+        numReports.hashCode ^
+        orphanBoxes.hashCode;
   }
 }

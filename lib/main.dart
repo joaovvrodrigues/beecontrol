@@ -42,8 +42,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<Feed>(
             create: (_) => Feed(),
           ),
-          ChangeNotifierProvider<Apiary>(
-              create: (_) => Apiary(reports: [])),
+          ChangeNotifierProvider<Apiary>(create: (_) => Apiary(reports: [])),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

@@ -52,7 +52,9 @@ class AppTheme {
       pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
             TargetPlatform.android: ZoomPageTransitionsBuilder()
-          }), colorScheme: ColorScheme.fromSwatch(primarySwatch: dandelionMaterial).copyWith(secondary: dandelion));
+          }),
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: dandelionMaterial)
+          .copyWith(secondary: dandelion));
 
   InputDecoration inputDecoration(IconData icon) {
     return InputDecoration(
@@ -83,8 +85,8 @@ class AppTheme {
       onPrimary: eclipse,
       elevation: 0,
       primary: dandelion,
-      textStyle:
-          const TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: eclipse),
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w600, fontSize: 20, color: eclipse),
       minimumSize: const Size(400, 60),
       padding: const EdgeInsets.symmetric(horizontal: 40),
       shape: const RoundedRectangleBorder(

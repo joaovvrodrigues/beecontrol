@@ -76,7 +76,8 @@ class CustomDropDownField<T> extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppTheme.eclipse.withAlpha(80)),
 
-        contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 25),
+        contentPadding:
+            contentPadding ?? const EdgeInsets.symmetric(horizontal: 25),
 
         // Borda
         border: OutlineInputBorder(

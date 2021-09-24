@@ -64,8 +64,8 @@ class _DivideDialogState extends State<DivideDialog> {
                   onPressed: () => Navigator.of(context).pop(false),
                   child: const Text('CANCELAR'),
                   style: AppTheme.elevatedButtonStyle.copyWith(
-                    minimumSize:
-                        MaterialStateProperty.all<Size?>(const Size.fromHeight(40)),
+                    minimumSize: MaterialStateProperty.all<Size?>(
+                        const Size.fromHeight(40)),
                     padding: MaterialStateProperty.all<EdgeInsets?>(
                         const EdgeInsets.symmetric(horizontal: 5)),
                     backgroundColor:
@@ -87,8 +87,8 @@ class _DivideDialogState extends State<DivideDialog> {
                           const Size.fromHeight(40)),
                       padding: MaterialStateProperty.all<EdgeInsets?>(
                           const EdgeInsets.symmetric(horizontal: 5)),
-                      backgroundColor: MaterialStateProperty.all<Color?>(
-                          Colors.green[200]),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color?>(Colors.green[200]),
                     ),
                   ),
                 ),

@@ -127,7 +127,8 @@ class _ApiariesPageState extends State<ApiariesPage> {
                             AnimationLimiter(
                                 child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: controller.searchApiaries.length,
                                     itemBuilder: (context, index) {
                                       return AnimationConfiguration.staggeredList(

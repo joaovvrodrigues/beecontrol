@@ -11,16 +11,15 @@ class UserModel {
   final int number;
 
   UserModel({
-     this.name = '',
-     this.phone = '',
-     this.cpf = '',
-     this.city = '',
-     this.uf = '',
-     this.street = '',
-     this.district = '',
-     this.number = 0,
+    this.name = '',
+    this.phone = '',
+    this.cpf = '',
+    this.city = '',
+    this.uf = '',
+    this.street = '',
+    this.district = '',
+    this.number = 0,
   });
-
 
   UserModel copyWith({
     String? name,
@@ -72,7 +71,8 @@ class UserModel {
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source));
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -82,27 +82,27 @@ class UserModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is UserModel &&
-      other.name == name &&
-      other.phone == phone &&
-      other.cpf == cpf &&
-      other.city == city &&
-      other.uf == uf &&
-      other.street == street &&
-      other.district == district &&
-      other.number == number;
+        other.name == name &&
+        other.phone == phone &&
+        other.cpf == cpf &&
+        other.city == city &&
+        other.uf == uf &&
+        other.street == street &&
+        other.district == district &&
+        other.number == number;
   }
 
   @override
   int get hashCode {
     return name.hashCode ^
-      phone.hashCode ^
-      cpf.hashCode ^
-      city.hashCode ^
-      uf.hashCode ^
-      street.hashCode ^
-      district.hashCode ^
-      number.hashCode;
+        phone.hashCode ^
+        cpf.hashCode ^
+        city.hashCode ^
+        uf.hashCode ^
+        street.hashCode ^
+        district.hashCode ^
+        number.hashCode;
   }
 }

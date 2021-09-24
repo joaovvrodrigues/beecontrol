@@ -39,7 +39,8 @@ class _SubmitApiaryPageState extends State<SubmitApiaryPage> {
                     CircularButton(
                         onTap: () => Navigator.of(context).pop(),
                         icon: Ionicons.chevron_back_outline),
-                    const Text('Cadastro de Apiário', style: AppTextStyle.boldTitle),
+                    const Text('Cadastro de Apiário',
+                        style: AppTextStyle.boldTitle),
                     const SizedBox(width: 35, height: 35)
                   ],
                 )),

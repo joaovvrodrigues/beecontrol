@@ -61,7 +61,9 @@ class SummaryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TotalWidget(
-                    title: 'Colméias', amount: summary.numHives, icon: FeatherIcons.package),
+                    title: 'Colméias',
+                    amount: summary.numHives,
+                    icon: FeatherIcons.package),
                 TotalWidget(
                     title: 'Relatórios',
                     amount: summary.numReports,

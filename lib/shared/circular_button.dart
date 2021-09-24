@@ -44,23 +44,23 @@ class CircularButton extends StatelessWidget {
 }
 
 /// OTHER OPTIONS
- //   ClipOval(
-    //     child: Material(
-    //       color: color, // Button color
-    //       child: InkWell(
-    //         splashColor: splash, // Splash color
-    //         onTap: onTap,
-    //         child: SizedBox(
-    //             width: 56,
-    //             height: 56,
-    //             child: Icon(
-    //               icon,
-    //               size: 20,
-    //             )),
-    //       ),
-    //     ),
-    //   ),
-    // );
+//   ClipOval(
+//     child: Material(
+//       color: color, // Button color
+//       child: InkWell(
+//         splashColor: splash, // Splash color
+//         onTap: onTap,
+//         child: SizedBox(
+//             width: 56,
+//             height: 56,
+//             child: Icon(
+//               icon,
+//               size: 20,
+//             )),
+//       ),
+//     ),
+//   ),
+// );
 
 // FlatButton(
 //       onPressed: () {
