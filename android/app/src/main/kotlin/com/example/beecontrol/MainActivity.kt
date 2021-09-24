@@ -1,4 +1,4 @@
-package com.example.beecontrol
+package com.joaovvrodrigues.beecontrol
 
 import io.flutter.embedding.android.FlutterActivity
 
