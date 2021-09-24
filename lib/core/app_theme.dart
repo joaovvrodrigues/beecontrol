@@ -29,6 +29,10 @@ class AppTheme {
       MaterialColor(0xFFFFDE5F, colorCodes);
 
   static ThemeData lightTheme = ThemeData(
+      primarySwatch: dandelionMaterial,
+      primaryColorLight: dandelion,
+      highlightColor: dandelion,
+      indicatorColor: dandelion,
       brightness: Brightness.light,
       primaryColor: seashell,
       scaffoldBackgroundColor: seashell,
@@ -54,8 +58,13 @@ class AppTheme {
           builders: <TargetPlatform, PageTransitionsBuilder>{
             TargetPlatform.android: ZoomPageTransitionsBuilder()
           }),
-      colorScheme: ColorScheme.fromSwatch(primarySwatch: dandelionMaterial)
-          .copyWith(secondary: dandelion));
+      colorScheme:
+          ColorScheme.fromSwatch(primarySwatch: dandelionMaterial).copyWith(
+        secondary: dandelion,
+        background: seashell,
+        onBackground: seashell,
+        primary: dandelion,
+      ));
 
   InputDecoration inputDecoration(IconData icon) {
     return InputDecoration(

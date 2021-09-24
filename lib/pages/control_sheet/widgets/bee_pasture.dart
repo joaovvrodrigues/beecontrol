@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:beecontrol/core/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BeePasture extends StatelessWidget {
@@ -24,6 +25,7 @@ class BeePasture extends StatelessWidget {
           beePastureList.length,
           (index) => Expanded(
             child: RadioListTile<int>(
+                activeColor: AppTheme.dandelion,
                 toggleable: true,
                 title: Text(beePastureList[index]),
                 value: index,

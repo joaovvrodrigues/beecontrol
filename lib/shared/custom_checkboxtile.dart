@@ -22,6 +22,7 @@ class CustomCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
+      activeColor: AppTheme.dandelion,
       value: value,
       onChanged: onChanged,
       title: Text(title),
