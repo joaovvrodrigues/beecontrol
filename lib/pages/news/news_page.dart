@@ -79,11 +79,13 @@ class _NewsPageState extends State<NewsPage> {
                                 child: SlideAnimation(
                                     child: FadeInAnimation(
                                         child: NewsCard(
-                                  image: feed.feed!.items![index].media!
-                                          .contents!.isNotEmpty
-                                      ? feed.feed!.items![index].media!
-                                          .contents!.first.url!
-                                      : 'https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg',
+                                  image:
+                                      'https://source.unsplash.com/featured/?bee,honey,honeybee,beehive/800x6${index}0',
+                                  // feed.feed!.items![index].media!
+                                  //         .contents!.isNotEmpty
+                                  //     ? feed.feed!.items![index].media!
+                                  //         .contents!.first.url!
+                                  //     : 'https://www.infoescola.com/wp-content/uploads/2008/07/apicultura_1132051784.jpg',
                                   url: feed.feed!.items![index].link!,
                                   title: feed.feed!.items![index].title!,
                                   date: timeago.format(
