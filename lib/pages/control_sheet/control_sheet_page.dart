@@ -18,6 +18,7 @@ import '../../shared/info_card.dart';
 import 'control_sheet_controller.dart';
 import 'widgets/bee_pasture.dart';
 import 'widgets/comments.dart';
+import 'widgets/delete_dialog.dart';
 import 'widgets/goals_card.dart';
 import 'widgets/hive_card.dart';
 
@@ -205,11 +206,52 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: controller.report.hives.length,
                                 itemBuilder: (context, index) {
-                                  return HiveCard(
-                                      readOnly: !(controller.report.newReport ||
-                                          controller.lastReport),
-                                      hive: controller.report.hives[index],
-                                      divideHive: divideHive);
+                                  if ((controller.report.newReport ||
+                                      controller.lastReport)) {
+                                    return Dismissible(
+                                      background: Row(
+                                        children: [
+                                          Container(
+                                              decoration: BoxDecoration(
+                                                  color: AppTheme.sunset,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100)),
+                                              height: 60,
+                                              width: 60,
+                                              child: const Icon(
+                                                Icons.delete_forever,
+                                                color: Colors.white,
+                                              )),
+                                        ],
+                                      ),
+                                      confirmDismiss: (direction) async {
+                                        return await showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return const DeleteDialog();
+                                          },
+                                        );
+                                      },
+                                      onDismissed: (direction) {
+                                        setState(() {
+                                          controller.removeHive(index);
+                                        });
+                                      },
+                                      direction: DismissDirection.startToEnd,
+                                      key: Key(
+                                          controller.report.hives[index].name),
+                                      child: HiveCard(
+                                          readOnly: false,
+                                          hive: controller.report.hives[index],
+                                          divideHive: divideHive),
+                                    );
+                                  } else {
+                                    return HiveCard(
+                                        readOnly: true,
+                                        hive: controller.report.hives[index],
+                                        divideHive: divideHive);
+                                  }
                                 }),
                           if (controller.report.hives.isNotEmpty &&
                               (controller.report.newReport ||

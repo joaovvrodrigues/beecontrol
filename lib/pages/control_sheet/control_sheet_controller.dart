@@ -43,9 +43,13 @@ class ControlSheetController {
     }
   }
 
+  int lastHive() {
+    return int.parse(report.hives.last.name.substring(8));
+  }
+
   void divideHive(num mother, {bool count = false}) {
     report.hives.add(BeeHive(
-        name: 'Colméia ${report.hives.length + 1}',
+        name: 'Colméia ${lastHive() + 1}',
         dateOrphan: DateTime.now(),
         motherHive: mother,
         orphan: true,
@@ -60,9 +64,13 @@ class ControlSheetController {
 
   void addHive() {
     report.hives.add(BeeHive(
-        name: 'Colméia ${report.hives.length + 1}',
-        situation: [],
-        production: []));
+        name: 'Colméia ${lastHive() + 1}', situation: [], production: []));
+    report.numHives = report.hives.length;
+    apiary.numHives = report.hives.length;
+  }
+
+  void removeHive(int index) {
+    report.hives.removeAt(index);
     report.numHives = report.hives.length;
     apiary.numHives = report.hives.length;
   }
