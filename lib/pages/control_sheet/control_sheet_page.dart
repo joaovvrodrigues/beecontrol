@@ -38,6 +38,20 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
   final formKey = GlobalKey<FormState>();
   TextEditingController textController = TextEditingController();
   ControlSheetController controller = ControlSheetController();
+  ScrollController scrollController = ScrollController();
+
+  final SnackBar snackBar = SnackBar(
+    duration: const Duration(seconds: 2),
+    content: const Text(
+      'Nova colméia adicionada!',
+      style: TextStyle(fontSize: 16, color: AppTheme.eclipse),
+    ),
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+    backgroundColor: AppTheme.dandelion,
+  );
 
   @override
   void initState() {
@@ -93,9 +107,16 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
                         FeatherIcons.plus,
                         color: AppTheme.eclipse,
                       ),
-                      onPressed: () => setState(() {
-                        controller.addHive();
-                      }),
+                      onPressed: () async {
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        setState(() {
+                          controller.addHive();
+                        });
+                        await scrollController.animateTo(
+                            scrollController.position.maxScrollExtent + 100,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.easeInOut);
+                      },
                     )
                   : null,
           body: GestureDetector(
@@ -107,6 +128,7 @@ class _ControlSheetPageState extends State<ControlSheetPage> {
               }
             },
             child: SingleChildScrollView(
+                controller: scrollController,
                 padding: const EdgeInsets.all(20),
                 child: Form(
                   key: formKey,
