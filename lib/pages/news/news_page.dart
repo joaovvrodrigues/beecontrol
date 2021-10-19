@@ -62,6 +62,10 @@ class _NewsPageState extends State<NewsPage> {
                       orderByList: controller.filter.keys.toList(),
                       orderBy: controller.indexFilter,
                       onSaved: (value) async {
+                        setState(() {
+                          feed.feed = null;
+                        });
+
                         feed.refresh(await controller.getNewFeed(value!));
                       }),
                 ),
