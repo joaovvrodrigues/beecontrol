@@ -1,11 +1,12 @@
-// 🐦 Flutter imports:
-import 'package:flutter/material.dart';
-
 // 📦 Package imports:
+import 'dart:developer';
+
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
+import 'package:tflite/tflite.dart';
 
 // 🌎 Project imports:
 import '../../core/app_theme.dart';
@@ -14,6 +15,7 @@ import '../../models/weather.dart';
 import '../apiaries/apiaries_page.dart';
 import '../apiary_options/submit_apiary_page.dart';
 import '../news/news_page.dart';
+import '../vigor/vigor_page.dart';
 import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,8 +25,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   var _bottomNavIndex = 0;
 
   late AnimationController _animationController;
@@ -34,20 +35,19 @@ class _HomePageState extends State<HomePage>
   final iconList = <IconData>[
     Ionicons.newspaper_outline,
     FeatherIcons.package,
-    // Ionicons.aperture_outline,
+    Ionicons.aperture_outline,
     // Ionicons.settings_outline
   ];
 
   final pages = <Widget>[
     const NewsPage(),
     const ApiariesPage(),
-    // RegisterPage(),
+    const VigorPage(),
     // SettingsPage()
   ];
 
   HomeController controller = HomeController();
-  Weather weather =
-      Weather(iconCode: '01d', id: 121998, temperature: 0, time: 0);
+  Weather weather = Weather(iconCode: '01d', id: 121998, temperature: 0, time: 0);
   Feed feed = Feed();
 
   void loadWeather() async {
@@ -80,9 +80,21 @@ class _HomePageState extends State<HomePage>
     super.dispose();
   }
 
+  loadModel() async {
+    String? res = await Tflite.loadModel(
+        model: 'assets/tflite/model.tflite',
+        labels: 'assets/tflite/labels.txt',
+        numThreads: 1, // defaults to 1
+        isAsset: true, // defaults to true, set to false to load resources outside assets
+        useGpuDelegate: false // defaults to false, set to true to use GPU delegate
+        );
+    log(res.toString().toUpperCase());
+  }
+
   @override
   void initState() {
     super.initState();
+    loadModel();
     loadWeather();
     loadFeed();
 
@@ -120,11 +132,11 @@ class _HomePageState extends State<HomePage>
             FeatherIcons.plus,
             color: AppTheme.eclipse,
           ),
-          onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const SubmitApiaryPage())),
+          onPressed: () =>
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SubmitApiaryPage())),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
         itemCount: iconList.length,
         tabBuilder: (int index, bool isActive) {
@@ -141,7 +153,7 @@ class _HomePageState extends State<HomePage>
         notchAndCornersAnimation: animation,
         splashSpeedInMilliseconds: 300,
         notchSmoothness: NotchSmoothness.smoothEdge,
-        gapLocation: GapLocation.center,
+        gapLocation: GapLocation.none,
         onTap: _onTap,
       ),
     );

@@ -1,9 +1,7 @@
 // 🐦 Flutter imports:
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 // 📦 Package imports:
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
@@ -50,9 +48,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircularButton(
-                        onTap: () => Navigator.of(context).pop(),
-                        icon: Ionicons.chevron_back_outline),
+                    CircularButton(onTap: () => Navigator.of(context).pop(), icon: Ionicons.chevron_back_outline),
                     const Text('Editar Apiário', style: AppTextStyle.boldTitle),
                     const SizedBox(width: 35, height: 35)
                   ],
@@ -74,9 +70,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                     ),
                     children: [
                       // apiary name input
-                      const GuideTitle(
-                          icon: Ionicons.cube_outline,
-                          title: 'Nome do apiário:'),
+                      const GuideTitle(icon: Ionicons.cube_outline, title: 'Nome do apiário:'),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: CustomFormField(
@@ -85,8 +79,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                           icon: Ionicons.cube_outline,
                           keyboardType: TextInputType.name,
                           textCapitalization: TextCapitalization.words,
-                          onSaved: (text) => controller.apiary =
-                              controller.apiary.copyWith(name: text),
+                          onSaved: (text) => controller.apiary = controller.apiary.copyWith(name: text),
                           validator: (text) {
                             if (text == null || text.isEmpty) {
                               return 'Este campo é obrigatório';
@@ -100,23 +93,19 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                       const SizedBox(height: 10),
 
                       // apiary address input
-                      const GuideTitle(
-                          icon: Ionicons.business_outline,
-                          title: 'Endereço do Apiário:'),
+                      const GuideTitle(icon: Ionicons.business_outline, title: 'Endereço do Apiário:'),
                       Row(
                         children: [
                           Expanded(
                             flex: 3,
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 5, bottom: 5, right: 5),
+                              padding: const EdgeInsets.only(top: 5, bottom: 5, right: 5),
                               child: CustomFormField(
                                 hintText: 'Cidade',
                                 initialValue: controller.apiary.city,
                                 icon: Ionicons.business_outline,
                                 textCapitalization: TextCapitalization.words,
-                                onSaved: (text) => controller.apiary =
-                                    controller.apiary.copyWith(city: text),
+                                onSaved: (text) => controller.apiary = controller.apiary.copyWith(city: text),
                                 validator: (text) {
                                   if (text == null || text.isEmpty) {
                                     return 'Este campo é obrigatório';
@@ -131,20 +120,15 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                           Expanded(
                             flex: 2,
                             child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 5, bottom: 5, left: 5),
+                                padding: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
                                 child: CustomDropDownField<String>(
                                   onTap: () {
-                                    FocusScopeNode currentFocus =
-                                        FocusScope.of(context);
-                                    if (!currentFocus.hasPrimaryFocus &&
-                                        currentFocus.focusedChild != null) {
-                                      FocusManager.instance.primaryFocus!
-                                          .unfocus();
+                                    FocusScopeNode currentFocus = FocusScope.of(context);
+                                    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                                      FocusManager.instance.primaryFocus!.unfocus();
                                     }
                                   },
-                                  onSaved: (text) => controller.apiary =
-                                      controller.apiary.copyWith(uf: text),
+                                  onSaved: (text) => controller.apiary = controller.apiary.copyWith(uf: text),
                                   validator: (text) {
                                     if (text == null || text.isEmpty) {
                                       return 'Este campo é obrigatório';
@@ -153,8 +137,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                                   initialValue: controller.apiary.uf,
                                   hintText: 'UF',
                                   // icon: Ionicons.business_outline,
-                                  items: Estados.listaEstadosSigla
-                                      .map((String uf) {
+                                  items: Estados.listaEstadosSigla.map((String uf) {
                                     return DropdownMenuItem(
                                       value: uf,
                                       child: Text(uf),
@@ -167,9 +150,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                       const SizedBox(height: 10),
 
                       // apiary image input
-                      const GuideTitle(
-                          icon: Ionicons.image_outline,
-                          title: 'Adicione uma foto:'),
+                      const GuideTitle(icon: Ionicons.image_outline, title: 'Adicione uma foto:'),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20.0),
                         child: FadeInImage.memoryNetwork(
@@ -192,9 +173,7 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                               if (formKey.currentState!.validate()) {
                                 formKey.currentState!.save();
                                 controller.saveApiary();
-                                context
-                                    .read<Apiary>()
-                                    .updateProvider(controller.apiary);
+                                context.read<Apiary>().updateProvider(controller.apiary);
                                 Navigator.of(context).pop();
                               }
                             },
@@ -212,9 +191,8 @@ class _EditApiaryPageState extends State<EditApiaryPage> {
                             Navigator.of(context).pop();
                           },
                           child: const Text('Excluir Apiário'),
-                          style: AppTheme.elevatedButtonStyle.copyWith(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  AppTheme.monalisa)),
+                          style: AppTheme.elevatedButtonStyle
+                              .copyWith(backgroundColor: MaterialStateProperty.all<Color>(AppTheme.monalisa)),
                         ),
                       ),
                     ],

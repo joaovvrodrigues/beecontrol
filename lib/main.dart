@@ -1,10 +1,8 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 // 📦 Package imports:
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -44,12 +42,8 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider<Weather>(
-              create: (_) => Weather(
-                  iconCode: '01d', id: 121998, temperature: 0, time: 0)),
-          ChangeNotifierProvider<Feed>(
-            create: (_) => Feed(),
-          ),
+          ChangeNotifierProvider<Weather>(create: (_) => Weather(iconCode: '01d', id: 121998, temperature: 0, time: 0)),
+          ChangeNotifierProvider<Feed>(create: (_) => Feed()),
           ChangeNotifierProvider<Apiary>(create: (_) => Apiary(reports: [])),
         ],
         child: MaterialApp(
